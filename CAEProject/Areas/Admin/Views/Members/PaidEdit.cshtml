@@ -1,0 +1,310 @@
+﻿@using System.Collections
+@using CAEProject.Models
+@model CAEProject.Models.MbPaidViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    Member member = ViewBag.MemberDate;
+}
+
+<h2>修改</h2>
+<div class="form-horizontal">
+    <h4>會員管理</h4>
+    <hr />
+</div>
+<!--tab nav start-->
+<section class="panel">
+    <header class="panel-heading tab-bg-primary ">
+        <ul class="nav nav-tabs" id="myTab">
+            <li class="active">
+                <a data-toggle="tab" href="#home">會員資訊</a>
+            </li>
+            <li class="">
+                <a data-toggle="tab" href="#about">管理員備註</a>
+            </li>
+            <li class="">
+                <a data-toggle="tab" href="#profile">使用者備註</a>
+            </li>
+        </ul>
+    </header>
+    <div class="panel-body">
+        <div class="tab-content">
+
+            <!--需求內容-->
+            <div id="home" class="tab-pane active">
+                <br />
+                @using (Html.BeginForm("PaidEdit", "Members", new { area = "Admin" }, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    ▼文字資訊
+                                </header>
+                                <div class="form-horizontal panel-body text-center">
+                                    <br />
+                                    <input type="hidden" name="id" value="@member.Id" />
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Account, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input name="Account" class="form-control" value="@member.Account" />
+                                            @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input type="hidden" name="Password" class="form-control" value="@member.Password" />
+                                            <input type="password" name="passwordAdd" class="form-control" />
+                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.NoticeDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input type="datetime" name="NoticeDateTime" class="form-control" value="@member.NoticeDateTime" />
+                                            @Html.ValidationMessageFor(model => model.NoticeDateTime, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CompanyName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input name="CompanyName" class="form-control" value="@member.CompanyName" />
+                                            @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CompanyNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input name="CompanyNumber" class="form-control" value="@member.CompanyNumber" />
+                                            @Html.ValidationMessageFor(model => model.CompanyNumber, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Principal, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input name="Principal" class="form-control" value="@member.Principal" />
+                                            @Html.ValidationMessageFor(model => model.Principal, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.PrincipalJobTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input name="PrincipalJobTitle" class="form-control" value="@member.PrincipalJobTitle" />
+                                            @Html.ValidationMessageFor(model => model.PrincipalJobTitle, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CompanyPhone, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input name="CompanyPhone" class="form-control" value="@member.CompanyPhone" />
+                                            @Html.ValidationMessageFor(model => model.CompanyPhone, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CompanyUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input name="CompanyUrl" class="form-control" value="@member.CompanyUrl" />
+                                            @Html.ValidationMessageFor(model => model.CompanyUrl, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ContactPersonJobTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input name="ContactPersonJobTitle" class="form-control" value="@member.ContactPersonJobTitle" />
+                                            @Html.ValidationMessageFor(model => model.ContactPersonJobTitle, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EmployeeCount, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input name="EmployeeCount" class="form-control" value="@member.EmployeeCount" />
+                                            @Html.ValidationMessageFor(model => model.EmployeeCount, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ContactPersonEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input name="ContactPersonEmail" class="form-control" value="@member.ContactPersonEmail" />
+                                            @Html.ValidationMessageFor(model => model.ContactPersonEmail, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CompanyType, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            @Html.DropDownList("CompanyType", new SelectList(Enum.GetValues(typeof(CAEProject.Models.CompanyType)), member.CompanyType), htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.CompanyType, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Industry, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            @Html.DropDownList("Industry", new SelectList(Enum.GetValues(typeof(CAEProject.Models.Industry)), member.Industry), htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Industry, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Training, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            @Html.DropDownList("Industry", new SelectList(Enum.GetValues(typeof(CAEProject.Models.Training)), member.Training), htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Training, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CompanyIntroduction, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input name="CompanyIntroduction" class="form-control" value="@member.CompanyIntroduction" />
+                                            @Html.ValidationMessageFor(model => model.CompanyIntroduction, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Business, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input name="Business" class="form-control" value="@member.Business" />
+                                            @Html.ValidationMessageFor(model => model.Business, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ContactPerson, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input name="ContactPerson" class="form-control" value="@member.ContactPerson" />
+                                            @Html.ValidationMessageFor(model => model.ContactPerson, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ContactPersonPhone, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input name="ContactPersonPhone" class="form-control" value="@member.ContactPersonPhone" />
+                                            @Html.ValidationMessageFor(model => model.ContactPersonPhone, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input name="Address" class="form-control" value="@member.Address" />
+                                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Extension, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input name="Extension" class="form-control" value="@member.Extension" />
+                                            @Html.ValidationMessageFor(model => model.Extension, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Fax, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input name="Fax" class="form-control" value="@member.Fax" />
+                                            @Html.ValidationMessageFor(model => model.Fax, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Demand, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            @Html.DropDownList("Demand", new SelectList(Enum.GetValues(typeof(CAEProject.Models.Demand)), member.Demand), htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Demand, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Subscription, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            @Html.DropDownList("Subscription", new SelectList(Enum.GetValues(typeof(CAEProject.Models.Subscription)), member.Subscription), htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Subscription, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="DateTime" value="@member.DateTime" />
+                                </div>
+                            </section>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    ▼圖案
+                                </header>
+                                <div class="form-horizontal panel-body text-center">
+                                    <br />
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CompanyPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            <input type="file" name="CompanyPhoto" value="@member.CompanyPhoto" />
+                                            @Html.ValidationMessageFor(model => model.CompanyPhoto, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-12">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    ▼狀態
+                                </header>
+                                <div class="form-horizontal panel-body text-center">
+                                    <br />
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ApplicationStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-6">
+                                            @Html.DropDownList("ApplicationStatus", new SelectList(Enum.GetValues(typeof(CAEProject.Models.ApplicationStatus)), member.ApplicationStatus), htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.ApplicationStatus, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                            </section>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-6">
+                                <button type="submit" class="btn btn-info"><span class="icon_cloud-upload_alt"></span> 送出</button>
+                                <a href="@Url.Action("Index", "members", new {area = "admin"})" style="margin: 0 0 0 5px" class="btn btn-danger"><span class="icon_house_alt"></span> 返回</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <!--回覆紀錄-->
+            <div id="about" class="tab-pane">
+
+            </div>
+
+            <!--需求回覆-->
+            <div id="profile" class="tab-pane">
+                <!--需求回覆Start-->
+                <!--需求回覆End-->
+            </div>
+        </div>
+    </div>
+</section>
+<div>
+    <a href="@Url.Action("Index","Members",new {area="admin"})" style="margin: 0 0 0 5px" class="btn btn-danger"><span class="icon_house_alt"></span> 返回</a>
+</div>

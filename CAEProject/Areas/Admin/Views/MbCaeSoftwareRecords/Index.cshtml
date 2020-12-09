@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CAEProject.Models.MbCaeSoftwareRecord>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a href="@Url.Action("Create", "MbCaeSoftwareRecords", new {area = "Admin"})" class="btn btn-primary"><span class="icon_lightbulb_alt"></span> 新增</a>
+</p>
+<table class="table table-striped table-advance table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Member.Account)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoftwareType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReservationDateTime)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Member.Account)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoftwareType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReservationDateTime)
+            </td>
+            <td>
+                @Html.ActionLink("修改", "Edit", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
+                @Html.ActionLink("刪除", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm", @onclick = "return Confirm_Form()" })
+            </td>
+        </tr>
+    }
+
+</table>

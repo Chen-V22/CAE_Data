@@ -1,0 +1,131 @@
+﻿@model CAEProject.Models.ResultsPublished
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>修改</h2>
+<h4>成果展示</h4>
+@using (Html.BeginForm("Edit", "ResultsPublisheds", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    文字資訊
+                </header>
+                <div class="form-horizontal">
+
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SourceDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 sandbox-container">
+                            @Html.EditorFor(model => model.SourceDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SourceDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ContactPerson, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ContactPerson, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ContactPerson, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ContactPhone, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ContactPhone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ContactPhone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ContactEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ContactEmail, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ContactEmail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ShowDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 sandbox-container">
+                            @Html.EditorFor(model => model.ShowDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SourceDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Count, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Count, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Count, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    @Html.HiddenFor(model => model.AddUser)
+                    @Html.HiddenFor(model => model.DateTime)
+                    @Html.HiddenFor(model => model.ReviewDate)
+                    <hr />
+                </div>
+            </section>
+        </div>
+
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    圖案/附件
+                </header>
+                <div class="form-horizontal">
+                    <hr />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            <input type="file" name="photo" />
+                        </div>
+                    </div>
+                    @{
+                        if (Model.Photo != null)
+                        {
+                            <div class="form-group">
+                                <p class="control-label col-md-2">原附件</p>
+                                <div class="col-lg-5">
+                                    <a class="venobox_custom" data-overlay="rgba(95, 164, 255, 0.8)" data-vbtype="iframe" href="/upfile/images/@(Model.Photo)">點我查看(下載)</a>
+                                </div>
+                            </div>
+                        }
+                    }
+                    <hr />
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-6">
+            <button type="submit" class="btn btn-info"><span class="icon_cloud-upload_alt"></span> 送出</button>
+            <a href="@Url.Action("Index", "ResultsPublisheds", new {area = "admin"})" style="margin: 0 0 0 5px" class="btn btn-danger"><span class="icon_house_alt"></span> 返回</a>
+        </div>
+    </div>
+}

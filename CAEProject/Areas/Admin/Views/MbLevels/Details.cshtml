@@ -1,0 +1,83 @@
+﻿@model CAEProject.Models.MbLevel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MbLevel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Points)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Points)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Welfare)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Welfare)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastEditDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastEditDateTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

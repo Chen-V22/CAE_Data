@@ -1,0 +1,11 @@
+﻿@using CAEProject.Models
+@using Newtonsoft.Json
+
+@{
+    ViewBag.Title = "Index";
+    //var userData = ((FormsIdentity)HttpContext.Current.User.Identity).Ticket.UserData;
+    //User user = JsonConvert.DeserializeObject<User>(userData);
+}
+
+<h2>歡迎！使用者：<span style="color:#00a0df; font-family: monospace">@Utility.GetUserTickets().UserCodeName</span></h2>
+

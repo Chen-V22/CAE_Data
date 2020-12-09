@@ -1,0 +1,90 @@
+﻿@model CAEProject.Models.Faq
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+<h4>Faq</h4>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    文字資訊
+                </header>
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FaqStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EnumDropDownListFor(model => model.FaqStatus, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FaqStatus, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })*
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.SourceDateTime, htmlAttributes: new { @class = "control-label col-md-2" })*
+                        <div class="col-md-6 sandbox-container">
+                            @Html.EditorFor(model => model.SourceDateTime, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SourceDateTime, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ReleaseDateTime, htmlAttributes: new { @class = "control-label col-md-2" })*
+                        <div class="col-md-6 sandbox-container">
+                            @Html.EditorFor(model => model.ReleaseDateTime, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ReleaseDateTime, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Count, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            *@Html.TextAreaFor(model => model.Count, new { @class = "ckeditor" })
+                            @Html.ValidationMessageFor(model => model.Count, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+            </section>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+                <button type="submit" class="btn btn-info"><span class="icon_cloud-upload_alt"></span> 送出</button>
+                <a href="@Url.Action("Index", "Faqs", new {area = "admin"})" style="margin: 0 0 0 5px" class="btn btn-danger"><span class="icon_house_alt"></span> 返回</a>
+            </div>
+        </div>
+    </div>
+}

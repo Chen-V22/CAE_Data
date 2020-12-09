@@ -1,0 +1,107 @@
+﻿@using CAEProject.Migrations
+@using MvcPaging
+@model IPagedList<CAEProject.Models.Ad>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>廣告管理</h2>
+
+@using (Html.BeginForm("index", "Ads", new { area = "Admin" }, FormMethod.Post))
+{
+    <div style="display: flex; justify-content: space-between">
+        <p>
+            <a href="@Url.Action("Create", "Ads", new {area = "Admin"})" class="btn btn-primary"><span class="icon_lightbulb_alt"></span> 新增</a>
+        </p>
+        
+        <div>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().AdCategory)：
+            @Html.DropDownList("adCategory", new SelectList(Enum.GetValues(typeof(CAEProject.Models.AdCategory)), Session["adCategory"]), "請選擇")
+            <label>關鍵字：</label>
+            <input type="search" style="border: 1px solid #000000; border-radius: 2px" name="adTitle" value="@Session["adTitle"]" placeholder="請輸入關鍵字" />
+            @Html.DisplayNameFor(model => model.FirstOrDefault().AdStatus)：
+            @Html.DropDownList("adStatus", new SelectList(Enum.GetValues(typeof(CAEProject.Models.Status)), Session["adStatus"]), "請選擇")
+            <label style="padding-left: 20px">日期：</label>
+            <input type="date" name="strDateTime" value="@Session["strDateTime"]" />
+            <label style="font-size: 15px">~</label>
+            <input type="date" name="endDateTime" value="@Session["endDateTime"]" />
+            <input type="submit" value="搜尋" />
+        </div>
+
+    </div>
+}
+<table class="table table-striped table-advance table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().AdCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().AdStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().ClickRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().SDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().EDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().IsTop)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().EditUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().LastEditDateTime)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClickRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsTop)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EditUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastEditDateTime)
+            </td>
+            <td>
+                @Html.ActionLink("修改", "Edit", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
+                @Html.ActionLink("刪除", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm", @onclick = "return Confirm_Form()" })
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="pager">
+    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+</div>

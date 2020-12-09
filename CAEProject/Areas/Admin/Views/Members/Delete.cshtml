@@ -1,0 +1,345 @@
+﻿@model CAEProject.Models.Member
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Member</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MbLevel.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MbLevel.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Account)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Account)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApproveDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApproveDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DisenableDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DisenableDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoticeDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoticeDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Principal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Principal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrincipalJobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrincipalJobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactPersonJobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactPersonJobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactPersonEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactPersonEmail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Industry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Industry)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Training)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Training)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyIntroduction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyIntroduction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Business)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Business)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyPhoto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyPhoto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactPerson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactPerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactPersonPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactPersonPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extension)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extension)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentIdentity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentIdentity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentUnit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MobilePhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MobilePhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCard)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdCard)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BusinessItem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BusinessItem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Demand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Demand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subscription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subscription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EditUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EditUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastEditDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastEditDateTime)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

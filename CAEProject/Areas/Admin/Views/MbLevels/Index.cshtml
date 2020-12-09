@@ -1,0 +1,60 @@
+﻿@model IEnumerable<CAEProject.Models.MbLevel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>會員計費設定</h2>
+
+<p>
+    <a href="@Url.Action("Create", "MbLevels", new {area = "Admin"})" class="btn btn-primary"><span class="icon_lightbulb_alt"></span> 新增</a>
+</p>
+<table class="table table-striped table-advance table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Points)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Welfare)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastEditDateTime)
+        </th>
+        <th>
+            功能
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Points)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Welfare)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastEditDateTime)
+            </td>
+            <td>
+                @Html.ActionLink("修改", "Edit", new { id = item.Id }, new { @class = "btn btn-info btn-sm" })
+                @Html.ActionLink("刪除", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm", @onclick = "return Confirm_Form()" })
+            </td>
+        </tr>
+    }
+
+</table>

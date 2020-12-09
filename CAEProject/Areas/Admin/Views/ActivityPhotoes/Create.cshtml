@@ -1,0 +1,61 @@
+﻿@model CAEProject.Models.ActivityPhoto
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+<body style="display: flex;justify-content: center">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <br />
+            <div style="width: 1100px;height: 500px">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                圖片新增
+                            </header>
+                            <div class="form-horizontal">
+                                <hr />
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-lg-6">
+                                        <a id="add" class="btn btn-info">增加</a>
+                                        <a id="del" class="btn btn-danger">刪除</a>
+                                    </div>
+                                </div>
+                                <div id="addTable">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">相片1</label>
+                                        <div class="col-md-6">
+                                            <input type="file" name="photo" />
+                                            <br />
+                                            <textarea class="text-danger" rows="3" cols="54" placeHolder="請輸入相片簡述" name="PhotoAnnotation"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-lg-6">
+                                        <button type="submit" class="btn btn-info vbox-closed"><span class="icon_cloud-upload_alt"></span> 送出</button>
+                                        <a href="" style="margin: 0 0 0 5px" class="btn btn-danger vbox-closed"><span class="icon_house_alt"></span> 返回</a>
+                                    </div>
+                                </div>
+                                <hr />
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>

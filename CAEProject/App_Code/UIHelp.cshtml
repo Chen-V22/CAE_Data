@@ -1,0 +1,46 @@
+﻿@using CAEProject.Models
+@model CAEProject.Models.ProjectService
+
+<!--專案服務指定顧問(是/否)-->
+@helper PsHelperResult(string pro)
+{
+    if (string.IsNullOrEmpty(pro))
+    {
+        @:無指定
+    }
+    else
+    {
+        @pro
+    }
+}
+
+<!--<公司屬性>、<產業類別>-->
+@helper MbCompanyTypeHelperResult(int who)
+{
+    switch (who)
+    {
+        case 1:
+            string[] CompanyType = new string[] { "公司、行號", "政府機構", "學校", "公/協會", "研究機構" };
+            foreach (var ct in CompanyType)
+            {
+                @:<option value="@ct">@ct</option>
+            }
+            break;
+        case 2:
+            string[] industry = new string[] { "金屬基本業(鐵、非鐵)", "金屬製品製造業", "其他" };
+            foreach (var ind in industry)
+            {
+                @:<option value="@ind">@ind</option>
+            }
+            break;
+    }
+}
+
+@helper MbStatusHelperResult(ApplicationStatus status)
+{
+    if (status == ApplicationStatus.以停止 || status == ApplicationStatus.審核中)
+    {
+        @:disabled
+    }
+}
+

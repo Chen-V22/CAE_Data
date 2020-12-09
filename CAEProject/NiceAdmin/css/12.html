@@ -1,0 +1,103 @@
+<aside>
+    <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu">
+            <li class="active">
+        <a class="" href="@Url.Action("Home", "Home", new {Area = "admin"})">
+
+            <i class="icon_house_alt"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+        @*<li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class="icon_documents_alt"></i>
+                <span>帳號管理</span>
+                <span class="menu-arrow arrow_carrot-right"></span>
+            </a>
+            <ul class="sub">
+                <li><a class="" href="@Url.Action("Index", "Users", new {area = "admin"})">管理者帳號</a></li>
+                <li><a class="" href="@Url.Action("Index", "Members", new {area = "admin"})">會員帳號</a></li>
+            </ul>
+        </li>
+
+
+    <li class="sub-menu">
+        <a href="javascript:;" class="">
+            <i class="icon_documents_alt"></i>
+            <span>關於、介紹管理</span>
+            <span class="menu-arrow arrow_carrot-right"></span>
+        </a>
+        <ul class="sub">
+            <li><a class="" href="@Url.Action("Index", "AboutUs", new {area = "admin"})">關於、介紹</a></li>
+            <li><a class="" href="@Url.Action("Index", "Associations", new {area = "admin"})">職務管理</a></li>
+            <li><a class="" href="@Url.Action("Index", "Calendars", new {area = "admin"})">行事曆</a></li>
+        </ul>
+    </li>
+
+    <li>
+        <a class="" href="@Url.Action("Index", "News", new {area = "admin"})">
+            <i class="icon_documents_alt"></i>
+            <span>新聞管理</span>
+        </a>
+    </li>
+
+    <li>
+        <a class="" href="@Url.Action("index","HomePictures",new{area="admin"})">
+            <i class="icon_documents_alt"></i>
+            <span>首頁輪播圖管理</span>
+        </a>
+    </li>
+
+    <li>
+        <a class="" href="@Url.Action("index","ExternalLinks",new{area="admin"})">
+            <i class="icon_documents_alt"></i>
+            <span>外部連結管理</span>
+        </a>
+    </li>
+
+    <li>
+        <a class="" href="@Url.Action("index","ContactUs",new{area="admin"})">
+            <i class="icon_documents_alt"></i>
+            <span>聯絡我們</span>
+        </a>
+    </li>
+
+    <li>
+        <a class="" href="@Url.Action("index","Forum",new{area="admin"})">
+            <i class="icon_documents_alt"></i>
+            <span>討論區</span>
+        </a>
+    </li>
+
+    <li class="sub-menu">
+        <a href="javascript:;" class="">
+            <i class="icon_documents_alt"></i>
+            <span>知識庫</span>
+            <span class="menu-arrow arrow_carrot-right"></span>
+        </a>
+        <ul class="sub">
+            <li><a class="" href="@Url.Action("index","DownLoads",new{area="admin"})">知識庫下載</a></li>
+        </ul>
+    </li>*@
+            <li class="sub-menu">
+                <a href="javascript:;" class="">
+                    <i class="icon_documents_alt"></i>
+                    <span>功能</span>
+                    <span class="menu-arrow arrow_carrot-right"></span>
+                </a>
+                <ul class="sub">
+                    @using (Html.BeginForm("Transfer", "Home", FormMethod.Post, new { id = "Transfer" }))
+                    {
+                        <li>
+                            @Html.AntiForgeryToken()<a href="javascript:document.getElementById('Transfer').submit()"><i class="icon_pin_alt"></i>前往網頁</a>
+                        </li>
+                    }
+                    @*<li><a class="" href="@Url.Action("index", "Home", new {area = ""})">前往網頁</a></li>*@
+                </ul>
+            </li>
+
+        </ul>
+        <!-- sidebar menu end-->
+    </div>
+</aside>

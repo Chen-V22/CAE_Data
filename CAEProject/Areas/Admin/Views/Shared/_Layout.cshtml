@@ -1,0 +1,463 @@
+﻿@using System.Web.UI.WebControls
+@using Microsoft.Ajax.Utilities
+@using Newtonsoft.Json
+@using System.Web.Mvc;
+@using CAEProject.Models
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @*<%--//將網頁設為立即過期。--%>*@
+    <meta http-equiv="Expires" content="0" />
+    @*<%--//舊寫法，為了增加相容性。--%>*@
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma-directive" content="no-cache" />
+    <meta http-equiv="Cache-Directive" content="no-cache" />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+    <meta name="author" content="GeeksLabs">
+    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <link rel="shortcut icon" href="img/favicon.png">
+    <title>Creative - Bootstrap Admin Template</title>
+    <!-- Bootstrap CSS -->
+    <link href="~/NiceAdmin/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href="~/NiceAdmin/css/bootstrap-theme.css" rel="stylesheet">
+    <!--external css-->
+    <!-- font icon -->
+    <link href="~/NiceAdmin/css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="~/NiceAdmin/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- full calendar css-->
+    <link href="~/NiceAdmin/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
+    <link href="~/NiceAdmin/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
+    <!-- easy pie chart-->
+    <link href="~/NiceAdmin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen" />
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="~/NiceAdmin/css/owl.carousel.css" type="text/css">
+    <link href="~/NiceAdmin/css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="~/NiceAdmin/css/fullcalendar.css">
+    <link href="~/NiceAdmin/css/widgets.css" rel="stylesheet">
+    <link href="~/NiceAdmin/css/style.css" rel="stylesheet">
+    <link href="~/NiceAdmin/css/style-responsive.css" rel="stylesheet" />
+    <link href="~/NiceAdmin/css/xcharts.min.css" rel=" stylesheet">
+    <link href="~/NiceAdmin/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+    <!--BackEnd PageStyle-->
+    <link href="~/Content/PageStyle.css" rel="stylesheet" />
+    <!--BackEnd LightBox-VenoBox-->
+    <link href="~/VenoBox-master/venobox/venobox.min.css" rel="stylesheet" />
+    <!--BootStrap-DatePicker-->
+    <link href="~/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    @if (Request.IsAuthenticated)
+    {
+        string strUserData = ((FormsIdentity)(HttpContext.Current.User.Identity)).Ticket.UserData;
+        User Users = JsonConvert.DeserializeObject<User>(strUserData);
+        <section id="container" class="">
+
+
+            <header class="header dark-bg">
+                <div class="toggle-nav">
+                    <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
+                </div>
+
+                <!--logo start-->
+                @*@Url.Action("Index", "Users")*@ <!--路徑設定-->
+
+                <a href="@Url.Action("Index", "Home", new {area = "admin"})" class="logo">CAE 雲端服務加值中心<span class="lite">|後臺管理系統</span></a>
+
+                <!--logo end-->
+
+
+
+                <div class="top-nav notification-row">
+                    <!-- notificatoin dropdown start-->
+                    <ul class="nav pull-right top-menu">
+
+                        <!-- task notificatoin start -->
+                        <!-- task notificatoin end -->
+                        <!-- inbox notificatoin start-->
+                        @{
+
+                        }
+                        <!-- inbox notificatoin end -->
+                        <!-- alert notification start-->
+                        <!-- alert notification end-->
+                        <!-- user login dropdown start-->
+
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="profile-ava">
+
+                                    @*<img alt="" src="~/upfile/images/s@(Users.Photo)" />*@
+
+
+                                </span>
+
+
+                                <span class="username">@(HttpContext.Current.User.Identity.Name)</span>
+
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu extended logout">
+                                @*<div class="log-arrow-up"></div>*@
+                                <li class="eborder-top">
+                                    <a href="#"><i class="icon_profile"></i> My Profile</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="icon_clock_alt"></i> Timeline</a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="icon_chat_alt"></i> Chats</a>
+                                </li>
+                                @using (Html.BeginForm("SingOut", "Home", FormMethod.Post, new { id = "logoutForm" }))
+                                {
+                                    <li>
+                                        @Html.AntiForgeryToken()<a href="javascript:document.getElementById('logoutForm').submit()"><i class="icon_key_alt"></i>Log Out</a>
+                                    </li>
+                                }
+                                <li>
+                                    <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
+                                </li>
+                                <li>
+                                    <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- user login dropdown end -->
+                    </ul>
+                    <!-- notificatoin dropdown end-->
+                </div>
+            </header>
+            <!--header end-->
+            <!--sidebar start-->
+            <aside>
+                <div id="sidebar" class="nav-collapse ">
+                    <!-- sidebar menu start-->
+                    <ul class="sidebar-menu">
+                        <li class="active">
+                            <a class="" href="@Url.Action("Index", "Home", new {Area = "admin"})">
+
+                                <i class="icon_house_alt"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        @*@Html.Raw(ViewBag.side)*@
+
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon_documents_alt"></i>
+                                <span>系統管理</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                <li><a class="" href="@Url.Action("Index", "Users", new {area = "admin"})">管理者帳號</a></li>
+                                <li><a class="" href="@Url.Action("Index", "Roles", new {area = "admin"})">腳色管理</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon_documents_alt"></i>
+                                <span>首頁管理</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                <li><a class="" href="@Url.Action("Index", "Ads", new {area = "admin"})">廣告管理</a></li>
+                                <li><a class="" href="@Url.Action("Index", "ProjectServices", new {area = "admin"})">專案服務</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon_documents_alt"></i>
+                                <span>會員中心</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                <li><a class="" href="@Url.Action("Index", "Members", new {area = "admin"})">會員管理</a></li>
+                                <li><a class="" href="@Url.Action("Index", "MbLevels", new {area = "admin"})">會員計費設定</a></li>
+                                <li><a class="" href="@Url.Action("Index", "Sites", new {area = "admin"})">場地名稱維護</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon_documents_alt"></i>
+                                <span>公告服務</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                <li><a class="" href="@Url.Action("Index", "News", new {area = "admin"})">焦點新聞</a></li>
+                                <li><a class="" href="@Url.Action("Index", "TechnicalKnowledges", new {area = "admin"})">技術新知</a></li>
+                                <li><a class="" href="@Url.Action("Index", "ActivityRecords", new {area = "admin"})">活動集錦</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon_documents_alt"></i>
+                                <span>CAE 軟體管理</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                <li><a class="" href="@Url.Action("Index", "Ads", new {area = "admin"})">CAE 軟體維護</a></li>
+                                <li><a class="" href="@Url.Action("Index", "Ads", new {area = "admin"})">軟體模式</a></li>
+                                <li><a class="" href="@Url.Action("Index", "Ads", new {area = "admin"})">CAE 軟體預約管理</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon_documents_alt"></i>
+                                <span>互動服務</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                <li><a class="" href="@Url.Action("Index", "Faqs", new {area = "admin"})">FAQ(常見問與答)</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon_documents_alt"></i>
+                                <span>研討會/課程</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                <li><a class="" href="@Url.Action("Index", "Seminars", new {area = "admin"})">研討會(無報名)</a></li>
+                                <li><a class="" href="@Url.Action("Index", "ProjectServices", new {area = "admin"})">教育訓練(需報名)</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon_documents_alt"></i>
+                                <span>成果展示</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                <li><a class="" href="@Url.Action("Index", "ShowOffs", new {area = "admin"})">案例展示</a></li>
+                                <li><a class="" href="@Url.Action("Index", "ResultsPublisheds", new {area = "admin"})">成果發表</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon_documents_alt"></i>
+                                <span>電子報</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                <li><a class="" href="@Url.Action("index","Newsletters",new{area="admin"})">電子報</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon_documents_alt"></i>
+                                <span>功能</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                @*@using (Html.BeginForm("Transfer", "Home", FormMethod.Post, new { id = "Transfer" }))
+                                    {
+                                        <li>
+                                            @Html.AntiForgeryToken()<a href="javascript:document.getElementById('Transfer').submit()"><i class="icon_pin_alt"></i>前往網頁</a>
+                                        </li>
+                                    }*@
+                                @*<li><a class="" href="@Url.Action("index", "Home", new {area = ""})">前往網頁</a></li>*@
+                            </ul>
+                        </li>
+
+                    </ul>
+                    <!-- sidebar menu end-->
+                </div>
+            </aside>
+
+            <section id="main-content">
+                <section class="wrapper">
+                    @RenderBody()
+                </section>
+            </section>
+
+        </section>
+
+
+        <script src="~/NiceAdmin/js/jquery.js"></script>
+        <script src="~/NiceAdmin/js/jquery-ui-1.10.4.min.js"></script>
+        <script src="~/NiceAdmin/js/jquery-1.8.3.min.js"></script>
+        <script src="~/NiceAdmin/js/jquery-ui-1.9.2.custom.min.js"></script>
+        <!-- bootstrap -->
+        <script src="~/NiceAdmin/js/bootstrap.min.js"></script>
+        <!-- nice scroll -->
+        <script src="~/NiceAdmin/js/jquery.scrollTo.min.js"></script>
+        <script src="~/NiceAdmin/js/jquery.nicescroll.js" type="text/javascript"></script>
+        <!-- charts scripts -->
+
+        <script src="~/NiceAdmin/assets/jquery-knob/js/jquery.knob.js"></script>
+        <script src="~/NiceAdmin/js/jquery.sparkline.js" type="text/javascript"></script>
+
+        <script src="~/NiceAdmin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+        <script src="~/NiceAdmin/js/owl.carousel.js"></script>
+        <!-- jQuery full calendar -->
+
+        <script src="~/NiceAdmin/js/fullcalendar.min.js"></script>
+        <!-- Full Google Calendar - Calendar -->
+
+        <script src="~/NiceAdmin/assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
+        <!--script for this page only-->
+        <script src="~/NiceAdmin/js/calendar-custom.js"></script>
+        <script src="~/NiceAdmin/js/jquery.rateit.min.js"></script>
+        <!-- custom select -->
+        <script src="~/NiceAdmin/js/jquery.customSelect.min.js"></script>
+        <script src="~/NiceAdmin/assets/chart-master/site/assets/Chart.js"></script>
+
+        <!--custome script for all page-->
+        <script src="~/NiceAdmin/js/scripts.js"></script>
+        <!-- custom script for this page-->
+        <script src="~/NiceAdmin/js/sparkline-chart.js"></script>
+        <script src="~/NiceAdmin/js/easy-pie-chart.js"></script>
+        <script src="~/NiceAdmin/js/jquery-jvectormap-1.2.2.min.js"></script>
+        <script src="~/NiceAdmin/js/jquery-jvectormap-world-mill-en.js"></script>
+        <script src="~/NiceAdmin/js/xcharts.min.js"></script>
+        <script src="~/NiceAdmin/js/jquery.autosize.min.js"></script>
+        <script src="~/NiceAdmin/js/jquery.placeholder.min.js"></script>
+        <script src="~/NiceAdmin/js/gdp-data.js"></script>
+        <script src="~/NiceAdmin/js/morris.min.js"></script>
+        <script src="~/NiceAdmin/js/sparklines.js"></script>
+        <script src="~/NiceAdmin/js/charts.js"></script>
+        <script src="~/NiceAdmin/js/jquery.slimscroll.min.js"></script>
+        <!--CKEditor && CKFinder .js-->
+        <script src="~/ckeditor/ckeditor.js"></script>
+        <script src="~/ckfinder/ckfinder.js"></script>
+        <!--VanoBox.js-->
+        <script src="~/VenoBox-master/venobox/venobox.min.js"></script>
+        <!--BootStrap-DatePicker-->
+        <script src="~/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+        <script src="~/bootstrap-datepicker/locales/bootstrap-datepicker.zh-TW.min.js"></script>
+
+        <script>
+            //knob
+            $(function () {
+                $(".knob").knob({
+                    'draw': function () {
+                        $(this.i).val(this.cv + '%');
+                    }
+                });
+            });
+
+            //carousel
+            $(document).ready(function () {
+                $("#owl-slider").owlCarousel({
+                    navigation: true,
+                    slideSpeed: 300,
+                    paginationSpeed: 400,
+                    singleItem: true
+
+                });
+            });
+
+            //custom select box
+
+            $(function () {
+                $('select.styled').customSelect();
+            });
+
+            /* ---------- Map ---------- */
+            $(function () {
+                $('#map').vectorMap({
+                    map: 'world_mill_en',
+                    series: {
+                        regions: [
+                            {
+                                values: gdpData,
+                                scale: ['#000', '#000'],
+                                normalizeFunction: 'polynomial'
+                            }
+                        ]
+                    },
+                    backgroundColor: '#eef3f7',
+                    onLabelShow: function (e, el, code) {
+                        el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            function Confirm_Form() {
+                if (!confirm("您確定要刪除嗎?"))
+                    return false;
+            }
+        </script>
+
+        <script>
+            var test = $('.venobox').venobox();
+
+            $('.venobox_custom').venobox({
+                framewidth: '1200px',                            // default: ''
+                frameheight: '600px',                            // default: ''
+                border: '10px',                             // default: '0'
+                bgcolor: '#0bf1a5',                          // default: '#fff'
+                titleattr: 'data-title',                       // default: 'title'
+                numeratio: true,                               // default: false
+                infinigall: true,                               // default: false
+                share: ['facebook', 'twitter', 'download'] // default: []
+            });
+
+            // close current item clicking on .closeme
+            //$(document).on('click', '.closeme', function (e) {
+            //    $('.vbox-closed').trigger('click');
+            //});
+
+        </script>
+
+        <script>
+            var tag = 0;
+            $(function () {
+                $("#add").click(function () {
+                    $('#addTable')
+                        .append(
+                            '<div class="form-group">' +
+                            '<label class = "control-label col-md-2">相片</label>' +
+                            '<div class="col-lg-6"><input type="file" name="photo" />' +
+                            '<br />' +
+                            '<textarea class="text-danger" rows="3" cols="54" placeHolder="請輸入相片簡述" name="PhotoAnnotation">' +
+                            '</textarea>' +
+                            '</div>');
+                    tag++;
+                });
+                $("#del").click(function () {
+                    $("#mt tbody tr:last").remove();
+                });
+            });
+        </script>
+
+        <!--BootStrap-DatePicker-->
+        <script>
+            $('.sandbox-container input').datepicker({
+                todayBtn: "linked",
+                clearBtn: true,
+                language: "zh-TW",
+                autoclose: true,
+                todayHighlight: true,
+                toggleActive: true,
+                format: "yyyy-mm-dd"
+            });
+        </script>
+        @RenderSection("scripts", required: false)
+    }
+</body>
+</html>

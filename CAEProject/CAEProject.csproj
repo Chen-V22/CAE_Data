@@ -262,6 +262,10 @@
     <Compile Include="Migrations\202012080252104_EditMbPoint.Designer.cs">
       <DependentUpon>202012080252104_EditMbPoint.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012100317300_Add_Tc_Rf_Rm.cs" />
+    <Compile Include="Migrations\202012100317300_Add_Tc_Rf_Rm.Designer.cs">
+      <DependentUpon>202012100317300_Add_Tc_Rf_Rm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActivityPhoto.cs" />
     <Compile Include="Models\ActivityRecord.cs" />
@@ -2228,6 +2232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012080252104_EditMbPoint.resx">
       <DependentUpon>202012080252104_EditMbPoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012100317300_Add_Tc_Rf_Rm.resx">
+      <DependentUpon>202012100317300_Add_Tc_Rf_Rm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

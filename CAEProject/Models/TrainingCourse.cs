@@ -26,7 +26,6 @@ namespace CAEProject.Models
         public SeminarStatus SeminarStatus { get; set; }
 
         [Display(Name = "付費金額")]
-        [MaxLength(5)]
         public int Cost { get; set; }
 
         [Display(Name = "負責人")]
@@ -74,15 +73,12 @@ namespace CAEProject.Models
         public string Address { get; set; }
 
         [Display(Name = "報名總名額")]
-        [MaxLength(3)]
         public int Quota { get; set; }
 
         [Display(Name = "報名候補名額")]
-        [MaxLength(2)]
         public int Alternate { get; set; }
 
         [Display(Name = "限制報名人數")]
-        [MaxLength(4)]
         public int Condition { get; set; }
         //=======================<辦理單位S
         [Display(Name = "辦理單位")]
@@ -131,5 +127,7 @@ namespace CAEProject.Models
 
         [ForeignKey("UserId")]
         public virtual User User { get; set; }
+
+        public virtual ICollection<RegistrationForm> RegistrationForms { get; set; }
     }
 }

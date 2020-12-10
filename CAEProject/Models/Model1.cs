@@ -52,6 +52,10 @@ namespace CAEProject.Models
 
         public virtual DbSet<Role> Roles { get; set; }
 
+        public virtual DbSet<RegistrationMinor> RegistrationMinors { get; set; }
+
+        public virtual DbSet<RegistrationForm> RegistrationForms { get; set; }
+
         public virtual DbSet<ResultsPublished> ResultsPublisheds { get; set; }
 
         public virtual DbSet<Seminar> Seminars { get; set; }
@@ -61,6 +65,8 @@ namespace CAEProject.Models
         public virtual DbSet<Site> Sites { get; set; }
 
         public virtual DbSet<TechnicalKnowledge> TechnicalKnowledges { get; set; }
+
+        public virtual DbSet<TrainingCourse> TrainingCourses { get; set; }
 
         public virtual DbSet<User> Users { get; set; }
 

@@ -14,10 +14,9 @@ namespace CAEProject.Models
         [Display(Name = "編號")]
         public int Id { get; set; }
 
-        public int RegistrationFromId { get; set; }
+        public int TrainingCourseId { get; set; }
 
         [Display(Name = "排序")]
-        [MaxLength(3)]
         public int Sort { get; set; }
 
         [Display(Name = "欄位名稱")]
@@ -30,8 +29,8 @@ namespace CAEProject.Models
         [Display(Name = "必填")]
         public IsRequired IsRequired { get; set; }
 
-        [ForeignKey("RegistrationFromId")]
+        [ForeignKey("TrainingCourseId")]
         [Display(Name = "報名表")]
-        public virtual RegistrationForm RegistrationForm { get; set; }
+        public virtual TrainingCourse TrainingCourse { get; set; }
     }
 }

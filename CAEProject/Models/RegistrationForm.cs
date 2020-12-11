@@ -7,7 +7,7 @@ using System.Web;
 
 namespace CAEProject.Models
 {
-    public class RegistrationForm //報名表Model(儲存、無更新)
+    public class RegistrationForm //報名表Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

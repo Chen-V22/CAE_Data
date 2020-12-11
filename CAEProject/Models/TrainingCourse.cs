@@ -77,9 +77,6 @@ namespace CAEProject.Models
 
         [Display(Name = "報名候補名額")]
         public int Alternate { get; set; }
-
-        [Display(Name = "限制報名人數")]
-        public int Condition { get; set; }
         //=======================<辦理單位S
         [Display(Name = "辦理單位")]
         public Handle Handle { get; set; }
@@ -100,10 +97,12 @@ namespace CAEProject.Models
         public string File { get; set; }
 
         [Display(Name = "報名說明事項")]
+        [DataType(DataType.MultilineText)]
         [MaxLength(300)]
         public string Description { get; set; }
 
         [Display(Name = "報名成功訊息")]
+        [DataType(DataType.MultilineText)]
         [MaxLength(300)]
         public string Success { get; set; }
 

@@ -150,12 +150,15 @@
     <Compile Include="Areas\Admin\Controllers\NewslettersController.cs" />
     <Compile Include="Areas\Admin\Controllers\PremissionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProjectServicesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RegistrationFormsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RegistrationMinorsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ResultsPublishedsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SeminarsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShowOffsController.cs" />
     <Compile Include="Areas\Admin\Controllers\SitesController.cs" />
     <Compile Include="Areas\Admin\Controllers\TechnicalKnowledgesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TrainingCoursesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Filters\PremissionAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -265,6 +268,10 @@
     <Compile Include="Migrations\202012100317300_Add_Tc_Rf_Rm.cs" />
     <Compile Include="Migrations\202012100317300_Add_Tc_Rf_Rm.Designer.cs">
       <DependentUpon>202012100317300_Add_Tc_Rf_Rm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012110300130_Drop Tc Condition.cs" />
+    <Compile Include="Migrations\202012110300130_Drop Tc Condition.Designer.cs">
+      <DependentUpon>202012110300130_Drop Tc Condition.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActivityPhoto.cs" />
@@ -2101,6 +2108,21 @@
     <Content Include="Areas\Admin\Views\MbPaids\Details.cshtml" />
     <Content Include="Areas\Admin\Views\MbPaids\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\MbPaids\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TrainingCourses\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TrainingCourses\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\TrainingCourses\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\TrainingCourses\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TrainingCourses\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RegistrationForms\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\RegistrationForms\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\RegistrationForms\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\RegistrationForms\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\RegistrationForms\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RegistrationMinors\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\RegistrationMinors\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\RegistrationMinors\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\RegistrationMinors\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\RegistrationMinors\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2235,6 +2257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012100317300_Add_Tc_Rf_Rm.resx">
       <DependentUpon>202012100317300_Add_Tc_Rf_Rm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012110300130_Drop Tc Condition.resx">
+      <DependentUpon>202012110300130_Drop Tc Condition.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

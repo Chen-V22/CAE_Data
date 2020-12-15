@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -18,6 +19,9 @@ namespace CAEProject.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var trainingCourses = db.TrainingCourses.Include(t => t.User);
+            ViewBag.Rm = db.RegistrationMinors.ToList();
+            EventLog eventLog = new EventLog();
+            
             return View(trainingCourses.ToList());
         }
 
@@ -57,7 +61,8 @@ namespace CAEProject.Areas.Admin.Controllers
                 trainingCourse.LastEditDateTime = DateTime.Now;
                 db.TrainingCourses.Add(trainingCourse);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                Session["TcId"] = trainingCourse.Id;
+                return RedirectToAction("Create","RegistrationMinors",new {area="Admin"});
             }
 
             ViewBag.UserId = new SelectList(db.Users, "Id", "UserCodeName", trainingCourse.UserId);

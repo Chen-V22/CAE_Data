@@ -3,66 +3,70 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int? TrainingCourseId = null;
+    if (Session["TcId"] != null)
+    {
+        TrainingCourseId = (int)Session["TcId"];
+    }
 }
 
-<h2>Create</h2>
+<h2>報名欄位</h2>
+<h4>教育訓練</h4>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "RegistrationMinors", new { area = "Admin" }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>RegistrationMinor</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.TrainingCourseId, "TrainingCourseId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("TrainingCourseId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.TrainingCourseId, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Sort, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Sort, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Sort, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    ▼文字資訊
+                </header>
+                <div class="form-horizontal panel-body text-center">
+                    <br />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <input type="hidden" name="TrainingCourseId" value="@TrainingCourseId" />
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Sort, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-7">
+                            @Html.EditorFor(model => model.Sort, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Sort, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Length, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Length, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Length, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-7">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsRequired, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.IsRequired, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IsRequired, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Length, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-7">
+                            @Html.EditorFor(model => model.Length, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Length, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
 
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.IsRequired, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-7">
+                            @Html.EnumDropDownListFor(model => model.IsRequired, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IsRequired, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="col-md-offset-2 col-md-7">
+                <button type="submit" class="btn btn-info"><span class="icon_cloud-upload_alt"></span> 送出</button>
+                <a href="@Url.Action("Index", "TrainingCourses", new {area = "admin"})" style="margin: 0 0 0 5px" class="btn btn-danger"><span class="icon_house_alt"></span> 返回</a>
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

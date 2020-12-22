@@ -17,8 +17,8 @@
                 <header class="panel-heading">
                     文字資訊
                 </header>
-                <div class="form-horizontal">
-                    <hr />
+                <div class="form-horizontal panel-body text-center">
+                    <br />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
@@ -221,7 +221,7 @@
                             @Html.ValidationMessageFor(model => model.Subscription, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <hr />
+                    <br />
                 </div>
             </section>
         </div>

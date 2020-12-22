@@ -7,18 +7,55 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CAEProject.Models;
+using MvcPaging;
 
 namespace CAEProject.Areas.Admin.Controllers
 {
     public class MembersController : Controller
     {
         private Model1 db = new Model1();
+        private const int DefaultPageSize = 15;
 
         // GET: Admin/Members
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var member = db.Members.ToList();
-            return View(member);
+            string mbTitle = Session["mbTitle"]?.ToString();
+            ApplicationStatus? applicationStatus = (ApplicationStatus?)Session["applicationStatus"];
+            MemberLevel? memberLevel = (MemberLevel?)Session["memberLevel"];
+            DateTime? mbStrDateTime = (DateTime?)Session["mbStrDateTime"];
+            DateTime? mbEndDateTime = (DateTime?)Session["mbEndDateTime"];
+            int userPage = page.HasValue ? page.Value - 1 : 0;
+            var data = db.Members.OrderBy(x => x.DateTime).AsQueryable();
+            if (!string.IsNullOrEmpty(mbTitle))
+            {
+                data = data.Where(x => x.CompanyName.Contains(mbTitle) || x.ContactPerson.Contains(mbTitle));
+            }
+            if (applicationStatus.HasValue)
+            {
+                data = data.Where(x => x.ApplicationStatus == applicationStatus);
+            }
+            if (memberLevel.HasValue)
+            {
+                data = data.Where(x => x.MemberLevel == memberLevel);
+            }
+            if (mbStrDateTime.HasValue && mbEndDateTime.HasValue)
+            {
+                mbEndDateTime = mbStrDateTime.Value.AddDays(1);
+                data = data.Where(x => x.DateTime >= mbStrDateTime && x.DateTime <= mbEndDateTime);
+            }
+
+            return View(data.ToPagedList(userPage, DefaultPageSize));
+        }
+
+        [HttpPost]
+        public ActionResult Index(string mbTitle, ApplicationStatus? applicationStatus, MemberLevel? memberLevel, DateTime? mbStrDateTime, DateTime? mbEndDateTime)
+        {
+            Session["mbTitle"] = mbTitle;
+            Session["applicationStatus"] = applicationStatus;
+            Session["memberLevel"] = memberLevel;
+            Session["mbStrDateTime"] = mbStrDateTime;
+            Session["mbEndDateTime"] = mbEndDateTime;
+            return RedirectToAction("Index");
         }
 
 
@@ -57,23 +94,6 @@ namespace CAEProject.Areas.Admin.Controllers
 
         // GET: Admin/Members/Delete/5
         public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Member member = db.Members.Find(id);
-            if (member == null)
-            {
-                return HttpNotFound();
-            }
-            return View(member);
-        }
-
-        // POST: Admin/Members/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
         {
             Member member = db.Members.Find(id);
             db.Members.Remove(member);
@@ -143,9 +163,8 @@ namespace CAEProject.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             ViewBag.MemberDate = db.Members.Find(id);
-
+            ViewBag.Remark = db.MbRemarkses.Where(x => x.MbRemarksId == id).ToList();
             if (ViewBag.MemberDate == null)
             {
                 return HttpNotFound();
@@ -164,13 +183,13 @@ namespace CAEProject.Areas.Admin.Controllers
             {
                 Member member = new Member();
                 member.Id = id;
-                member.ApplicationStatus = mbPaidViewModel.ApplicationStatus;
+                
                 //啟用時間
-                if (member.ApplicationStatus!=ApplicationStatus.已啟用)
+                if (member.ApplicationStatus != ApplicationStatus.已啟用)
                 {
-                     member.ApproveDateTime = mbPaidViewModel.ApplicationStatus == ApplicationStatus.已啟用
-                    ? DateTime.Now
-                    : mbPaidViewModel.ApproveDateTime;
+                    member.ApproveDateTime = mbPaidViewModel.ApplicationStatus == ApplicationStatus.已啟用
+                   ? DateTime.Now
+                   : mbPaidViewModel.ApproveDateTime;
                 }
                 else
                 {
@@ -191,6 +210,7 @@ namespace CAEProject.Areas.Admin.Controllers
 
                 member.MemberLevel = MemberLevel.鑽石會員;
                 member.Account = mbPaidViewModel.Account;
+                member.ApplicationStatus = mbPaidViewModel.ApplicationStatus;
                 member.Password = !string.IsNullOrEmpty(passwordAdd) ? passwordAdd : mbPaidViewModel.Password;
                 member.NoticeDateTime = mbPaidViewModel.NoticeDateTime;
                 member.CompanyName = mbPaidViewModel.CompanyName;
@@ -287,9 +307,14 @@ namespace CAEProject.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.Remark = db.MbRemarkses.Where(x=>x.MbRemarksId==id).ToList();
             MbFreeViewModel mbFreeViewModel = new MbFreeViewModel();
             mbFreeViewModel.Account = member.Account;
             mbFreeViewModel.Password = member.Password;
+            mbFreeViewModel.ApproveDateTime = member.ApproveDateTime;
+            mbFreeViewModel.DisenableDateTime = member.DisenableDateTime;
+            mbFreeViewModel.ApplicationStatus = member.ApplicationStatus;
             mbFreeViewModel.NoticeDateTime = member.NoticeDateTime;
             mbFreeViewModel.CurrentIdentity = member.CurrentIdentity;
             mbFreeViewModel.CurrentUnit = member.CurrentUnit;
@@ -315,12 +340,39 @@ namespace CAEProject.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult FreeEdit([Bind(Include = "Id,MemberLevel,DateTime,Account,Password,ApplicationStatus,ApproveDateTime,DisenableDateTime,NoticeDateTime,ContactPerson,ContactPersonPhone,Address,Extension,Fax,CurrentIdentity,CurrentUnit,JobTitle,MobilePhone,IdCard,Email,Phone,BusinessItem,Demand,Subscription,EditUser,LastEditDateTime")] MbFreeViewModel mbFreeViewModel)
+        public ActionResult FreeEdit(MbFreeViewModel mbFreeViewModel,int id)
         {
             if (ModelState.IsValid)
             {
                 Member member = new Member();
-                member.MemberLevel = mbFreeViewModel.MemberLevel;
+                member.Id = id;
+
+                //啟用時間
+                if (member.ApplicationStatus != ApplicationStatus.已啟用)
+                {
+                    member.ApproveDateTime = mbFreeViewModel.ApplicationStatus == ApplicationStatus.已啟用
+                        ? DateTime.Now
+                        : mbFreeViewModel.ApproveDateTime;
+                }
+                else
+                {
+                    member.ApproveDateTime = mbFreeViewModel.ApproveDateTime;
+                }
+
+                //停止時間
+                if (member.ApplicationStatus != ApplicationStatus.以停止)
+                {
+                    member.DisenableDateTime = mbFreeViewModel.ApplicationStatus == ApplicationStatus.以停止
+                        ? DateTime.Now
+                        : mbFreeViewModel.DisenableDateTime;
+                }
+                else
+                {
+                    member.DisenableDateTime = mbFreeViewModel.DisenableDateTime;
+                }
+
+                member.MemberLevel = MemberLevel.一般會員;
+                member.ApplicationStatus = mbFreeViewModel.ApplicationStatus;
                 member.Account = mbFreeViewModel.Account;
                 member.Password = mbFreeViewModel.Password;
                 member.NoticeDateTime = mbFreeViewModel.NoticeDateTime;

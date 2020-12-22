@@ -22,12 +22,10 @@ namespace CAEProject.Models
         public DateTime DateTime { get; set; }
 
         [Display(Name = "會員帳號")]
-        
         [MaxLength(15)]
         public string Account { get; set; }
 
         [Display(Name = "會員密碼")]
-        
         [StringLength(100,ErrorMessage = "密碼長度不得小於4個字",MinimumLength = 4)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
@@ -69,7 +67,7 @@ namespace CAEProject.Models
         public string CompanyPhone { get; set; }
 
         [Display(Name = "公司網址")]
-        [MaxLength(20)]
+        [MaxLength(100)]
         [DataType(DataType.Url)]
         public string CompanyUrl { get; set; }
 
@@ -160,7 +158,6 @@ namespace CAEProject.Models
         /*------------------------------------------- */
 
         [Display(Name = "CAE軟體需求(可複選)")]
-        
         public Demand Demand { get; set; }
 
         [Display(Name = "是否訂閱電子報")]

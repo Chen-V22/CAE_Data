@@ -37,8 +37,13 @@ namespace CAEProject.Areas.Admin.Controllers
         }
 
         // GET: Admin/RegistrationMinors/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Index","TrainingCourses");
+            }
+            ViewBag.RmIndex = db.RegistrationMinors.Where(x=>x.TrainingCourseId==id).ToList();
             ViewBag.TrainingCourseId = new SelectList(db.TrainingCourses, "Id", "Title");
             return View();
         }
@@ -48,10 +53,11 @@ namespace CAEProject.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TrainingCourseId,Sort,Name,Length,IsRequired")] RegistrationMinor registrationMinor)
+        public ActionResult Create([Bind(Include = "Id,TrainingCourseId,Sort,Name,Length,IsRequired")] RegistrationMinor registrationMinor,int? id)
         {
             if (ModelState.IsValid)
             {
+                registrationMinor.TrainingCourseId = (int)id;
                 db.RegistrationMinors.Add(registrationMinor);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -17,6 +17,7 @@ namespace CAEProject.Models
         public int MbRemarksId { get; set; }
 
         [Display(Name = "備註")]
+        [DataType(DataType.MultilineText)]
         public string Remark { get; set; }
 
         [Display(Name = "新增者")]

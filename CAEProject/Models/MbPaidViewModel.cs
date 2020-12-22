@@ -66,7 +66,7 @@ namespace CAEProject.Models
         public string CompanyPhone { get; set; }
 
         [Display(Name = "公司網址")]
-        [MaxLength(20)]
+        [MaxLength(100)]
         [DataType(DataType.Url)]
         public string CompanyUrl { get; set; }
 

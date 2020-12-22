@@ -8,7 +8,6 @@
 }
 
 <h2>教育訓練</h2>
-
 <p>
     <a href="@Url.Action("Create", "TrainingCourses", new {area = "Admin"})" class="btn btn-primary"><span class="icon_lightbulb_alt"></span> 新增</a>
 </p>
@@ -70,20 +69,18 @@
             </td>
             <td>
                 @Html.ActionLink("修改", "Edit", new { id = item.Id }, new { @class = "btn btn-info btn-sm" }) |
+                @Html.ActionLink("刪除", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" }) |
                 @{
-                    foreach (var xMinor in registration)
+                    var isMinors = registration.FirstOrDefault(x => x.TrainingCourseId == item.Id);
+                    if (isMinors != null)
                     {
-                        if (xMinor.TrainingCourseId==item.Id)
-                        {
-                            @Html.ActionLink("新增欄位", "Create", "RegistrationMinors", new { id = item.Id }, new { @class = "btn btn-info btn-sm" }) @:|
-                        }
-                        else
-                        {
-                            @Html.ActionLink("修改欄位", "Edit", "RegistrationMinors", new { id = item.Id }, new { @class = "btn btn-info btn-sm" }) @:|
-                        }
+                        @Html.ActionLink("修改欄位", "Create", "RegistrationMinors", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("新增欄位", "Create", "RegistrationMinors", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" })
                     }
                 }
-                @Html.ActionLink("刪除", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
             </td>
         </tr>
     }

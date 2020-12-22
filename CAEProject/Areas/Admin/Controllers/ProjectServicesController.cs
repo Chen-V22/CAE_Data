@@ -20,9 +20,37 @@ namespace CAEProject.Areas.Admin.Controllers
         // GET: Admin/ProjectServices
         public ActionResult Index(int? page)
         {
+            string psKeyword = Session["psKeyword"]?.ToString();
+            ServiceType? serviceType = (ServiceType?)Session["serviceType"];
+            DateTime? psStrDateTime = (DateTime?)Session["psStrDateTime"];
+            DateTime? psEndDateTime = (DateTime?)Session["psEndDateTime"];
             int UserPage = page.HasValue ? page.Value - 1 : 0;
             var user = db.ProjectServices.OrderBy(x => x.DateTime).AsQueryable();
-            return View(user.ToPagedList(UserPage,DefaultPageSize));
+            if (!string.IsNullOrEmpty(psKeyword))
+            {
+                user = user.Where(x => x.Subject.Contains(psKeyword) || x.Content.Contains(psKeyword));
+            }
+
+            if (serviceType.HasValue)
+            {
+                user = user.Where(x => x.ServiceType == serviceType);
+            }
+            if (psStrDateTime.HasValue && psEndDateTime.HasValue)
+            {
+                psEndDateTime = psEndDateTime.Value.AddDays(1);
+                user = user.Where(x => x.DateTime >= psStrDateTime && x.DateTime <= psEndDateTime);
+            }
+            return View(user.ToPagedList(UserPage, DefaultPageSize));
+        }
+
+        [HttpPost]
+        public ActionResult Index(string psKeyword, ServiceType? serviceType, DateTime? psStrDateTime, DateTime? psEndDateTime)
+        {
+            Session["psKeyword"] = psKeyword;
+            Session["serviceType"] = serviceType;
+            Session["psStrDateTime"] = psStrDateTime;
+            Session["psEndDateTime"] = psEndDateTime;
+            return RedirectToAction("Index");
         }
 
         // GET: Admin/ProjectServices/Create
@@ -61,14 +89,15 @@ namespace CAEProject.Areas.Admin.Controllers
 
         //<--------------------回覆Start---------------------->
         // GET: Admin/PsReplies/Create
-        public ActionResult PsReplies(int? id)
+        public ActionResult PsReplies(int? id, int? tab)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index", "ProjectServices");
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Tab頁面切換
-            TempData["tab"] = TempData["tab"] == null ? 0 : TempData["tab"];
+            TempData["tab"] = tab ?? 0;
 
             //給Delete返回用Id
             TempData["id"] = id;
@@ -91,8 +120,7 @@ namespace CAEProject.Areas.Admin.Controllers
                 psReply.DateTime = DateTime.Now;
                 db.PsReplies.Add(psReply);
                 db.SaveChanges();
-                TempData["tab"] = 2;//成功時傳值至Get
-                return RedirectToAction("PsReplies", "ProjectServices", new { area = "Admin", id = id });
+                return RedirectToAction("PsReplies", "ProjectServices", new { area = "Admin", id = id, tab = 2 });//成功時傳tab值至Get
             }
             return View(psReply);
         }
@@ -105,9 +133,8 @@ namespace CAEProject.Areas.Admin.Controllers
             PsReply psReply = db.PsReplies.Find(id);
             db.PsReplies.Remove(psReply);
             db.SaveChanges();
-            TempData["tab"] = 2;
             int pid = Convert.ToInt32(TempData["id"]);
-            return RedirectToAction("PsReplies", "ProjectServices", new { area = "Admin", id = pid });
+            return RedirectToAction("PsReplies", "ProjectServices", new { area = "Admin", id = pid, tab = 2 });
         }
         //<--------------------回覆刪除End----------------------->
 

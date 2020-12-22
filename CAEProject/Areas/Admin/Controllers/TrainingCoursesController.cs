@@ -20,8 +20,9 @@ namespace CAEProject.Areas.Admin.Controllers
         {
             var trainingCourses = db.TrainingCourses.Include(t => t.User);
             ViewBag.Rm = db.RegistrationMinors.ToList();
-            EventLog eventLog = new EventLog();
-            
+            //EventLog eventLog = new EventLog();
+            //string ip = System.Web.HttpContext.Current.Request.UserHostAddress;
+            //ViewBag.ip = ip;
             return View(trainingCourses.ToList());
         }
 
@@ -62,7 +63,7 @@ namespace CAEProject.Areas.Admin.Controllers
                 db.TrainingCourses.Add(trainingCourse);
                 db.SaveChanges();
                 Session["TcId"] = trainingCourse.Id;
-                return RedirectToAction("Create","RegistrationMinors",new {area="Admin"});
+                return RedirectToAction("Create","RegistrationMinors",new {trainingCourse.Id});
             }
 
             ViewBag.UserId = new SelectList(db.Users, "Id", "UserCodeName", trainingCourse.UserId);

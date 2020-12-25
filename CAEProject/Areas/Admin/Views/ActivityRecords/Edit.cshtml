@@ -113,12 +113,15 @@
                             <input type="file" name="photo" />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <p class="control-label col-md-2">原圖片</p>
-                        <div class="col-lg-5">
-                            <a class="venobox_custom" data-overlay="rgba(95, 164, 255, 0.8)" data-vbtype="iframe" href="/upfile/images/@(Model.Photo)">點我查看</a>
+                    @if (Model.Photo != null)
+                    {
+                        <div class="form-group">
+                            <p class="control-label col-md-2">原圖片</p>
+                            <div class="col-lg-5">
+                                <a class="venobox_custom" data-overlay="rgba(95, 164, 255, 0.8)" data-vbtype="iframe" href="/upfile/images/@(Model.Photo)">點我查看</a>
+                            </div>
                         </div>
-                    </div>
+                    }
                     <hr />
                 </div>
             </section>

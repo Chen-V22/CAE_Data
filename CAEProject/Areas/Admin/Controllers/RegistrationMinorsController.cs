@@ -14,36 +14,15 @@ namespace CAEProject.Areas.Admin.Controllers
     {
         private Model1 db = new Model1();
 
-        // GET: Admin/RegistrationMinors
-        public ActionResult Index()
-        {
-            var registrationMinors = db.RegistrationMinors.Include(r => r.TrainingCourse);
-            return View(registrationMinors.ToList());
-        }
-
-        // GET: Admin/RegistrationMinors/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            RegistrationMinor registrationMinor = db.RegistrationMinors.Find(id);
-            if (registrationMinor == null)
-            {
-                return HttpNotFound();
-            }
-            return View(registrationMinor);
-        }
-
         // GET: Admin/RegistrationMinors/Create
-        public ActionResult Create(int? id)
+        public ActionResult Create(int? id,int? tab)
         {
             if (id == null)
             {
-                return RedirectToAction("Index","TrainingCourses");
+                return RedirectToAction("Index", "TrainingCourses");
             }
-            ViewBag.RmIndex = db.RegistrationMinors.Where(x=>x.TrainingCourseId==id).ToList();
+            TempData["tab"] = tab ?? 0;
+            ViewBag.RmIndex = db.RegistrationMinors.Where(x => x.TrainingCourseId == id).ToList();
             ViewBag.TrainingCourseId = new SelectList(db.TrainingCourses, "Id", "Title");
             return View();
         }
@@ -53,49 +32,20 @@ namespace CAEProject.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,TrainingCourseId,Sort,Name,Length,IsRequired")] RegistrationMinor registrationMinor,int? id)
+        public ActionResult Create([Bind(Include = "Id,TrainingCourseId,Sort,Name,Length,IsRequired")] RegistrationMinor registrationMinor, int? id)
         {
             if (ModelState.IsValid)
             {
-                registrationMinor.TrainingCourseId = (int)id;
-                db.RegistrationMinors.Add(registrationMinor);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (id != null)
+                {
+                    registrationMinor.TrainingCourseId = (int) id;
+                    db.RegistrationMinors.Add(registrationMinor);
+                    db.SaveChanges();
+                    TempData["RcMessage"] = "已加入欄位";
+                    return RedirectToAction("Create", "RegistrationMinors", new {area = "Admin", id = id, tab = 1});
+                }
             }
 
-            ViewBag.TrainingCourseId = new SelectList(db.TrainingCourses, "Id", "Title", registrationMinor.TrainingCourseId);
-            return View(registrationMinor);
-        }
-
-        // GET: Admin/RegistrationMinors/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            RegistrationMinor registrationMinor = db.RegistrationMinors.Find(id);
-            if (registrationMinor == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.TrainingCourseId = new SelectList(db.TrainingCourses, "Id", "Title", registrationMinor.TrainingCourseId);
-            return View(registrationMinor);
-        }
-
-        // POST: Admin/RegistrationMinors/Edit/5
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
-        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,TrainingCourseId,Sort,Name,Length,IsRequired")] RegistrationMinor registrationMinor)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(registrationMinor).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
             ViewBag.TrainingCourseId = new SelectList(db.TrainingCourses, "Id", "Title", registrationMinor.TrainingCourseId);
             return View(registrationMinor);
         }
@@ -103,27 +53,10 @@ namespace CAEProject.Areas.Admin.Controllers
         // GET: Admin/RegistrationMinors/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            RegistrationMinor registrationMinor = db.RegistrationMinors.Find(id);
-            if (registrationMinor == null)
-            {
-                return HttpNotFound();
-            }
-            return View(registrationMinor);
-        }
-
-        // POST: Admin/RegistrationMinors/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
             RegistrationMinor registrationMinor = db.RegistrationMinors.Find(id);
             db.RegistrationMinors.Remove(registrationMinor);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create", "RegistrationMinors", new { area = "Admin", id = id, tab = 2 });
         }
 
         protected override void Dispose(bool disposing)

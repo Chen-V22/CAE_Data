@@ -202,5 +202,13 @@
     </div>
 </section>
 <div>
-    <a href="@Url.Action("Index","TrainingCourses",new {area="admin"})" style="margin: 0 0 0 5px" class="btn btn-danger"><span class="icon_house_alt"></span> 返回</a>
+    <a href="@Url.Action("Index","TrainingCourses",new {area="admin"})" style="margin: 0 0 0 5px" class="btn btn-danger"><span class="icon_house_alt"></span> 確認並返回</a>
 </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('#myTab li:eq(@(TempData["tab"])) a').tab('show');
+        })
+    </script>
+}

@@ -83,6 +83,7 @@ namespace CAEProject.Areas.Admin.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
+
         public ActionResult Create([Bind(Include = "Id,Title,SourceDate,Source,Url,Clicks,Photo,IsTop,SDate,EDate,Count,File,AddUser,DateTime,EditUser,LastEditDateTime")] News news, HttpPostedFileBase photo, HttpPostedFileBase upfile)
         {
             if (ModelState.IsValid)
@@ -136,6 +137,7 @@ namespace CAEProject.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "Id,Title,SourceDate,Source,Url,Clicks,Photo,IsTop,SDate,EDate,Count,File,AddUser,DateTime,EditUser,LastEditDateTime")] News news, HttpPostedFileBase photo, HttpPostedFileBase upfile)
         {
             if (ModelState.IsValid)

@@ -1,31 +1,449 @@
-﻿@{
+﻿@using CAEProject.Models
+@using Microsoft.Ajax.Utilities
+@{
     ViewBag.Title = "Home Page";
+    IEnumerable<Ad> adTop = ViewBag.AdTop;
+    IEnumerable<News> newses = ViewBag.Newses;
+    IEnumerable<Seminar> seminars = ViewBag.Seminars;
+    IEnumerable<Newsletter> newsletters = ViewBag.Newsletters;
+    IEnumerable<TechnicalKnowledge> technicalKnowles = ViewBag.TechnicalKnowledge;
+    IEnumerable<TrainingCourse> trainingCourses = ViewBag.TrainingCourse;
+    IEnumerable<ActivityRecord> activityRecords = ViewBag.ActivityRecord;
+    int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0;
+
 }
+<!--大圖廣告-->
+<section class="m-hero">
+    <div class="m-hero__bg">
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+    </div>
+    <div class="m-slider ">
+        <!-- <div class="m-slider__img"></div> -->
+        <div class="blog-slider">
+            <div class="blog-slider__wrp swiper-wrapper">
+                @foreach (var top in adTop)
+                {
+                    if (top.AdCategory == AdCategory.Top廣告)
+                    {
+                        <div class="blog-slider__item swiper-slide">
+                            <div class="blog-slider__img" style="background: url(/upfile/images/@(top.Photo)) @(a==0?"left bottom/cover no-repeat":"center/cover no-repeat");">
+                            </div>
+                        </div>
+                        a++;
+                    }
+                }
+            </div>
+            <div class="blog-slider__pagination"></div>
+        </div>
+    </div>
+</section>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<!--課程消息-->
+<section class="m-Marquee">
+    <div class="m-Marquee__bg ">
+        <div class="m-Marquee__text">
+            <i style="font-size: 1.8rem;" class="fa fa-bullhorn px-2"></i>
+        </div>
+
+        <div class="scroll">
+            <ul>
+                <li> FLOW-3D Cast重力與砂模鑄造訓練課程</li>
+                <li> DEFORM進階課程</li>
+                <li> DEFORM基礎鍛造製程分析 FLOW-3D Cast高壓鑄造訓練課程2</li>
+                <li> DEFORM進階課程1wwwwww1222</li>
+            </ul>
+        </div>
+
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+</section>
+
+<!--最新消息-->
+<section class="p-feature py-xl-12 ">
+    <div class="container">
+        <div class="row">
+            <h3 class="p-feature__title ml-5 ">最新消息</h3>
+        </div>
+        <div class="row">
+            <div class="newsWrap px-md-3">
+
+                <ul class="tabs">
+                    <li class="active" rel="tab1">
+                        <div class="local">
+                            <div class="text_wraper">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <span class="tab_text">焦點新聞</span>
+                        </div>
+                    </li>
+                    <li rel="tab2">
+                        <div class="local">
+                            <div class="text_wraper"><i class="far fa-comments"></i></div>研討會
+                        </div>
+                    </li>
+                    <li rel="tab3">
+                        <div class="local">
+                            <div class="text_wraper"><i class="fas fa-newspaper"></i></div>電子報
+                        </div>
+                    </li>
+                    <li rel="tab4">
+                        <div class="local">
+                            <div class="text_wraper"><i class="fas fa-atom"></i></div>技術新知
+                        </div>
+                    </li>
+
+                </ul>
+
+                <div class="tab_container ">
+                    <div class="newsBox">
+
+                        <h3 class="d_active tab_drawer_heading" rel="tab1"> <i class="fas fa-bullhorn pr-3"></i>焦點新聞</h3>
+                        <div id="tab1" class="tab_content newsBox">
+                            <ul>
+                                @foreach (var news in newses)
+                                {
+                                    if (b == 0)
+                                    {
+                                        <li class="headline Hot">
+                                            <div class="newsPic  imgLiquid imgLiquid_bgSize imgLiquid_ready" style="background-image: url(/upfile/images/s@(news.Photo));">
+                                            </div>
+                                            <div class="newsTxt">
+                                                <a title="" href="#">
+                                                    <span class="newsDate">
+                                                        <u>@news.SDate.ToString("yyyy")</u><i>@news.SDate.ToString("M/dd")</i>
+                                                    </span>
+                                                    <div class="newsTitle">
+                                                        <b class="department"></b>
+                                                        <h2 id="h2edit">@news.Title</h2>
+                                                    </div>
+                                                    <p class="newsCon">
+                                                        @Html.Raw(news.Count)
+                                                    </p>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="oneNews">
+                                            <a title="" href="#">
+                                                <span class="newsDate">
+                                                    <u>@news.SDate.ToString("yyyy")</u><i>@news.SDate.ToString("M/dd")</i>
+                                                </span>
+                                                <h2 id="h2edit">
+                                                    @news.Title
+                                                </h2>
+                                            </a>
+                                        </li>
+                                    }
+                                    b++;
+                                }
+                            </ul>
+
+                            <span> <a href="" title="焦點新聞" class="color_muted">更多 焦點新聞 </a></span>
+                        </div>
+                        <!-- #tab1 -->
+                        <h3 class="tab_drawer_heading" rel="tab2"><i class="far fa-comments pr-3"></i>研討會</h3>
+                        <div id="tab2" class="tab_content newsBox">
+                            <ul>
+                                @foreach (var sem in seminars)
+                                {
+                                    if (c == 0)
+                                    {
+                                        <li class="oneNews Hot">
+                                            <a title="" href="">
+                                                <span class="newsDate">
+                                                    <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("M/dd")</i>
+                                                </span>
+                                                <h2>@sem.Title</h2>
+                                                <b class="department"></b>
+                                            </a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="oneNews">
+                                            <a title="" href="">
+                                                <span class="newsDate">
+                                                    <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("M/dd")</i>
+                                                </span>
+                                                <h2>@sem.Title</h2>
+                                            </a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+
+                            <span> <a href="" title="研討會" class="color_primary">更多 研討會 </a></span>
+
+                        </div>
+                        <!-- #tab2 -->
+                        <h3 class="tab_drawer_heading" rel="tab3"><i class="fas fa-newspaper pr-3"></i>電子報</h3>
+                        <div id="tab3" class="tab_content newsBox">
+                            <ul>
+                                @foreach (var nl in newsletters)
+                                {
+                                    <li class="@(d==0?"oneNews Hot":"oneNews")">
+                                        <a title="@nl.Title " href="#">
+                                            <span class="newsDate">
+                                                <u>@nl.Date.ToString("yyyy")</u><i>@nl.Date.ToString("M/dd")</i>
+                                            </span>
+                                            <h2>@nl.Title</h2>
+                                        </a>
+                                    </li>
+                                    d++;
+                                }
+                            </ul>
+
+                            <span> <a href="" title="研討會" class="color_third-color">更多 電子報 </a></span>
+                        </div>
+                        <!-- #tab3 -->
+                        <h3 class="tab_drawer_heading" rel="tab4"><i class="fas fa-atom pr-3"></i>技術新知</h3>
+                        <div id="tab4" class="tab_content newsBox">
+                            <ul>
+                                @foreach (var Tk in technicalKnowles)
+                                {
+                                    if (e == 0)
+                                    {
+                                        <li class="oneNews Hot">
+                                            <a title="@Tk.Title " href="#">
+                                                <span class="newsDate">
+                                                    <u>@Tk.DateTime.ToString("yyyyy")</u><i>@Tk.DateTime.ToString("M/dd")</i>
+                                                </span>
+                                                <h2>@Tk.Title</h2>
+                                                <b class="department"></b>
+                                            </a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="oneNews">
+                                            <a title="@Tk.Title " href="#">
+                                                <span class="newsDate">
+                                                    <u>@Tk.DateTime.ToString("yyyyy")</u><i>@Tk.DateTime.ToString("M/dd")</i>
+                                                </span>
+                                                <h2>@Tk.Title</h2>
+                                            </a>
+                                        </li>
+                                    }
+                                    e++;
+                                }
+                            </ul>
+
+                            <span> <a href="" title="研討會" class="color_secondary">更多 技術新知 </a></span>
+                        </div>
+                        <!-- #tab4 -->
+
+                    </div>
+                </div>
+            </div>
+            <!-- .tab_container -->
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+</section>
+
+<!--教育訓練-->
+<section class="p-class  py-4 py-xl-10">
+    <div class="container px-lg-0 px-md-4 py-7">
+        <div class="row no-gutters">
+            <div class="col-sm-12 col-xl-7 px-0 px-md-3">
+                <h2 class="h-text-left  p-class__title h-text-ad_color">教育訓練</h2>
+                <ul class=" tabs2">
+                    <li class="active  active_2" rel="tabA">
+                        <div class="local">
+                            <span class="tab_text">@DateTime.Now.Month 月</span>
+                        </div>
+                    </li>
+                    <li rel="tabB">
+                        <div class="local"> @DateTime.Now.AddMonths(1).Month 月</div>
+                    </li>
+                    <li rel="tabC">
+                        <div class="local">@DateTime.Now.AddMonths(2).Month 月</div>
+                    </li>
+                </ul>
+                <div class=" tab_con p-tab__content">
+                    <h3 class="d_active   drawer_heading" rel="tabA">@DateTime.Now.Month 月 訓練課程</h3><!--現在月份-->
+                    <div id="tabA" class=" tab_contents">
+                        <ul class="practice mt-n5">
+                            @foreach (var tc in trainingCourses)
+                            {
+                                if (tc.SDate.Month == DateTime.Now.Month)
+                                {
+                                    <li class="@(f == 0 ? "oneNews Hot" : "oneNews")">
+                                        <a title="@tc.Title" href="#">
+                                            <span class="newsDate">
+                                                <u>@tc.SDate.ToString("yyyy")</u><i>@tc.SDate.ToString("M/dd")</i>
+                                            </span>
+                                            <i class="far fa-dot-circle"></i>
+                                            <h2>@tc.Title</h2>
+                                            <b class="m-card__button m-card__button_success">@(tc.SignUpEDate >= DateTime.Now ? "報名中" : "已結束")</b>
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <!-- #tab1 -->
+                    <h3 class=" drawer_heading" rel="tabB">@DateTime.Now.AddMonths(1).Month 月 訓練課程</h3><!--現在月份+1-->
+                    <div id="tabB" class="tab_content tab_contents">
+                        <ul class="practice">
+                            @foreach (var tc in trainingCourses)
+                            {
+                                if (tc.SDate.Month == DateTime.Now.AddMonths(1).Month)
+                                {
+                                    <li class="@(f == 0 ? "oneNews Hot" : "oneNews")">
+                                        <a title="@tc.Title" href="#">
+                                            <span class="newsDate">
+                                                <u>@tc.SDate.ToString("yyyy")</u><i>@tc.SDate.ToString("M/dd")</i>
+                                            </span>
+                                            <i class="far fa-dot-circle"></i>
+                                            <h2>@tc.Title</h2>
+                                            <b class="m-card__button m-card__button_success">@(tc.SignUpEDate >= DateTime.Now ? "報名中" : "已結束")</b>
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <!-- #tab2 -->
+                    <h3 class=" drawer_heading" rel="tabC">@DateTime.Now.AddMonths(2).Month 月 訓練課程</h3><!--現在月份+2-->
+                    <div id="tabC" class="tab_content tab_contents">
+                        <ul class="practice">
+                            @foreach (var tc in trainingCourses)
+                            {
+                                if (tc.SDate.Month == DateTime.Now.AddMonths(2).Month)
+                                {
+                                    <li class="@(f == 0 ? "oneNews Hot" : "oneNews")">
+                                        <a title="@tc.Title" href="#">
+                                            <span class="newsDate">
+                                                <u>@tc.SDate.ToString("yyyy")</u><i>@tc.SDate.ToString("M/dd")</i>
+                                            </span>
+                                            <i class="far fa-dot-circle"></i>
+                                            <h2>@tc.Title</h2>
+                                            <b class="m-card__button m-card__button_success">@(tc.SignUpEDate >= DateTime.Now ? "報名中" : "已結束")</b>
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <!-- .tab_container -->
+                <h2 class="h-text-left   p-service__title h-text-service_color">試作服務</h2>
+                <div class="p-service__content ">
+                    <div class="p-service__img">
+                        <img src="./img/sync_files.svg" alt="" class="e-img">
+                    </div>
+                    <div class="p-service__box">
+                        <ul class="">
+                            <li>聯絡人：陳尹銜 </li>
+                            <li> 電話：07-3517161#6315</li>
+                            <li>
+                                E-mail：sid@mail.mirdc.org.tw
+                            </li>
+                        </ul>
+                        <div class="e-btn e-btn_btn-color e-btn_w_lg mt-1">
+                            服務能量表下載
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-12 col-xl-4 mx-auto mt-n1 px-md-3">
+                <h2 class="h-text-left  p-class__title mt-md-2 mb-7  h-text-news_color">廣告專區</h2>
+                <section class="p-servise mt-6 mt-md-0">
+                    <div class="container">
+                        <div class="p-ad__content ">
+                            @foreach (var ad in adTop)
+                            {
+                                if (ad.AdCategory == AdCategory.小圖示廣告)
+                                {
+                                    <div class="p-ad__img">
+                                        <a title="@ad.Title" href="@ad.Url">
+                                            <img src="/upfile/images/s@(ad.Photo)" class="e__img">
+                                        </a>
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                        <div class="p-class__content mb-7 flex-column">
+                            @foreach (var ad in adTop)
+                            {
+                                if (ad.AdCategory == AdCategory.文字型廣告)
+                                {
+                                    <div class="p-class__txtAD font-smaller">
+                                        <i class="fas fa-dot-circle"></i>@ad.Title
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        </div>
     </div>
-</div>
+</section>
+
+<!--專案服務-->
+<section class="p-comments px-md-3">
+
+    <div class="container px-md-3 pt-12 pb-4">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 class=" mb-3 p-class__title h-text-service_color">專案服務</h3>
+                <div class="p-comments__comment-text  ">
+                    <p>
+                        如果您有任何業務上的問題，請來信詢問通知 ， 我們將會有專人為您服務。
+                    </p>
+                    <div class="e-btn e-btn_info e-btn_w_lg mt-md-4 mb-sm-2">
+                        聯 絡 我 們
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="p-class__img" style="background-image: url('https://upload.cc/i1/2020/08/28/nEkIqu.png')">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--活動集錦-->
+<section class="p-activity">
+    <div class="container px-md-3 py-12">
+        <h3 class=" mb-3 p-class__title h-text-news_color">活動集錦</h3>
+        <!--Carousel Gallery-->
+        <div class="carousel-gallery">
+            <div class="swiper-container">
+
+                <div class="swiper-wrapper">
+                    @foreach (var ac in activityRecords)
+                    {
+                        <div class="swiper-slide">
+                            <a href="#">
+                                <div class="image" style="background-image: url(/upfile/images/s@(ac.Photo))">
+                                    <div class="overlay">
+                                        <em class="mdi mdi-magnify-plus"></em>
+                                    </div>
+                                    <div class="fakebottom">
+                                        <h3>@ac.Title</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+                <div class="swiper">
+
+                    <div class="swiper-button-prev"><i class="fas fa-long-arrow-alt-right"></i></div>
+                    <div class="swiper-button-next"><i class="fas fa-long-arrow-alt-left"></i></div>
+                </div>
+                <div class="swiper-pagination"> </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>

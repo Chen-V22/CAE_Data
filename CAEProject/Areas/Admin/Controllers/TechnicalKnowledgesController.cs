@@ -97,6 +97,7 @@ namespace CAEProject.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "Id,IndustryCategory,Title,PublishDateTime,Source,Clicks,ContactPerson,Email,Phone,AdStatus,Url,IsTop,Count,SDate,EDate,Photo,File,AddUser,DateTime,EditUser,LastEditDateTime")] TechnicalKnowledge technicalKnowledge, HttpPostedFileBase photo, HttpPostedFileBase upfile)
         {
             if (ModelState.IsValid)
@@ -116,7 +117,7 @@ namespace CAEProject.Areas.Admin.Controllers
                     }
                     technicalKnowledge.Photo = Utility.SaveUpImage(photo);
                     Utility.GenerateThumbnailImage(technicalKnowledge.Photo, photo.InputStream, Server.MapPath("~/UpFile/Images"),
-                        "s", 167, 115);
+                        "s", 290, 217);
                 }
                 technicalKnowledge.DateTime = DateTime.Now;
                 technicalKnowledge.AddUser = Utility.GetUserTickets().UserCodeName;
@@ -149,6 +150,7 @@ namespace CAEProject.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "Id,IndustryCategory,Title,PublishDateTime,Source,Clicks,ContactPerson,Email,Phone,AdStatus,Url,IsTop,Count,SDate,EDate,Photo,File,AddUser,DateTime,EditUser,LastEditDateTime")] TechnicalKnowledge technicalKnowledge, HttpPostedFileBase photo, HttpPostedFileBase upfile)
         {
             if (ModelState.IsValid)
@@ -169,7 +171,7 @@ namespace CAEProject.Areas.Admin.Controllers
                     }
                     technicalKnowledge.Photo = Utility.SaveUpImage(photo);
                     Utility.GenerateThumbnailImage(technicalKnowledge.Photo, photo.InputStream, Server.MapPath("~/UpFile/Images"),
-                        "s", 167, 115);
+                        "s", 290, 217);
                 }
                 
                 technicalKnowledge.EditUser = Utility.GetUserTickets().UserCodeName;

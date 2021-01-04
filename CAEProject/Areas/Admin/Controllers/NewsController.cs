@@ -103,7 +103,7 @@ namespace CAEProject.Areas.Admin.Controllers
                     }
                     news.Photo = Utility.SaveUpImage(photo);
                     Utility.GenerateThumbnailImage(news.Photo, photo.InputStream, Server.MapPath("~/UpFile/Images"),
-                        "s", 167, 115);
+                        "s", 290, 217);
                 }
 
                 news.DateTime = DateTime.Now;
@@ -157,7 +157,7 @@ namespace CAEProject.Areas.Admin.Controllers
                     }
                     news.Photo = Utility.SaveUpImage(photo);
                     Utility.GenerateThumbnailImage(news.Photo, photo.InputStream, Server.MapPath("~/UpFile/Images"),
-                        "s", 167, 115);
+                        "s", 290, 217);
                 }
 
                 news.EditUser = Utility.GetUserTickets().UserCodeName;

@@ -354,28 +354,22 @@
                 <section class="p-servise mt-6 mt-md-0">
                     <div class="container">
                         <div class="p-ad__content ">
-                            @foreach (var ad in adTop)
+                            @foreach (var ad in adTop.Where(x => x.AdCategory == AdCategory.小圖示廣告).OrderBy(x => Guid.NewGuid()).Take(3))
                             {
-                                if (ad.AdCategory == AdCategory.小圖示廣告)
-                                {
-                                    <div class="p-ad__img">
-                                        <a title="@ad.Title" href="@ad.Url">
-                                            <img src="/upfile/images/s@(ad.Photo)" class="e__img">
-                                        </a>
-                                    </div>
-                                }
+                                <div class="p-ad__img">
+                                    <a title="@ad.Title" href="@ad.Url">
+                                        <img src="/upfile/images/s@(ad.Photo)" class="e__img">
+                                    </a>
+                                </div>
                             }
                         </div>
 
                         <div class="p-class__content mb-7 flex-column">
-                            @foreach (var ad in adTop)
+                            @foreach (var ad in adTop.Where(x => x.AdCategory == AdCategory.文字型廣告).OrderBy(x => Guid.NewGuid()).Take(3))
                             {
-                                if (ad.AdCategory == AdCategory.文字型廣告)
-                                {
-                                    <div class="p-class__txtAD font-smaller">
-                                        <i class="fas fa-dot-circle"></i>@ad.Title
-                                    </div>
-                                }
+                                <div class="p-class__txtAD font-smaller">
+                                    <i class="fas fa-dot-circle"></i>@ad.Title
+                                </div>
                             }
                         </div>
                     </div>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" rel="stylesheet" />
-    <link href="~/Content/PageStyle.css" rel="stylesheet" />
+    <link href="~/Content/ViewPageStyle.css" rel="stylesheet" />
     <link href="~/CAE-Master/css/all.css" rel="stylesheet" />
     <script src="~/CAE-Master/js/jquery.3.31.js"></script>
     <script src="~/CAE-Master/js/jquery.ui.js"></script>
@@ -114,7 +114,7 @@
 
                 <ul class="subNavTxt">
                     <li><a target="＃" href="@Url.Action("Index","Home")">Home</a></li>
-                    <li><a target="＃" href="contact.html">聯絡我們</a></li>
+                    <li><a target="＃" href="@Url.Action("ConnectionUs","Home")">聯絡我們</a></li>
                     <li><a target="＃" href="sitemap.html ">網站導覽</a> </li>
                     <li><a target="＃" href="faq.html">常見問題</a></li>
                 </ul>
@@ -150,14 +150,14 @@
                         </a>
                         <ul>
                             <li class="Level2 ">
-                                <a target="_self" href="about.html">    關於CAE中心 </a>
+                                <a target="_self" href="@Url.Action("AboutUs","AboutUs")">    關於CAE中心 </a>
                             </li>
 
                             <li class="Level2 ">
-                                <a target="_self " href="about2.html"> 聯絡方式</a>
+                                <a target="_self " href="@Url.Action("ConnectionUs","AboutUs")"> 聯絡方式</a>
                             </li>
                             <li class="Level2 ">
-                                <a target="_self " href="Description.html"> 服務項目介紹</a>
+                                <a target="_self " href="@Url.Action("Service","AboutUs")"> 服務項目介紹</a>
                             </li>
                         </ul>
                     </li>
@@ -168,10 +168,10 @@
                         </a>
                         <ul>
                             <li class="Level2 ">
-                                <a href="news.html">焦點新聞</a>
+                                <a href="@Url.Action("News","News")">焦點新聞</a>
                             </li>
                             <li class="Level2 ">
-                                <a href="TechDetail.html">技術新知</a>
+                                <a href="@Url.Action("TechDetail","TechnicalKnowledges")">技術新知</a>
                             </li>
                             <li class="Level2 ">
                                 <a href="Photogallery.html"> 活動集錦</a>

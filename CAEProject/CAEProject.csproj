@@ -161,7 +161,9 @@
     <Compile Include="Areas\Admin\Controllers\TrainingCoursesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Filters\PremissionAttribute.cs" />
+    <Compile Include="Controllers\AboutUsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -282,6 +284,7 @@
     <Compile Include="Models\ActivityRecord.cs" />
     <Compile Include="Models\Ad.cs" />
     <Compile Include="Models\CaeSoftware.cs" />
+    <Compile Include="Models\ConnectionUsViewModel.cs" />
     <Compile Include="Models\EnumList.cs" />
     <Compile Include="Models\Faq.cs" />
     <Compile Include="Models\LogInViewModel.cs" />
@@ -314,6 +317,8 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Utility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controllers\NewslettersController.cs" />
+    <Compile Include="Controllers\TechnicalKnowledgesController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
@@ -1528,6 +1533,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PageStyle.css" />
+    <Content Include="Content\ViewPageStyle.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -2262,14 +2268,22 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\ConnectionUs.cshtml" />
+    <Content Include="Views\Home\SiteMap.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="VenoBox-master\bower.json" />
     <Content Include="VenoBox-master\composer.json" />
     <Content Include="VenoBox-master\LICENSE" />
     <Content Include="VenoBox-master\package.json" />
     <Content Include="VenoBox-master\README.md" />
+    <Content Include="Views\AboutUs\AboutUs.cshtml" />
+    <Content Include="Views\AboutUs\ConnectionUs.cshtml" />
+    <Content Include="Views\AboutUs\Service.cshtml" />
+    <Content Include="Views\News\NewsList.cshtml" />
+    <Content Include="Views\News\News.cshtml" />
+    <Content Include="Views\Newsletters\Index.cshtml" />
+    <Content Include="Views\TechnicalKnowledges\TechDetailList.cshtml" />
+    <Content Include="Views\TechnicalKnowledges\TechDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

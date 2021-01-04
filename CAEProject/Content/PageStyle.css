@@ -37,13 +37,13 @@ a {
     color: #4c83d9;
 }
 
-#h2edit {
+/*.longString {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-}
+}*/
 
-#pedit {
+.longString {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

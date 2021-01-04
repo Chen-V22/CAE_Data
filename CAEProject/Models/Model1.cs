@@ -76,6 +76,8 @@ namespace CAEProject.Models
 
         //public System.Data.Entity.DbSet<CAEProject.Models.MbFreeViewModel> MbFreeViewModels { get; set; }
 
+        //public System.Data.Entity.DbSet<CAEProject.Models.ConnectionUsViewModel> ConnectionUsViewModel { get; set; }
+
         // ------------------
     }
 }

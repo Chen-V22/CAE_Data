@@ -4,72 +4,201 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<section class=" bannerPic " style="background-image: url(./img/bg001.jpeg); background-size: cover; background-position: center center; background-repeat: no-repeat;">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Num)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.File)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AddUser)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateTime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EditUser)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastEditDateTime)
-        </th>
-        <th></th>
-    </tr>
+    <div class="container">
+        <div class="col-md-12 h-text-center">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Num)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.File)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AddUser)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EditUser)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastEditDateTime)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
 
-</table>
+            <h1> 電子報</h1>
+
+
+        </div>
+    </div>
+</section>
+
+<section class="main-content">
+    <div class="container px-md-4">
+        <div class="row">
+            <div class="col-md-12 col-xl-9">
+                <div class="container ">
+                    <ul class="e-breadcrumb">
+                        <li>首頁</li>
+                        <li>電子報</li>
+
+                    </ul>
+
+                    <div class="toolbar mb-4">
+                        <select class="styled-select">
+                            <option value="">2017</option>
+                            <option value="all">2018</option>
+                            <option value="selected">2019</option>
+                            <option value="selected">2020</option>
+                            <span class="fa fa-sort-desc"></span>
+                        </select>
+
+                        <div class="search">
+                            <input type="text" class="searchTerm searchTerm_eapder" placeholder="What are you looking for?">
+                            <button type="submit" class="searchButton searchTerm_eapder">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                    <div class="table-responsive ">
+                        <table class="table table-bordered  table_epaer">
+                            <thead>
+                                <tr>
+                                    <!-- <th>#</th> -->
+                                    <th>日期</th>
+                                    <th>期別</th>
+                                    <th>主旨</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <!-- <th scope="row">1</th> -->
+                                    <td>2020.07.21</td>
+                                    <td>第30期</td>
+                                    <td>第30期電子報</td>
+
+                                </tr>
+                                <tr>
+                                    <!-- <th scope="row">2</th> -->
+                                    <td>2020.06.15</td>
+                                    <td>第29期</td>
+                                    <td>第29期電子報</td>
+
+
+                                </tr>
+                                <tr>
+                                    <!-- <th scope="row">3</th> -->
+                                    <td>2020.02.24</td>
+                                    <td>第28期</td>
+                                    <td>
+                                        第28期電子報
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- 頁數 -->
+                    <ul class=" e-pagination modal-1 mt-4">
+                        <li><a href="#" class="prev">&laquo</a></li>
+                        <li><a href="#" class="active">1</a></li>
+                        <li> <a href="#">2</a></li>
+                        <li> <a href="#">3</a></li>
+                        <li> <a href="#">4</a></li>
+
+                        <li><a href="#" class="next">&raquo;</a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="col-md-12 col-xl-3">
+
+                <div class="e_news mt-4">
+                    <h3> <i class="fas fa-bullhorn"></i> 熱門研討會</h3>
+
+                    <ul class="items_news items_news_muted">
+                        <li class="oneNews Hot">
+
+
+                            <a title="應用 FLOW-3D 於 Binder Jetting 黏著劑噴塗成型技術 " href="#">
+                                <span class="newsDate">
+                                    <u>2020</u><i>08/24</i>
+                                </span>
+
+
+                                <h2>應用 FLOW-3D 於 Binder Jetting 黏著劑噴塗成型技術</h2>
+                                <b class="department"></b>
+
+
+
+                            </a>
+
+                        </li>
+                        <li class="oneNews">
+                            <a title=" DEFORM進階課程 " href="#">
+
+                                <span class="newsDate"> <u>2020</u><i>08/27</i> </span>
+
+                                <h2> DEFORM進階課程 </h2>
+
+                            </a>
+                        </li>
+                        <li class="oneNews">
+                            <a title="FLOW-3D Cast高壓鑄造訓練課程 " href="#">
+
+                                <span class="newsDate"> <u>2020</u><i>08/27</i> </span>
+
+                                <h2>FLOW-3D Cast高壓鑄造訓練課程</h2>
+
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="e_news">
+                    <h3> <i class="fas fa-chalkboard-teacher"></i>熱門課程</h3>
+                    <ul class="items_news items_news_muted">
+                        <li class="oneNews Hot">
+
+
+                            <a title="應用 FLOW-3D 於 Binder Jetting 黏著劑噴塗成型技術 " href="#">
+                                <span class="newsDate newsDate_title_color">
+                                    <u>2020</u><i>08/24</i>
+                                </span>
+
+
+                                <h2>應用 FLOW-3D 於 Binder Jetting 黏著劑噴塗成型技術</h2>
+                                <b class="department"></b>
+
+
+
+                            </a>
+
+                        </li>
+                        <li class="oneNews">
+                            <a title=" DEFORM進階課程 " href="#">
+
+                                <span class="newsDate newsDate_title_color"> <u>2020</u><i>08/27</i> </span>
+
+                                <h2> DEFORM進階課程 </h2>
+
+                            </a>
+                        </li>
+                        <li class="oneNews">
+                            <a title="FLOW-3D Cast高壓鑄造訓練課程 " href="#">
+
+                                <span class="newsDate newsDate_title_color"> <u>2020</u><i>08/27</i> </span>
+
+                                <h2>FLOW-3D Cast高壓鑄造訓練課程</h2>
+
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="e_news">
+                    <h3> <i class="fas fa-newspaper"></i> 廣告專區</h3>
+                    <ul class="items_news items_news_ad_color">
+
+                        <li><a class="expanded">Lastest News</a></li>
+
+
+
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

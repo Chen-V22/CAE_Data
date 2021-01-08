@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.EnterpriseServices;
 using System.Linq;
 using System.Web;
+using System.ComponentModel;
+using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 
 namespace CAEProject.Models
 {
@@ -50,18 +52,29 @@ namespace CAEProject.Models
     //專案服務類型
     public enum ServiceType
     {
-        個案服務,
-        技術報價,
-        模擬除錯,
-        轉委託案
+        帳號申請相關問題,
+        會員問題,
+        軟體應用問題,
+        課程報名問題,
+        其他,
+        客製化模擬服務
+        //個案服務,
+        //技術報價,
+        //模擬除錯,
+        //轉委託案
     }
 
     //產業類別
     public enum Industry
     {
+        [Description("金屬基本業(鐵,非鐵)")]
         金屬基本業,
+        [Description("金屬製品製造業")]
         金屬製品製造業,
-        其他
+        [Description("其他")]
+        其他,
+        [Description("鑄造")]
+        鑄造
     }
 
     //軟體需求
@@ -166,7 +179,16 @@ namespace CAEProject.Models
     //公司屬性
     public enum CompanyType
     {
-
+        [Description("公司、行號")]
+        公司行號,
+        [Description("政府機構")]
+        政府機構 ,
+        [Description("學校")]
+        學校 ,
+        [Description("公 / 協會")]
+        公協會 ,
+        [Description("研究機構")]
+        研究機構 
     }
 
     public enum ApplicationStatus
@@ -184,6 +206,5 @@ namespace CAEProject.Models
         一般會員,
         學生會員
     }
-
 
 }

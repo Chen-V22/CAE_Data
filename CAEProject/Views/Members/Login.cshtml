@@ -1,0 +1,57 @@
+﻿@model CAEProject.Models.LogInViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<section class=" bannerPic " style="background-image: url(/CAE-Master/img/bg001.jpeg); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+
+    <div class="container">
+        <div class="col-md-12 h-text-center">
+            <h1> 會員登入</h1>
+        </div>
+    </div>
+</section>
+
+
+<section class="main-content">
+    <div class="container px-md-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class=" m-ponent ">
+                    <div class="col-12 col-md-6 col-xl-4 pt-5 mx-auto">
+                        @using (Html.BeginForm("Login","Members",FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="m-member-form h-shadow ">
+                                <h4 class="m-member-form__title mb-1">LOGIN</h4>
+                                <label class="m-member-form__label" for="email">會員帳號*</label>
+                                <div class="e-form-square mb-1">
+                                    <i class="e-form-square__icon far fa-envelope"></i>
+                                    @Html.EditorFor(model => model.UserCodeName, new { htmlAttributes = new { @class = "form-control", placeholder = "E-mail" } })
+                                    @Html.ValidationMessageFor(model => model.UserCodeName, "", new { @class = "text-danger" })
+                                </div>
+                                <label class="m-member-form__label" for="password">密 碼*</label>
+                                <div class="e-form-square mb-1">
+                                    <i class="e-form-square__icon fas fa-lock"></i>
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                                
+                                <a class="h-s1 h-text-success" href="@Url.Action("Forget","Members")">忘記密碼？</a>
+                                <div class="m-member-form__buttons mt-3">
+                                    <a class="e-btn e-btn_muted " href="@Url.Action("Register","Members")"> 註 冊</a>
+                                    <button class="e-btn e-btn_success " type="submit">登 入 </button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+

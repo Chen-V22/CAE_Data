@@ -30,6 +30,10 @@ namespace CAEProject.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        [Display(Name = "密碼鹽")]
+        [MaxLength(100)]
+        public string PasswordSalt { get; set; }
+
         [Display(Name = "申請狀態")]
         public ApplicationStatus ApplicationStatus { get; set; }
 
@@ -92,9 +96,11 @@ namespace CAEProject.Models
         public Training Training { get; set; }
 
         [Display(Name = "公司簡介")]
+        [DataType(DataType.MultilineText)]
         public string CompanyIntroduction { get; set; }
 
         [Display(Name = "業務項目")]
+        [DataType(DataType.MultilineText)]
         public string Business { get; set; }
 
         [Display(Name = "上傳公司圖片")]
@@ -143,9 +149,7 @@ namespace CAEProject.Models
         public string IdCard { get; set; }
 
         [Display(Name = "E-mail")]
-        
         [MaxLength(50)]
-        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Display(Name = "電話")]

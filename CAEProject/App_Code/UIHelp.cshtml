@@ -44,8 +44,16 @@
     }
 }
 
-@helper RfIndexHelperResult()
+@helper MemberTypeHelperResult(MemberLevel type)
 {
-
+    switch (type)
+    {
+        case MemberLevel.鑽石會員:
+            @:鑽石
+            break;
+        case MemberLevel.白金會費:
+            @:白金
+            break;
+    }
 }
 

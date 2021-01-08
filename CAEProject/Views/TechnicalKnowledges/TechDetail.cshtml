@@ -93,14 +93,6 @@
                         @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
                     </div>
 
-                    @*<ul class=" e-pagination modal-1 my-3">
-                            <li><a href="#" class="prev">&laquo</a></li>
-                            <li><a href="#" class="active">1</a></li>
-                            <li> <a href="#">2</a></li>
-                            <li> <a href="#">3</a></li>
-                            <li> <a href="#">4</a></li>
-                            <li><a href="#" class="next">&raquo;</a></li>
-                        </ul>*@
                 </div>
             </div>
             <div class="col-sm-12 col-xl-3">
@@ -114,7 +106,7 @@
                             if (a == 0)
                             {
                                 <li class="oneNews Hot">
-                                    <a title="" href="">
+                                    <a title="" href="@Url.Action("sem_page","Seminars",new {id=sem.Id})">
                                         <span class="newsDate">
                                             <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("M/dd")</i>
                                         </span>
@@ -126,7 +118,7 @@
                             else
                             {
                                 <li class="oneNews">
-                                    <a title="" href="">
+                                    <a title="" href="@Url.Action("sem_page","Seminars",new {id=sem.Id})">
                                         <span class="newsDate">
                                             <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("M/dd")</i>
                                         </span>

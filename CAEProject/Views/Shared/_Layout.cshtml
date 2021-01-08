@@ -11,7 +11,7 @@
     <script src="~/CAE-Master/js/jquery.3.31.js"></script>
     <script src="~/CAE-Master/js/jquery.ui.js"></script>
     <script src="~/CAE-Master/js/swiper-min.js"></script>
-
+    <script src="~/jQuery-TWzipcode-master/jquery.twzipcode.min.js"></script>
 </head>
 
 <body class="full">
@@ -174,7 +174,7 @@
                                 <a href="@Url.Action("TechDetail","TechnicalKnowledges")">技術新知</a>
                             </li>
                             <li class="Level2 ">
-                                <a href="Photogallery.html"> 活動集錦</a>
+                                <a href="@Url.Action("PhotoGallery","ActivityRecords")"> 活動集錦</a>
                             </li>
                         </ul>
                     </li>
@@ -185,7 +185,7 @@
                         </a>
                         <ul>
                             <li class="Level2 ">
-                                <a target="" href="SeminarDetail.html"> 研討會/說明會</a>
+                                <a target="" href="@Url.Action("SeminarDetail","Seminars")"> 研討會/說明會</a>
                             </li>
                             <li class="Level2 ">
                                 <a target="" href="EduDetail.html"> 教育訓練課程 </a>
@@ -221,13 +221,13 @@
                         </a>
                         <ul>
                             <li class="Level2 ">
-                                <a target="" href="service.html"> 試作服務 </a>
+                                <a target="" href="@Url.Action("TrialService","Home")"> 試作服務 </a>
                             </li>
                             <li class="Level2 ">
-                                <a target="" href="projectService.html"> 專案服務 </a>
+                                <a target="" href="@Url.Action("ProjectService","ProjectServices")"> 專案服務 </a>
                             </li>
                             <li class="Level2 ">
-                                <a target="" href="faq.html"> 常見問題 </a>
+                                <a target="" href="@Url.Action("Index","Faqs")"> 常見問題 </a>
 
                             </li>
                         </ul>
@@ -239,10 +239,10 @@
                         </a>
                         <ul>
                             <li class="Level2 ">
-                                <a title="案例展示 " href="result.html " rel="# ">案例展示</a>
+                                <a title="案例展示 " href="@Url.Action("Case","ShowOffs") " rel="# ">案例展示</a>
                             </li>
                             <li class="Level2 ">
-                                <a title="成果發表 " href="result.html" rel="#">成果發表 </a>
+                                <a title="成果發表 " href="@Url.Action("Result","ResultsPublisheds")" rel="#">成果發表 </a>
                             </li>
                         </ul>
                     </li>
@@ -252,21 +252,38 @@
                             <i class="far fa-user"></i><span>會員專區</span>
                         </a>
                         <ul>
-                            <li class="Level2 ">
-                                <a href="member_center.html"> 會員中心 </a>
-                            </li>
-                            <li class="Level2 ">
-                                <a href="member_right.html"> 會員權益 </a>
-                            </li>
-                            <li class="Level2 ">
-                                <a href="member.html ">會員註冊 </a>
-                            </li>
-                            <li class="Level2 ">
-                                <a href="login.html"> 會員登入</a>
-                            </li>
-                            <li class="Level2 ">
-                                <a href="forget.html"> 忘記密碼 </a>
-                            </li>
+                            @{
+                                if (Session["member"] == null)
+                                {
+                                    <li class="Level2 ">
+                                        <a href="@Url.Action("Right","Members")"> 會員權益 </a>
+                                    </li>
+                                    <li class="Level2 ">
+                                        <a href="@Url.Action("Register","Members")">會員註冊 </a>
+                                    </li>
+                                    <li class="Level2 ">
+                                        <a href="@Url.Action("Login","Members")"> 會員登入</a>
+                                    </li>
+                                    <li class="Level2 ">
+                                        <a href="@Url.Action("Forget","Members")"> 忘記密碼 </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="Level2 ">
+                                        <a href="member_center.html"> 會員中心 </a>
+                                    </li>
+                                    <li class="Level2 ">
+                                        <a href="@Url.Action("Right","Members")"> 會員權益 </a>
+                                    </li>
+                                    <li class="Level2 ">
+                                        <a href="@Url.Action("Register","Members")">會員註冊 </a>
+                                    </li>
+                                    <li class="Level2 ">
+                                        <a href="@Url.Action("Login","Members")"> 會員登入</a>
+                                    </li>
+                                }
+                            }
                         </ul>
                     </li>
 
@@ -389,7 +406,23 @@
 <script src="~/CAE-Master/js/twinlite.js"></script>
 <script src="~/CAE-Master/js/cssPlugin.js"></script>
 <script src="~/CAE-Master/js/all.js?1112"></script>
+
 </html>
+@if (TempData["PcError"] != null)
+{
+    <script type="text/javascript">
+    var message = @Html.Raw(Json.Encode(TempData["PcError"]));
+    alert(message);
+    </script>
+}
+
+@if (TempData["memberSuccess"] != null)
+{
+    <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["memberSuccess"]));
+        alert(message);
+    </script>
+}
 
 
 @*<div class="navbar navbar-inverse navbar-fixed-top">

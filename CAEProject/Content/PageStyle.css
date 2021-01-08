@@ -52,3 +52,16 @@ a {
     -webkit-box-orient: vertical;
     white-space: normal;
 }
+
+::placeholder {
+    color: #a0a0a0;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: red;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: red;
+}

@@ -1,0 +1,80 @@
+﻿@using CAEProject.Models
+@model IEnumerable<CAEProject.Models.Faq>
+
+@{
+    ViewBag.Title = "Index";
+    IEnumerable<Faq> faq = ViewBag.data;
+    int a = 0;
+    
+}
+
+<section class=" bannerPic " style="background-image: url(/CAE-Master/img/bg001.jpeg); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+
+    <div class="container">
+        <div class="col-md-12 h-text-center">
+
+
+            <h1> 常見問題</h1>
+
+
+        </div>
+    </div>
+</section>
+
+
+<section class="main-content">
+    <div class="container px-md-4">
+        <div class="row">
+            <div class="col-md-12 col-xl-3 ">
+                <div class="container px-3">
+                    <ul class="e-breadcrumb">
+                        <li>首頁</li>
+                        <li>互動服務</li>
+                        <li>常見問題</li>
+                    </ul>
+                    <nav class="m-search-menu">
+                        <ul class="m-search-menu__list">
+                            @foreach (var data in Model.Select(x=>x.FaqStatus).Distinct())
+                            {
+                                <li><a class="m-search-menu__link is-active" href="@Url.Action("Index","Faqs",new {id=data.GetHashCode()})">@data</a></li>
+                            }
+                            @*<li><a class="m-search-menu__link is-active">帳號申請的相關問題</a></li>
+                            <li><a class="m-search-menu__link">軟體應用問題</a></li>
+                            <li><a class="m-search-menu__link">其他</a></li>*@
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-md-12 col-xl-8">
+                <div class=" m-content px-3">
+                    <div class="toolbar mb-1">
+                        <div class="search">
+                            <input type="text" class="searchTerm  searchTerm_faq" placeholder="尋找關鍵字">
+                            <button type="submit" class="searchButton searchTerm_faq">
+                                <i class=" fa fa-search "></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="clearfix ">
+                    </div>
+                    <h3 class="articleTitle ">@faq.Select(x=>x.FaqStatus).First()</h3>
+                    <ul class="accordion ">
+                        @foreach (var data in faq)
+                        {
+                            <li class="@(a==0?"accordion-item is-active":"accordion-item")">
+                                <h3 class="accordion-thumb ">@data.Title</h3>
+                                <div class="accordion-panel ">
+                                    @Html.Raw(data.Count)
+                                </div>
+                            </li>
+                            a++;
+                        }
+
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>

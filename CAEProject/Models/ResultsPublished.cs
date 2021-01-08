@@ -24,6 +24,10 @@ namespace CAEProject.Models
         [DataType(DataType.DateTime)]
         public DateTime SourceDate { get; set; }
 
+        [Display(Name = "資料來源")]
+        [Required(ErrorMessage = "{0}必填")]
+        public string Source { get; set; }
+
         [Display(Name = "狀態")]
         public Status Status { get; set; }
 

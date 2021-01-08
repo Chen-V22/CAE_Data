@@ -216,7 +216,7 @@ namespace CAEProject.Models
         /// </summary>
         /// <param name="value">列舉值</param>
         /// <returns></returns>
-        static public string GetDescription(Enum value)
+        public static string GetDescription(Enum value)
         {
             FieldInfo fi = value.GetType().GetField(value.ToString());
             DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
@@ -229,7 +229,7 @@ namespace CAEProject.Models
         /// Creates the select list.
         /// </summary>
         /// <param name="enumType">Type of the enum.要做為下拉選單的列舉型別</param>
-        /// 使用範例：@Html.DropDownListFor(model => model.Status, UIUtility.GetEnumList(typeof(gowatershop.Models.PromotionProductStatus))))
+        /// 使用範例：@Html.DropDownListFor(model => model.Status, UIUtility.GetEnumList(typeof(gowatershop.Models.PromotionProductStatus)))
         /// <returns></returns>
         public static IEnumerable<System.Web.Mvc.SelectListItem> GetEnumList(Type enumType)
         {

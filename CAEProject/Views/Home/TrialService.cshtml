@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewBag.Title = "TrialService";
+    int a = 0, b = 0;
+}
+
+<section class=" bannerPic " style="background-image: url(/CAE-Master/img/bg001.jpeg); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+
+    <div class="container">
+        <div class="col-md-12 h-text-center">
+            <h1> 焦點新聞</h1>
+        </div>
+    </div>
+</section>
+
+<section class="main-content">
+    <div class="container px-md-4">
+        <div class="row">
+            <div class="col-md-12 col-xl-9">
+                <div class="container">
+                    <ul class="e-breadcrumb">
+                        <li><a href="/Home">首頁</a></li>
+                        <li>互動服務</li>
+                        <li>試作服務</li>
+                    </ul>
+                    <div class="newsContent">
+                        <h1 class="articleTitle">試作服務</h1>
+                        <div class="textEditor">
+                            <div class="m-adressBook">
+                                <img src="/CAE-Master/img/settings.svg" alt="" class="e-img" style="width:300px">
+                                <ul class="">
+                                    <li>聯絡人：陳尹銜 </li>
+
+                                    <li> 電話：07-3517161#6315</li>
+                                    <li>
+                                        E-mail：<a href="mailto:sid@mail.mirdc.org.tw" class="__cf_email__" data-cfemail="17647e73577a767e7b397a7e65737439786570396360">sid@mail.mirdc.org.tw</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="btn clearfix h-text-center">
+                            @using (Html.BeginForm("DownLoad", "Home", FormMethod.Post))
+                            {
+                                @:<a class="p-class__block"><button type="submit" class="e-btn e-btn_secondary py-1"> <i class="fa fa-file-download pr-1 "></i>服務能量表下載</button></a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xl-3">
+
+                <div class="e_news mt-4">
+                    <h3> <i class="fas fa-bullhorn"></i> 熱門研討會</h3>
+
+                    <ul class="items_news items_news_muted">
+                        @foreach (var sem in ViewBag.SeminarsNews)
+                        {
+                            if (a == 0)
+                            {
+                                <li class="oneNews Hot">
+                                    <a title="" href="@Url.Action("sem_page","Seminars",new {id=sem.Id})">
+                                        <span class="newsDate">
+                                            <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("/M/dd")</i>
+                                        </span>
+                                        <h2>@sem.Title</h2>
+                                        <b class="department"></b>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="oneNews">
+                                    <a title="" href="@Url.Action("sem_page","Seminars",new {id=sem.Id})">
+                                        <span class="newsDate">
+                                            <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("/M/dd")</i>
+                                        </span>
+                                        <h2>@sem.Title</h2>
+                                    </a>
+                                </li>
+                            }
+                        }
+
+                    </ul>
+                </div>
+                <div class="e_news">
+                    <h3> <i class="fas fa-chalkboard-teacher"></i>熱門課程</h3>
+                    <ul class="items_news items_news_muted">
+                        @foreach (var sem in ViewBag.TrainingCourseNews)
+                        {
+                            if (b == 0)
+                            {
+                                <li class="oneNews Hot">
+                                    <a title="" href="">
+                                        <span class="newsDate">
+                                            <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("/M/dd")</i>
+                                        </span>
+                                        <h2>@sem.Title</h2>
+                                        <b class="department"></b>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="oneNews">
+                                    <a title="" href="">
+                                        <span class="newsDate">
+                                            <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("/M/dd")</i>
+                                        </span>
+                                        <h2>@sem.Title</h2>
+                                    </a>
+                                </li>
+                            }
+                        }
+
+                    </ul>
+                </div>
+
+                <div class="e_news">
+                    <h3> <i class="fas fa-newspaper"></i> 廣告專區</h3>
+                    <ul class="items_news items_news_ad_color">
+                        <div class="p-ad__content ">
+                            @foreach (var ad in ViewBag.AdNews)
+                            {
+                                <div class="p-ad__img">
+                                    <a title="@ad.Title" href="@ad.Url">
+                                        <img src="/upfile/images/s@(ad.Photo)" class="e__img">
+                                    </a>
+                                </div>
+                            }
+                        </div>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

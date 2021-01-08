@@ -162,8 +162,15 @@
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Filters\PremissionAttribute.cs" />
     <Compile Include="Controllers\AboutUsController.cs" />
+    <Compile Include="Controllers\ActivityRecordsController.cs" />
+    <Compile Include="Controllers\FaqsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\ProjectServicesController.cs" />
+    <Compile Include="Controllers\ResultsPublishedsController.cs" />
+    <Compile Include="Controllers\SeminarsController.cs" />
+    <Compile Include="Controllers\ShowOffsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -278,6 +285,18 @@
     <Compile Include="Migrations\202012220316496_EditMemberUrl.cs" />
     <Compile Include="Migrations\202012220316496_EditMemberUrl.Designer.cs">
       <DependentUpon>202012220316496_EditMemberUrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101060339581_ShowOff Add Source.cs" />
+    <Compile Include="Migrations\202101060339581_ShowOff Add Source.Designer.cs">
+      <DependentUpon>202101060339581_ShowOff Add Source.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101060617301_ResultsPublish Add Source.cs" />
+    <Compile Include="Migrations\202101060617301_ResultsPublish Add Source.Designer.cs">
+      <DependentUpon>202101060617301_ResultsPublish Add Source.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101060752372_Member Add PasswordSalt.cs" />
+    <Compile Include="Migrations\202101060752372_Member Add PasswordSalt.Designer.cs">
+      <DependentUpon>202101060752372_Member Add PasswordSalt.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActivityPhoto.cs" />
@@ -1538,6 +1557,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="jQuery-TWzipcode-master\jquery.twzipcode.js" />
+    <Content Include="jQuery-TWzipcode-master\jquery.twzipcode.min.js" />
+    <Content Include="jQuery-TWzipcode-master\old\jquery.twzipcode-1.4.1.js" />
+    <Content Include="jQuery-TWzipcode-master\old\jquery.twzipcode-1.4.1.min.js" />
+    <Content Include="jQuery-TWzipcode-master\twzipcode.js" />
     <Content Include="NiceAdmin\assets\chart-master\.gitignore" />
     <Content Include="NiceAdmin\assets\chart-master\Chart.js" />
     <Content Include="NiceAdmin\assets\chart-master\Chart.min.js" />
@@ -2242,6 +2266,10 @@
     <Content Include="CAE-Master\js\main.js.map" />
     <Content Include="CAE-Master\js\swiper-min.js.map" />
     <Content Include="CAE-Master\js\twinlite.js.map" />
+    <Content Include="jQuery-TWzipcode-master\bower.json" />
+    <Content Include="jQuery-TWzipcode-master\CHANGELOG.md" />
+    <Content Include="jQuery-TWzipcode-master\LICENSE.md" />
+    <Content Include="jQuery-TWzipcode-master\README.md" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2284,6 +2312,25 @@
     <Content Include="Views\Newsletters\Index.cshtml" />
     <Content Include="Views\TechnicalKnowledges\TechDetailList.cshtml" />
     <Content Include="Views\TechnicalKnowledges\TechDetail.cshtml" />
+    <Content Include="Views\ActivityRecords\PhotoDetail.cshtml" />
+    <Content Include="Views\ActivityRecords\PhotoGallery.cshtml" />
+    <Content Include="Views\Seminars\sem_page.cshtml" />
+    <Content Include="Views\Seminars\SeminarDetail.cshtml" />
+    <Content Include="Views\ProjectServices\ProjectService.cshtml" />
+    <Content Include="Views\Home\TrialService.cshtml" />
+    <Content Include="傳產加值中心服務量能彙整.docx" />
+    <Content Include="Views\Faqs\Index.cshtml" />
+    <Content Include="Views\ShowOffs\Case.cshtml" />
+    <Content Include="Views\ResultsPublisheds\ResultDetails.cshtml" />
+    <Content Include="Views\ResultsPublisheds\Result.cshtml" />
+    <Content Include="Views\ShowOffs\CaseDetails.cshtml" />
+    <Content Include="Views\Members\PaidCreate.cshtml" />
+    <Content Include="Views\Members\Forget.cshtml" />
+    <Content Include="Views\Members\Right.cshtml" />
+    <Content Include="Views\Members\Login.cshtml" />
+    <Content Include="Views\Members\Register.cshtml" />
+    <Content Include="Views\Members\GeneralCreate.cshtml" />
+    <Content Include="Views\Members\StudentCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2390,6 +2437,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012220316496_EditMemberUrl.resx">
       <DependentUpon>202012220316496_EditMemberUrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101060339581_ShowOff Add Source.resx">
+      <DependentUpon>202101060339581_ShowOff Add Source.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101060617301_ResultsPublish Add Source.resx">
+      <DependentUpon>202101060617301_ResultsPublish Add Source.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101060752372_Member Add PasswordSalt.resx">
+      <DependentUpon>202101060752372_Member Add PasswordSalt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

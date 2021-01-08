@@ -67,7 +67,6 @@ namespace CAEProject.Models
 
         [Display(Name = "公司網址")]
         [MaxLength(100)]
-        [DataType(DataType.Url)]
         public string CompanyUrl { get; set; }
 
         [Display(Name = "聯絡人職稱")]
@@ -75,7 +74,7 @@ namespace CAEProject.Models
         public string ContactPersonJobTitle { get; set; }
 
         [Display(Name = "員工數")]
-        public int EmployeeCount { get; set; }
+        public string EmployeeCount { get; set; }
 
         [Display(Name = "公司屬性")]
         public CompanyType CompanyType { get; set; }
@@ -117,7 +116,7 @@ namespace CAEProject.Models
         public string Address { get; set; }
 
         [Display(Name = "分機")]
-        public int Extension { get; set; }
+        public string Extension { get; set; }
 
         [Display(Name = "傳真")]
         [MaxLength(15)]

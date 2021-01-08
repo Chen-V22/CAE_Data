@@ -83,7 +83,7 @@ namespace CAEProject.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,SourceDate,Status,ReviewDate,ContactPerson,ContactPhone,ContactEmail,Count,Photo,Clicks,ShowDate,AddUser,DateTime,EditUser,LastEditDateTime")] ResultsPublished resultsPublished,HttpPostedFileBase photo)
+        public ActionResult Create([Bind(Include = "Id,Title,SourceDate,Source,Status,ReviewDate,ContactPerson,ContactPhone,ContactEmail,Count,Photo,Clicks,ShowDate,AddUser,DateTime,EditUser,LastEditDateTime")] ResultsPublished resultsPublished,HttpPostedFileBase photo)
         {
             if (ModelState.IsValid)
             {
@@ -129,7 +129,7 @@ namespace CAEProject.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,SourceDate,Status,ReviewDate,ContactPerson,ContactPhone,ContactEmail,Count,Photo,Clicks,ShowDate,AddUser,DateTime,EditUser,LastEditDateTime")] ResultsPublished resultsPublished, HttpPostedFileBase photo)
+        public ActionResult Edit([Bind(Include = "Id,Title,SourceDate,Source,Status,ReviewDate,ContactPerson,ContactPhone,ContactEmail,Count,Photo,Clicks,ShowDate,AddUser,DateTime,EditUser,LastEditDateTime")] ResultsPublished resultsPublished, HttpPostedFileBase photo)
         {
             if (ModelState.IsValid)
             {

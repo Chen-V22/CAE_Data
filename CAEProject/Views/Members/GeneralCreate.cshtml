@@ -1,0 +1,239 @@
+﻿@using CAEProject.Models
+@model CAEProject.Models.MbFreeViewModel
+
+@{
+    ViewBag.Title = "FreeCreate";
+    MemberLevel applicationStatus = (MemberLevel)Convert.ToInt32(Request.QueryString["Type"]);
+}
+<style>
+    ::placeholder {
+        color: #a0a0a0;
+        opacity: 1; /* Firefox */
+    }
+
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: #a0a0a0;
+    }
+
+    ::-ms-input-placeholder { /* Microsoft Edge */
+        color: #a0a0a0;
+    }
+</style>
+
+<article>
+    <section class="main-content">
+        <div class="container px-md-4">
+            <div class="row">
+                @using (Html.BeginForm("PaidCreate", "Members", new { area = "" }, FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="col-md-12">
+                        <div class=" m-ponent px-sm-3">
+                            <h1 class="h-text-center font-weight-bolder"> CAE雲端及試作服務加值中心</h1>
+                            <h2>會員註冊</h2>
+                            <div class="mem_des container">
+                                <div class="mem_title">
+                                    <h3>填寫會員資料</h3>
+                                </div>
+
+                                <input type="hidden" name="ApplicationStatus" value="@applicationStatus" />
+
+                                <input type="hidden" name="DateTime" value="@DateTime.Now" />
+
+                                <div class="e-formBox clearfix">
+                                    <!--e-formBox-->
+                                    <div class="g-tv-6 form clearfix">
+                                        <div class="left"><em>※</em>會員帳號</div>
+                                        <div class="right">
+                                            @Html.EditorFor(model => model.Account, new { htmlAttributes = new { @class = "form-control", placeholder = "請填寫電子信箱" } })
+                                            @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
+                                            <span id="login_name_error"></span>
+
+                                        </div>
+                                    </div>
+                                    <div class="g-tv-6 form clearfix">
+                                        <div class="left"><em>※</em>設定密碼</div>
+                                        <div class="right">
+                                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "請填寫6個以上英文與數字組合" } })
+                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger", color = "indianred" })
+                                        </div>
+                                    </div>
+                                    <br style="clear: both;">
+
+                                    <div class="g-tv-6 form clearfix">
+                                        <div class="left">現職機構</div>
+                                        <div class="right">
+                                            @Html.EditorFor(model => model.CurrentIdentity, new { htmlAttributes = new { @class = "form-control", placeholder = "請填寫學校名稱或現職機構" } })
+                                            @Html.ValidationMessageFor(model => model.CurrentIdentity, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+                                    <div class="g-tv-6 form clearfix">
+                                        <div class="left">所屬單位</div>
+                                        <div class="right">
+                                            @Html.EditorFor(model => model.CurrentUnit, new { htmlAttributes = new { @class = "form-control", placeholder = "請填寫就讀系所或所屬單位" } })
+                                            @Html.ValidationMessageFor(model => model.CurrentUnit, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <br style="clear: both;">
+                                    <div class="g-tv-6 form clearfix">
+                                        <div class="left">申請人</div>
+                                        <div class="right">
+                                            @Html.EditorFor(model => model.ContactPerson, new { htmlAttributes = new { @class = "form-control", placeholder = "請填寫申請人姓名" } })
+                                            @Html.ValidationMessageFor(model => model.ContactPerson, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="g-tv-6 form clearfix">
+                                        <div class="left"><em>※</em>行動電話</div>
+                                        <div class="right">
+                                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", placeholder = "範例: 0933123456" } })
+                                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <br style="clear: both;">
+                                    <div class="g-tv-6 form clearfix">
+                                        <!--form-->
+                                        <div class="left tv_show">現職單位</div>
+                                        <div class="right">
+                                            @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control", placeholder = "請填寫就讀（大學、碩士、博士）" } })
+                                            @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <br style="clear: both;">
+                                    <div class="g-tv-12 form clearfix">
+                                        <div class="left"><em>※</em>聯絡地址</div>
+                                        <div class="col-lg-6" id="twzipcode">
+
+                                            @Html.Hidden("county")
+                                            @Html.Hidden("district")
+                                            @Html.Hidden("zipcode")
+                                        </div>
+
+                                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "請填寫地址（路、巷、弄、號、樓)" } })
+                                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+
+                                    </div>
+                                    <br style="clear: both;">
+                                    <div class="g-tv-6 form clearfix">
+                                        <div class="left"><em>※</em>身份證字號</div>
+                                        <div class="right">
+                                            @Html.EditorFor(model => model.IdCard, new { htmlAttributes = new { @class = "form-control", placeholder = "例：A123654789" } })
+                                            @Html.ValidationMessageFor(model => model.IdCard, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+                                    <div class="g-tv-6 form clearfix">
+                                        <div class="left"><em>※</em>E-mail</div>
+                                        <div class="right">
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "123@gmail.com" } })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <!--form end-->
+
+
+                                    <br style="clear: both;">
+                                    <div class="g-tv-6 form clearfix">
+                                        <div class="left">
+                                            聯絡電話
+                                        </div>
+                                        <div class="right d-flex">
+                                            @Html.EditorFor(model => model.ContactPersonPhone, new { htmlAttributes = new { @class = "require", placeholder = "請填寫連絡電話" } })
+                                            @Html.ValidationMessageFor(model => model.ContactPersonPhone, "", new { @class = "text-danger" })
+
+                                        </div>
+                                    </div>
+
+                                    <div class="g-tv-6 form clearfix">
+                                        <div class="left">分機</div>
+                                        <div class="right">
+                                            @Html.EditorFor(model => model.Extension, new { htmlAttributes = new { @class = "form-control", placeholder = "請填寫分機" } })
+                                            @Html.ValidationMessageFor(model => model.Extension, "", new { @class = "text-danger", color = "indianred" })
+                                        </div>
+                                    </div>
+
+                                    <br style="clear: both;">
+                                    <div class="g-tv-6 form clearfix">
+                                        <div class="left">傳真電話</div>
+                                        <div class="right">
+                                            @Html.EditorFor(model => model.Fax, new { htmlAttributes = new { @class = "form-control", placeholder = "請填寫傳真電話" } })
+                                            @Html.ValidationMessageFor(model => model.Fax, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <br style="clear: both;">
+                                    <div class="g-tv-6 form clearfix">
+                                        <div class="left">現職機構營業項目</div>
+                                        <div class="right">
+                                            @Html.TextAreaFor(model => model.BusinessItem, new { htmlAttributes = new { @class = "form-control", row = "9" } })
+                                            @Html.ValidationMessageFor(model => model.BusinessItem, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <br style="clear: both;">
+                                    <div class="g-tv-6 form clearfix">
+                                        <div class="left">
+                                            <em>※</em>CAE軟體需求 <br>(可複選)
+                                        </div>
+                                        <div class="right">
+                                            @foreach (var data in Utility.GetEnumList(typeof(CAEProject.Models.Demand)))
+                                            {
+                                                <label>
+                                                    @Html.CheckBox("Demand", new { Value = data.Value })@data.Text
+                                                </label>
+                                            }
+                                        </div>
+                                    </div>
+
+
+                                    <br style="clear: both;">
+
+                                    <div class="g-tv-6 form clearfix parentItem">
+                                        <div class="left"><em>※</em>訂閱電子報</div>
+                                        <div class="right">
+                                            @Html.DropDownListFor(model => model.Subscription, new SelectList(Enum.GetValues(typeof(CAEProject.Models.Subscription))), "請選擇", htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Subscription, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <br style="clear: both;">
+
+                                    <div class="form clearfix checkArea">
+                                        <!--checkArea-->
+                                        <!--送出按鈕-->
+                                        <div class="btn clearfix h-text-center">
+                                            <a class="e-btn e-btn_secondary">確認送出</a>
+                                        </div>
+                                    </div>
+                                    <!--checkArea end-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</article>
+<script>
+    $(document).ready(function () {
+        $("#twzipcode").twzipcode({
+            zipcodeIntoDistrict: true,
+            css: ["addr-county", "addr-district"], // 自訂 "城市"、"地區" class 名稱
+            countyName: "city", // 自訂城市 select 標籤的 name 值
+            districtName: "town" // 自訂地區 select 標籤的 name 值
+        });
+        $("#twzipcode").twzipcode('get', function (city, town, zipcode) {
+            $("#county").val(city);
+            $("#district").val(town);
+            $("#zipcode").val(zipcode);
+        });
+    })
+</script>
+
+
+
+

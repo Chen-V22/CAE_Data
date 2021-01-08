@@ -129,7 +129,7 @@ namespace CAEProject.Areas.Admin.Controllers
                 member.CompanyPhone = mbPaidViewModel.CompanyPhone;
                 member.CompanyUrl = mbPaidViewModel.CompanyUrl;
                 member.ContactPersonJobTitle = mbPaidViewModel.ContactPersonJobTitle;
-                member.EmployeeCount = mbPaidViewModel.EmployeeCount;
+                member.EmployeeCount = Convert.ToInt32(mbPaidViewModel.EmployeeCount);
                 member.ContactPersonEmail = mbPaidViewModel.ContactPersonEmail;
                 member.CompanyType = mbPaidViewModel.CompanyType;
                 member.Industry = mbPaidViewModel.Industry;
@@ -140,7 +140,7 @@ namespace CAEProject.Areas.Admin.Controllers
                 member.ContactPerson = mbPaidViewModel.ContactPerson;
                 member.ContactPersonPhone = mbPaidViewModel.ContactPersonPhone;
                 member.Address = mbPaidViewModel.Address;
-                member.Extension = mbPaidViewModel.Extension;
+                member.Extension = Convert.ToInt32(mbPaidViewModel.Extension);
                 member.Fax = mbPaidViewModel.Fax;
                 member.Demand = mbPaidViewModel.Demand;
                 member.Subscription = mbPaidViewModel.Subscription;
@@ -220,7 +220,7 @@ namespace CAEProject.Areas.Admin.Controllers
                 member.CompanyPhone = mbPaidViewModel.CompanyPhone;
                 member.CompanyUrl = mbPaidViewModel.CompanyUrl;
                 member.ContactPersonJobTitle = mbPaidViewModel.ContactPersonJobTitle;
-                member.EmployeeCount = mbPaidViewModel.EmployeeCount;
+                member.EmployeeCount = Convert.ToInt32(mbPaidViewModel.EmployeeCount);
                 member.ContactPersonEmail = mbPaidViewModel.ContactPersonEmail;
                 member.CompanyType = mbPaidViewModel.CompanyType;
                 member.Industry = mbPaidViewModel.Industry;
@@ -231,7 +231,7 @@ namespace CAEProject.Areas.Admin.Controllers
                 member.ContactPerson = mbPaidViewModel.ContactPerson;
                 member.ContactPersonPhone = mbPaidViewModel.ContactPersonPhone;
                 member.Address = mbPaidViewModel.Address;
-                member.Extension = mbPaidViewModel.Extension;
+                member.Extension = Convert.ToInt32(mbPaidViewModel.Extension);
                 member.Fax = mbPaidViewModel.Fax;
                 member.Demand = mbPaidViewModel.Demand;
                 member.Subscription = mbPaidViewModel.Subscription;
@@ -279,7 +279,7 @@ namespace CAEProject.Areas.Admin.Controllers
                 member.ContactPerson = mbFreeViewModel.ContactPerson;
                 member.ContactPersonPhone = mbFreeViewModel.ContactPersonPhone;
                 member.Address = mbFreeViewModel.Address;
-                member.Extension = mbFreeViewModel.Extension;
+                member.Extension = Convert.ToInt32(mbFreeViewModel.Extension);
                 member.Fax = mbFreeViewModel.Fax;
                 member.Demand = mbFreeViewModel.Demand;
                 member.Subscription = mbFreeViewModel.Subscription;
@@ -327,7 +327,7 @@ namespace CAEProject.Areas.Admin.Controllers
             mbFreeViewModel.ContactPerson = member.ContactPerson;
             mbFreeViewModel.ContactPersonPhone = member.ContactPersonPhone;
             mbFreeViewModel.Address = member.Address;
-            mbFreeViewModel.Extension = member.Extension;
+            mbFreeViewModel.Extension = member.Extension.ToString();
             mbFreeViewModel.Fax = member.Fax;
             mbFreeViewModel.Demand = member.Demand;
             mbFreeViewModel.Subscription = member.Subscription;
@@ -387,7 +387,7 @@ namespace CAEProject.Areas.Admin.Controllers
                 member.ContactPerson = mbFreeViewModel.ContactPerson;
                 member.ContactPersonPhone = mbFreeViewModel.ContactPersonPhone;
                 member.Address = mbFreeViewModel.Address;
-                member.Extension = mbFreeViewModel.Extension;
+                member.Extension = Convert.ToInt32(mbFreeViewModel.Extension);
                 member.Fax = mbFreeViewModel.Fax;
                 member.Demand = mbFreeViewModel.Demand;
                 member.Subscription = mbFreeViewModel.Subscription;

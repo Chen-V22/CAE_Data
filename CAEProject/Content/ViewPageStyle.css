@@ -60,3 +60,21 @@ a {
     -webkit-box-orient: vertical;
     white-space: normal;
 }
+
+/*地址選擇器Style Start*/
+.addr-county {
+    background: #4169E1;
+    color: #fff
+}
+
+.addr-district {
+    background: #008000;
+    color: #fff
+}
+
+.addr-zip {
+    background: #c00;
+    color: #fff;
+    border: 1px solid #666
+}
+/*地址選擇器Style End*/

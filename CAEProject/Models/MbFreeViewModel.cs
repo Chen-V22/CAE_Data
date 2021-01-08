@@ -61,7 +61,7 @@ namespace CAEProject.Models
         public string Address { get; set; }
 
         [Display(Name = "分機")]
-        public int Extension { get; set; }
+        public string Extension { get; set; }
 
         [Display(Name = "傳真")]
         [MaxLength(15)]
@@ -92,7 +92,6 @@ namespace CAEProject.Models
         [Display(Name = "E-mail")]
         [Required(ErrorMessage = "{0}必填")]
         [MaxLength(50)]
-        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Display(Name = "電話")]

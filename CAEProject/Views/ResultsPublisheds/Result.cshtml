@@ -1,0 +1,182 @@
+﻿@using MvcPaging
+@model IPagedList<CAEProject.Models.ResultsPublished>
+
+@{
+    ViewBag.Title = "Index";
+    int page = Request.QueryString["page"] == null ? 0 : Convert.ToInt32(Request.QueryString["page"]);
+    int idNum = page == 0 ? 1 : (page - 1) * 10 + 1, a = 0, b = 0;
+}
+
+<section class=" bannerPic" style="background-image: url(/CAE-Master/img/bg001.jpeg); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+
+    <div class="container">
+        <div class="col-md-12 h-text-center">
+            <h1> 成果發表</h1>
+        </div>
+    </div>
+</section>
+<article>
+    <section class="main-content">
+        <div class="container px-md-4">
+            <div class="row">
+                <div class="col-md-12 col-xl-9">
+                    <div class="container">
+                        <ul class="e-breadcrumb">
+                            <li>首頁</li>
+                            <li>成果展示</li>
+                            <li>成果發表</li>
+                        </ul>
+
+                        <div class="toolbar mb-4">
+                            @using (Html.BeginForm("Result", "ShowOffs", FormMethod.Post))
+                            {
+                                <div style="display: flex">
+                                    <div>
+                                        <select class="styled-select" name="date">
+                                            <option value="">年份選擇</option>
+                                            @for (int i = 2017; i <= DateTime.Now.Year; i++)
+                                            {
+                                                <option value="@i" name="date">@i 年</option>
+                                            }
+                                            <span class="fa fa-sort-desc"></span>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="search">
+                                        <input type="text" class="searchTerm  searchTerm_news" placeholder="想找哪篇案例?" name="selectInput">
+                                        <button type="submit" class="searchButton searchTerm_news">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="dateYear" id="dateYear" value="" />
+                            }
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                        <div class="table-responsive-blocks ">
+                            <table class="table table-bordered  table_result">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>日期</th>
+                                        <th>名稱</th>
+                                        <th>內容</th>
+                                        <th>來源</th>
+                                        <th>瀏覽</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                @foreach (var data in Model)
+                                {
+                                    <tr>
+                                        <th scope="row">@idNum</th>
+                                        <td data-title="日期">@data.ShowDate.ToString("yyyy-MM-dd")</td>
+                                        <td data-title="名稱"><a href="@Url.Action("ResultDetails","ResultsPublisheds",new{id = data.Id})">@data.Title</a></td>
+                                        <td data-title="內容">@(data.Count.Length > 30 ? data.Count.Remove(31) + "..." : data.Count)</td>
+                                        <td data-title="來源">@data.Source</td>
+                                        <td data-title="瀏覽">@data.Clicks</td>
+                                    </tr>
+                                    idNum++;
+                                }
+                                
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- 頁數 -->
+                        <div class="pager" style="margin: 28px 0 28px 0">
+                            @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xl-3">
+
+                    <div class="e_news mt-4">
+                        <h3> <i class="fas fa-bullhorn"></i> 熱門研討會</h3>
+
+                        <ul class="items_news items_news_muted">
+                            @foreach (var sem in ViewBag.SeminarsNews)
+                            {
+                                if (a == 0)
+                                {
+                                    <li class="oneNews Hot">
+                                        <a title="" href="@Url.Action("sem_page","Seminars",new {id=sem.Id})">
+                                            <span class="newsDate">
+                                                <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("/M/dd")</i>
+                                            </span>
+                                            <h2>@sem.Title</h2>
+                                            <b class="department"></b>
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="oneNews">
+                                        <a title="" href="@Url.Action("sem_page","Seminars",new {id=sem.Id})">
+                                            <span class="newsDate">
+                                                <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("/M/dd")</i>
+                                            </span>
+                                            <h2>@sem.Title</h2>
+                                        </a>
+                                    </li>
+                                }
+                            }
+
+                        </ul>
+                    </div>
+                    <div class="e_news">
+                        <h3> <i class="fas fa-chalkboard-teacher"></i>熱門課程</h3>
+                        <ul class="items_news items_news_muted">
+                            @foreach (var sem in ViewBag.TrainingCourseNews)
+                            {
+                                if (b == 0)
+                                {
+                                    <li class="oneNews Hot">
+                                        <a title="" href="">
+                                            <span class="newsDate">
+                                                <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("/M/dd")</i>
+                                            </span>
+                                            <h2>@sem.Title</h2>
+                                            <b class="department"></b>
+                                        </a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="oneNews">
+                                        <a title="" href="">
+                                            <span class="newsDate">
+                                                <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("/M/dd")</i>
+                                            </span>
+                                            <h2>@sem.Title</h2>
+                                        </a>
+                                    </li>
+                                }
+                            }
+
+                        </ul>
+                    </div>
+
+                    <div class="e_news">
+                        <h3> <i class="fas fa-newspaper"></i> 廣告專區</h3>
+                        <ul class="items_news items_news_ad_color">
+                            <div class="p-ad__content ">
+                                @foreach (var ad in ViewBag.AdNews)
+                                {
+                                    <div class="p-ad__img">
+                                        <a title="@ad.Title" href="@ad.Url">
+                                            <img src="/upfile/images/s@(ad.Photo)" class="e__img">
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>

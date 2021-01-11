@@ -205,10 +205,9 @@ namespace CAEProject.Areas.Admin.Controllers
                     activityPhotoAdd.ActivityId = ActivityId;
                     if (fileBase != null && fileBase.ContentLength > 0)
                     {
-                        var fileName = Path.GetFileName(fileBase.FileName);
-                        var path = Path.Combine(Server.MapPath("~/upfile/photo"), fileName);
-                        fileBase.SaveAs(path);
-                        activityPhotoAdd.Photo = fileName;
+                        activityPhotoAdd.Photo = Utility.SaveUpImage(fileBase);
+                        Utility.GenerateThumbnailImage(activityPhotoAdd.Photo, fileBase.InputStream, Server.MapPath("~/UpFile/Images"),
+                            "s", 167, 115);
                     }
                     activityPhotoAdd.PhotoAnnotation = photoAnnotation[i];
                     activityPhotoAdd.DateTime = DateTime.Now;

@@ -68,8 +68,9 @@
                 <div class="row">
                     <div class="col-lg-10">
                         <section class="panel">
-                            <header class="panel-heading">
+                            <header class="panel-heading" style="display: flex;justify-content: space-between">
                                 圖片新增
+                                <span style="color: red">建議格式：800*600</span>
                             </header>
                             <div class="form-horizontal">
                                 <hr />
@@ -80,8 +81,8 @@
                                     </div>
                                 </div>
                                 <div id="addTable">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2">相片1</label>
+                                    <div class="form-group" id="table">
+                                        <label class="control-label col-md-2">相片</label>
                                         <div class="col-md-6">
                                             <input type="file" id="photo" name="photo" />
                                             <br />
@@ -93,6 +94,7 @@
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-lg-6">
                                         <button type="submit" class="btn btn-info"><span class="icon_cloud-upload_alt"></span> 送出</button>
+                                        <button type="button" onclick="CloseWindow()">關閉</button>
                                     </div>
                                 </div>
                                 <hr />
@@ -104,7 +106,7 @@
         </div>
     }
 
-    <script src="~/NiceAdmin/js/jquery.js"></script>
+<script src="~/NiceAdmin/js/jquery.js"></script>
     <script src="~/NiceAdmin/js/jquery-ui-1.10.4.min.js"></script>
     <script src="~/NiceAdmin/js/jquery-1.8.3.min.js"></script>
     <script src="~/NiceAdmin/js/jquery-ui-1.9.2.custom.min.js"></script>
@@ -182,12 +184,12 @@
     </script>*@
 
     <script>
-        var tag = 2;
+        var tag = 1;
         $(function () {
             $("#add").click(function () {
                 $('#addTable')
                     .append(
-                        '<div class="form-group">' +
+                        '<div class="form-group" id="table' + tag+'">' +
                         '<label class = "control-label col-md-2">相片' + tag + '</label>' +
                         '<div class="col-md-6">' +
                         '<input type="file" name="photo" />' +
@@ -195,10 +197,15 @@
                         '<textarea class="text-danger" rows="3" cols="54" placeHolder="請輸入相片簡述" name="PhotoAnnotation"></textarea>' +
                         '</div>'+
                         '</div>');
-                tag++;
+                ++tag;
             });
             $("#del").click(function () {
-                $("#mt tbody tr:last").remove();
+                if (tag > 1) {
+                    --tag;
+                    $("[id=table" + tag + "]").remove();
+                } else {
+                    alert('只剩一筆，不用再刪了');
+                }
             });
         });
     </script>

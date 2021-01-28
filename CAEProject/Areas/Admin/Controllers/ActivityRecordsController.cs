@@ -175,12 +175,16 @@ namespace CAEProject.Areas.Admin.Controllers
         // GET: Admin/ActivityPhotoes
         public ActionResult ApIndex(int? id)
         {
-            TempData["addId"] = id;
-            //Tab頁面切換
-            TempData["tab"] = TempData["tab"] == null ? 0 : TempData["tab"];
-            ViewBag.ArData = db.ActivityRecords.Where(w => w.Id == id).ToList();
-            var activityPhotos = db.ActivityPhotos.Include(a => a.ActivityRecord).Where(i => i.ActivityId == id);
-            return View(activityPhotos.ToList());
+            if (id!=null)
+            {
+                TempData["addId"] = id;
+                //Tab頁面切換
+                TempData["tab"] = TempData["tab"] == null ? 0 : TempData["tab"];
+                ViewBag.ArData = db.ActivityRecords.Find(id);
+                var activityPhotos = db.ActivityPhotos.Include(a => a.ActivityRecord).Where(i => i.ActivityId == id);
+                return View(activityPhotos.ToList());
+            }
+            return RedirectToAction("Index", "ActivityRecords");
         }
         //<--------------------圖片列表End---------------------->
 
@@ -225,12 +229,13 @@ namespace CAEProject.Areas.Admin.Controllers
 
         //<--------------------圖片刪除Start---------------------->
         // POST: Admin/ActivityPhotoes/Delete/5
-        public ActionResult ApDelete(int id)
+        public ActionResult ApDelete(int id,int pid)
         {
             ActivityPhoto activityPhoto = db.ActivityPhotos.Find(id);
             db.ActivityPhotos.Remove(activityPhoto);
             db.SaveChanges();
-            return RedirectToAction("ApIndex");
+            TempData["tab"] = 2;
+            return RedirectToAction("ApIndex",new {id=pid});
         }
         //<--------------------圖片刪除End---------------------->
 

@@ -1,8 +1,10 @@
-﻿@model IEnumerable<CAEProject.Models.ActivityPhoto>
+﻿@using CAEProject.Models
+@model IEnumerable<CAEProject.Models.ActivityPhoto>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ActivityRecord activityRecord = ViewBag.ArData;
 }
 
 <h2>活動集錦</h2>
@@ -22,69 +24,65 @@
         <div class="tab-content">
             <!--相簿敘述-->
             <div id="home" class="tab-pane active">
-                @foreach (var data in ViewBag.ArData)
-                {
-                    <div class="form-horizontal">
+                <div class="form-horizontal">
                         <hr />
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+                        
                         <div class="form-group">
                             <label class="control-label col-md-2">相簿名稱：</label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control" value="@data.Title" disabled />
+                                <input type="text" class="form-control" value="@activityRecord.Title" disabled />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-2">相簿狀態：</label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control" value="@data.ActivityStatus" disabled />
+                                <input type="text" class="form-control" value="@activityRecord.ActivityStatus" disabled />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-2">來源日期：</label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control" value="@data.PublishDateTime.ToString("yyyy-MM-dd")" disabled />
+                                <input type="text" class="form-control" value="@activityRecord.PublishDateTime.ToString("yyyy-MM-dd")" disabled />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-2">資料來源：</label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control" value="@data.Source" disabled />
+                                <input type="text" class="form-control" value="@activityRecord.Source" disabled />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-2">是否置頂：</label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control" value="@data.IsTop" disabled />
+                                <input type="text" class="form-control" value="@activityRecord.IsTop" disabled />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-2">展示日期(開始)：</label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control" value="@data.SDate.ToString("yyyy-MM-dd")" disabled />
+                                <input type="text" class="form-control" value="@activityRecord.SDate.ToString("yyyy-MM-dd")" disabled />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-2">展示日期(結束)：</label>
                             <div class="col-lg-6">
-                                <input type="text" class="form-control" value="@data.EDate.ToString("yyyy-MM-dd")" disabled />
+                                <input type="text" class="form-control" value="@activityRecord.EDate.ToString("yyyy-MM-dd")" disabled />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-2">內容：</label>
                             <div class="col-lg-6">
-                                <textarea rows="10" cols="40" class="form-control" disabled>@data.Count</textarea>
+                                <textarea rows="10" cols="40" class="form-control" disabled>@activityRecord.Count</textarea>
                             </div>
                         </div>
                     </div>
-                }
             </div>
             <!--新增圖片-->
             <div id="about" class="tab-pane">
@@ -124,7 +122,7 @@
                                 @Html.DisplayFor(modelItem => item.DateTime)
                             </td>
                             <td>
-                                @Html.ActionLink("刪除", "Delete", new { id = item.Id })
+                                @Html.ActionLink("刪除", "ApDelete", new { id = item.Id ,pid= activityRecord.Id})
                             </td>
                         </tr>
                     }

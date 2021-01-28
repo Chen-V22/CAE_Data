@@ -8,7 +8,7 @@
 
 <h2>Create</h2>
 <h4>付費會員</h4>
-@using (Html.BeginForm())
+@using (Html.BeginForm("PaidCreate","Members",new{area=""},FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 

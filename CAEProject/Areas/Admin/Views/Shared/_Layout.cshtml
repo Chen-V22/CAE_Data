@@ -417,6 +417,13 @@
                 share: ['facebook', 'twitter', 'download'] // default: []
             });
 
+            $(document).on('click', '.closeme', function(e){
+                test.VBclose();
+            });
+
+            function CloseWindow() {
+                window.parent.close();
+            }
             // close current item clicking on .closeme
             //$(document).on('click', '.closeme', function (e) {
             //    $('.vbox-closed').trigger('click');
@@ -455,6 +462,14 @@
                 todayHighlight: true,
                 toggleActive: true,
                 format: "yyyy-mm-dd"
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker({
+                    language: 'pt-BR'
+                });
             });
         </script>
         @RenderSection("scripts", required: false)

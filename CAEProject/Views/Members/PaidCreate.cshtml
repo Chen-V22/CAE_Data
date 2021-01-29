@@ -24,10 +24,11 @@
     <section class="main-content">
         <div class="container px-md-4">
             <div class="row">
-                @using (Html.BeginForm("PaidCreate", "Members", new { area = "" }, FormMethod.Post))
+                @using (Html.BeginForm("PaidCreate", "Members", new { area = "" }, FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
                     <div class="col-md-12">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class=" m-ponent px-sm-3">
                             <h1 class="h-text-center font-weight-bolder"> CAE雲端及試作服務加值中心</h1>
                             <h2>會員註冊</h2>
@@ -43,7 +44,7 @@
                                         </div>
                                         <div class="right">
                                             @UIHelp.MemberTypeHelperResult(applicationStatus)
-                                            <input type="hidden" name="ApplicationStatus" value="@applicationStatus" />
+                                            <input type="hidden" name="applicationType" value="@applicationStatus" />
                                         </div>
                                     </div>
 
@@ -111,7 +112,7 @@
                                     <div class="g-tv-12 form clearfix">
                                         <div class="left"><em>※</em>聯絡地址</div>
                                         <div class="col-lg-6" id="twzipcode">
-                                            
+
                                             @Html.Hidden("county")
                                             @Html.Hidden("district")
                                             @Html.Hidden("zipcode")
@@ -266,6 +267,7 @@
                                             @Html.ValidationMessageFor(model => model.Business, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
+                                    <input type="hidden" name="Fax" value="123456789" />
                                     <br style="clear: both;">
                                     <div class="g-tv-6 form clearfix parentItem">
                                         <div class="left">上傳公司LOGO</div>
@@ -273,7 +275,7 @@
                                         <div class="right">
                                             <div class="file e-btn e-btn_primary ">
                                                 選擇檔案
-                                                <input name="ContactPersonPhone" type="file" class="">
+                                                <input name="CompanyPhone" type="file" class="">
                                             </div>
                                             <div class="h-text-danger"> 圖檔規格建議： 138px* 99px</div>
                                         </div>

@@ -29,7 +29,7 @@
                         <li>研討會/課程</li>
                         <li>研討會</li>
                     </ul>
-                    @using (Html.BeginForm("SeminarDetail","Seminars",FormMethod.Post))
+                    @using (Html.BeginForm("SeminarDetail", "Seminars", FormMethod.Post))
                     {
                         <div class="toolbar mb-4">
 
@@ -38,7 +38,7 @@
                             </div>
 
                             <div class="search">
-                                <input type="text" class="searchTerm" placeholder="想找哪個研討會?" name="selectInput" >
+                                <input type="text" class="searchTerm" placeholder="想找哪個研討會?" name="selectInput">
                                 <button type="submit" class="searchButton">
                                     <i class="fa fa-search"></i>
                                 </button>
@@ -75,20 +75,20 @@
                                 }
 
                                 @*<tr>
-                                        <th>2</th>
-                                        <td data-title="活動日期">22020.10.13~2020.10.13</td>
-                                        <td data-title="分類">CAE中心</td>
-                                        <td data-title="主題">2020臺日離岸風電智慧運維及創新技術線上暨</td>
-                                        <td data-title="瀏覽">6</td>
-                                    </tr>
-                                    <tr>
-                                        <th>3</th>
-                                        <td data-title="活動日期">22020.10.13~2020.10.13</td>
-                                        <td data-title="分類">CAE中心</td>
-                                        <td data-title="主題">2020臺日離岸風電智慧運維及創新技術線上暨</td>
+                                <th>2</th>
+                                <td data-title="活動日期">22020.10.13~2020.10.13</td>
+                                <td data-title="分類">CAE中心</td>
+                                <td data-title="主題">2020臺日離岸風電智慧運維及創新技術線上暨</td>
+                                <td data-title="瀏覽">6</td>
+                            </tr>
+                            <tr>
+                                <th>3</th>
+                                <td data-title="活動日期">22020.10.13~2020.10.13</td>
+                                <td data-title="分類">CAE中心</td>
+                                <td data-title="主題">2020臺日離岸風電智慧運維及創新技術線上暨</td>
 
-                                        <td data-title="瀏覽">36</td>
-                                    </tr>*@
+                                <td data-title="瀏覽">36</td>
+                            </tr>*@
                             </tbody>
                         </table>
                     </div>
@@ -99,91 +99,8 @@
 
                 </div>
             </div>
-            <div class="col-sm-12 col-xl-3">
-
-                <div class="e_news mt-4">
-                    <h3> <i class="fas fa-bullhorn"></i> 熱門研討會</h3>
-
-                    <ul class="items_news items_news_muted">
-                        @foreach (var sem in ViewBag.SeminarsNews)
-                        {
-                            if (a == 0)
-                            {
-                                <li class="oneNews Hot">
-                                    <a title="" href="">
-                                        <span class="newsDate">
-                                            <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("/M/dd")</i>
-                                        </span>
-                                        <h2>@sem.Title</h2>
-                                        <b class="department"></b>
-                                    </a>
-                                </li>
-                            }
-                            else
-                            {
-                                <li class="oneNews">
-                                    <a title="" href="">
-                                        <span class="newsDate">
-                                            <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("/M/dd")</i>
-                                        </span>
-                                        <h2>@sem.Title</h2>
-                                    </a>
-                                </li>
-                            }
-                        }
-
-                    </ul>
-                </div>
-                <div class="e_news">
-                    <h3> <i class="fas fa-chalkboard-teacher"></i>熱門課程</h3>
-                    <ul class="items_news items_news_muted">
-                        @foreach (var sem in ViewBag.TrainingCourseNews)
-                        {
-                            if (b == 0)
-                            {
-                                <li class="oneNews Hot">
-                                    <a title="" href="">
-                                        <span class="newsDate">
-                                            <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("/M/dd")</i>
-                                        </span>
-                                        <h2>@sem.Title</h2>
-                                        <b class="department"></b>
-                                    </a>
-                                </li>
-                            }
-                            else
-                            {
-                                <li class="oneNews">
-                                    <a title="" href="">
-                                        <span class="newsDate">
-                                            <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("/M/dd")</i>
-                                        </span>
-                                        <h2>@sem.Title</h2>
-                                    </a>
-                                </li>
-                            }
-                        }
-
-                    </ul>
-                </div>
-
-                <div class="e_news">
-                    <h3> <i class="fas fa-newspaper"></i> 廣告專區</h3>
-                    <ul class="items_news items_news_ad_color">
-                        <div class="p-ad__content ">
-                            @foreach (var ad in ViewBag.AdNews)
-                            {
-                                <div class="p-ad__img">
-                                    <a title="@ad.Title" href="@ad.Url">
-                                        <img src="/upfile/images/s@(ad.Photo)" class="e__img">
-                                    </a>
-                                </div>
-                            }
-                        </div>
-
-                    </ul>
-                </div>
-            </div>
+            <!--前台側邊連結(_NewsPartial)-->
+            @Html.Partial("_NewsPartial")
         </div>
 
     </div>

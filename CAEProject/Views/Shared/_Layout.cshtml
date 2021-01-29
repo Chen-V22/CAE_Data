@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using CAEProject.Models
+<!DOCTYPE html>
 <html lang="zh-Hant-TW">
 
 <head>
@@ -47,26 +48,26 @@
                 <div class="login">
                     <!--login-->
                     <h4 class="m-member-form__title h-t4">會員登入</h4>
+                    @using (Html.BeginForm("Login", "Members"))
+                    {
 
-                    <label class="m-member-form__label" for="帳號">*帳號</label>
-                    <div class="e-form-square mb-1">
-                        <i class="e-form-square__icon far fa-user"></i>
-                        <input class="e-form-square__input" type="email" id="email" name="email">
-                    </div>
-                    <label class="m-member-form__label" for="密碼">*密碼</label>
-                    <div class="e-form-square mb-1">
-                        <i class="e-form-square__icon fas fa-lock"></i>
-                        <input class="e-form-square__input" type="password" id="password" name="password">
-                    </div>
-                    <label class="m-member-form__label" for="驗證碼">*驗證碼</label>
-                    <div class="e-form-square__vertify mb-1 m-member-form__buttons">
+                        <label class="m-member-form__label" for="帳號">*帳號</label>
+                        <div class="e-form-square mb-1">
+                            <i class="e-form-square__icon far fa-user"></i>
+                            <input class="e-form-square__input" type="email" id="email" name="account">
+                        </div>
 
-                        <input class="e-form-square__input" type="text">
-                        <img src="~/CAE-Master/img/vertify.png" alt="" class="e-img" />
-                    </div>
-                    <div class="btn">
-                        <a class="login_btn_status" style="cursor:pointer" onclick="login_btn();">登入</a><i class="fa fa-spinner fa-spin login_loading_status" style="display:none"></i>
-                    </div>
+                        <label class="m-member-form__label" for="密碼">*密碼</label>
+                        <div class="e-form-square mb-1">
+                            <i class="e-form-square__icon fas fa-lock"></i>
+                            <input class="e-form-square__input" type="password" id="password" name="password">
+                        </div>
+
+                        <div class="btn">
+                            <button type="submit" class="login_btn_status" style="cursor:pointer" onclick="login_btn();">登入</button><i class="fa fa-spinner fa-spin login_loading_status" style="display:none"></i>
+                        </div>
+                    }
+
                     <div class="btns ">
                         <a class="btn_forget">忘記密碼</a>
                     </div>
@@ -115,8 +116,8 @@
                 <ul class="subNavTxt">
                     <li><a target="＃" href="@Url.Action("Index","Home")">Home</a></li>
                     <li><a target="＃" href="@Url.Action("ConnectionUs","Home")">聯絡我們</a></li>
-                    <li><a target="＃" href="sitemap.html ">網站導覽</a> </li>
-                    <li><a target="＃" href="faq.html">常見問題</a></li>
+                    <li><a target="＃" href="@Url.Action("SiteMap","Home") ">網站導覽</a> </li>
+                    <li><a target="＃" href="@Url.Action("Index","Faqs")">常見問題</a></li>
                 </ul>
 
             </nav>
@@ -133,12 +134,27 @@
                                 <i class="fas fa-search"></i>
                             </a>
                         </li>
-                        <li class="login_btn">
-                            <a href="#moduleMember" title="登入註冊" class="openModule">
-                                <div class="menu_box" style="background-image: url('/CAE-Master/img/Doctor.png')"> </div>
-                                <div class="dsc"> 登入/註冊</div>
-                            </a>
-                        </li>
+                        @{
+                            if (Session["member"] != null)
+                            {
+                                Member member = (Member)Session["member"];
+                                <li class="login_btn">
+                                    <a href="@Url.Action("Logoff","Members")" title="登出" class="openModule">
+                                        <div class="menu_box" style="background-image: url('/CAE-Master/img/Doctor.png')"> </div>
+                                        <div class="dsc">@member.Account 登出</div>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="login_btn">
+                                    <a href="#moduleMember" title="登入註冊" class="openModule">
+                                        <div class="menu_box" style="background-image: url('/CAE-Master/img/Doctor.png')"> </div>
+                                        <div class="dsc"> 登入/註冊</div>
+                                    </a>
+                                </li>
+                            }
+                        }
                     </ul>
                 </div>
             </nav>
@@ -277,10 +293,7 @@
                                         <a href="@Url.Action("Right","Members")"> 會員權益 </a>
                                     </li>
                                     <li class="Level2 ">
-                                        <a href="@Url.Action("Register","Members")">會員註冊 </a>
-                                    </li>
-                                    <li class="Level2 ">
-                                        <a href="@Url.Action("Login","Members")"> 會員登入</a>
+                                        <a href="@Url.Action("Logoff","Members")"> 會員登出</a>
                                     </li>
                                 }
                             }
@@ -288,7 +301,7 @@
                     </li>
 
                     <li class=" ">
-                        <a target="" onclick="window.location='epaper.html'">
+                        <a target="" onclick="window.location='epaper.html'" href="@Url.Action("Index","Newsletters")">
                             <i class="far fa-newspaper"></i><span> 電子報</span>
                         </a>
 
@@ -326,7 +339,7 @@
             <div class="navInfo">
                 <div class="desktop-swiper">
                     <div class="swiper-slide">
-                        <a href="">
+                        <a href="@Url.Action("Register","Members")">
                             <div class="navInfo__icon">
                                 <img src="~/CAE-Master/img/user.png" />
                             </div>
@@ -335,7 +348,7 @@
                     </div>
 
                     <div class="swiper-slide">
-                        <a href="">
+                        <a href="@Url.Action("TrialService","Home")">
                             <div class="navInfo__icon">
                                 <img src="~/CAE-Master/img/form.png" />
                             </div>
@@ -343,7 +356,7 @@
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="">
+                        <a href="@Url.Action("ProjectService","ProjectServices")">
                             <div class="navInfo__icon">
                                 <img src="~/CAE-Master/img/content.png" />
                             </div>
@@ -351,7 +364,7 @@
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <a href="">
+                        <a href="@Url.Action("SeminarDetail","Seminars")">
                             <div class="navInfo__icon">
                                 <img src="~/CAE-Master/img/knowledge.png" />
                             </div>

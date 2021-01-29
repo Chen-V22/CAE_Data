@@ -9,8 +9,8 @@ namespace CAEProject.Models
 {
     public class MbPaidViewModel
     {
-        //[Key]
-        //public int Id { get; set; }
+        [Key]
+        public int Id { get; set; }
 
         [Display(Name = "建立日期")]
         public DateTime DateTime { get; set; }
@@ -26,8 +26,8 @@ namespace CAEProject.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Display(Name = "申請狀態")]
-        public ApplicationStatus ApplicationStatus { get; set; }
+        //[Display(Name = "申請狀態")]
+        //public ApplicationStatus ApplicationStatus { get; set; }
 
         [Display(Name = "申請通過日期")]
         [DataType(DataType.DateTime)]
@@ -49,7 +49,7 @@ namespace CAEProject.Models
 
         [Display(Name = "統編")]
         [Required(ErrorMessage = "{0}必填")]
-        [MaxLength(8)]
+        [MaxLength(10)]
         public string CompanyNumber { get; set; }
 
         [Display(Name = "負責人")]
@@ -133,6 +133,6 @@ namespace CAEProject.Models
         public string EditUser { get; set; }
 
         [Display(Name = "最終修改日期")]
-        public DateTime LastEditDateTime { get; set; }
+        public DateTime? LastEditDateTime { get; set; }
     }
 }

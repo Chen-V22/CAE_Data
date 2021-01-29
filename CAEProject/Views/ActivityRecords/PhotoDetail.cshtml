@@ -34,7 +34,7 @@
                                             {
                                             <div class="swiper-slide">
                                                 <div class="swiper-zoom-container">
-                                                    <img src="/upfile/photo/@data.Photo">
+                                                    <img src="/upfile/images/@(data.Photo)">
                                                 </div>
                                                 <div>@data.PhotoAnnotation</div>
                                             </div>
@@ -51,7 +51,7 @@
                                         @foreach (var data in activityPhoto)
                                         {
                                             <div class="swiper-slide">
-                                                <img src="/upfile/photo/@data.Photo">
+                                                <img src="/upfile/images/s@(data.Photo)">
                                                 <div>@data.PhotoAnnotation</div>
                                             </div>
                                         }

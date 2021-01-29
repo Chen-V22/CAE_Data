@@ -19,16 +19,6 @@ namespace CAEProject.Controllers
         // GET: TechnicalKnowledges
         public ActionResult TechDetail(int? page)
         {
-            //廣告(技術區)
-            ViewBag.AdNews = db.Ads.Where(x => x.AdStatus == Status.發行).Where(x => x.AdCategory == AdCategory.小圖示廣告).OrderBy(x => Guid.NewGuid()).Take(3).ToList();
-
-            //研討會(技術區)
-            ViewBag.SeminarsNews = db.Seminars.OrderBy(x => x.IsTop).ThenByDescending(x => x.SDate).Take(3).ToList();
-
-            //教育訓練(技術區)
-            ViewBag.TrainingCourseNews = db.TrainingCourses.Where(x => x.Status == Status.發行)
-                .OrderByDescending(x => x.SignUpSDate).Take(3).ToList();
-
             string selectInput = Session["TkSelectInput"]?.ToString(); // ==> Session["selectInput"] == null ? null : Session["selectInput"].ToString()
             string year = Session["TkYear"] == null ? null : Session["TkYear"].ToString();
             string month = Session["TkMonth"] == null ? null : Session["TkMonth"].ToString();

@@ -17,16 +17,7 @@ namespace CAEProject.Controllers
         // GET: ProjectServices/Create
         public ActionResult ProjectService()
         {
-            //廣告(新聞區)
-            ViewBag.AdNews = db.Ads.Where(x => x.AdStatus == Status.發行).Where(x => x.AdCategory == AdCategory.小圖示廣告).OrderBy(x => Guid.NewGuid()).Take(3).ToList();
 
-            //研討會(新聞區)
-            ViewBag.SeminarsNews = db.Seminars.OrderBy(x => x.IsTop).ThenByDescending(x => x.SDate).Take(3).ToList();
-
-            //教育訓練(新聞區)
-            ViewBag.TrainingCourseNews = db.TrainingCourses.Where(x => x.Status == Status.發行)
-                .OrderByDescending(x => x.SignUpSDate).Take(3).ToList();
-            
             if (Session["member"] != null)
             {
                 TempData["status"] = true;

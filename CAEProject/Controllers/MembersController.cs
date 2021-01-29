@@ -34,7 +34,7 @@ namespace CAEProject.Controllers
             {
                 return RedirectToAction("PaidCreate", "Members", new { area = "", Type = memberType });
             }
-            else if (memberType=="2")
+            else if (memberType == "2")
             {
                 return RedirectToAction("GeneralCreate", "Members", new { area = "", Type = memberType });
             }
@@ -60,7 +60,8 @@ namespace CAEProject.Controllers
                 Member member = new Member();
                 member.MemberLevel = applicationStatus;
                 member.Account = mbFreeViewModel.Account;
-                member.Password = mbFreeViewModel.Password;
+                member.PasswordSalt = Utility.CreateSalt();
+                member.Password = Utility.GenerateHashWithSalt(mbFreeViewModel.Password, member.PasswordSalt);
                 member.NoticeDateTime = mbFreeViewModel.NoticeDateTime;
                 member.CurrentIdentity = mbFreeViewModel.CurrentIdentity;
                 member.CurrentUnit = mbFreeViewModel.CurrentUnit;
@@ -83,7 +84,7 @@ namespace CAEProject.Controllers
 
                 db.Members.Add(member);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(mbFreeViewModel);
@@ -105,7 +106,8 @@ namespace CAEProject.Controllers
                 Member member = new Member();
                 member.MemberLevel = applicationStatus;
                 member.Account = mbFreeViewModel.Account;
-                member.Password = mbFreeViewModel.Password;
+                member.PasswordSalt = Utility.CreateSalt();
+                member.Password = Utility.GenerateHashWithSalt(mbFreeViewModel.Password, member.PasswordSalt);
                 member.NoticeDateTime = mbFreeViewModel.NoticeDateTime;
                 member.CurrentIdentity = mbFreeViewModel.CurrentIdentity;
                 member.CurrentUnit = mbFreeViewModel.CurrentUnit;
@@ -128,11 +130,13 @@ namespace CAEProject.Controllers
 
                 db.Members.Add(member);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(mbFreeViewModel);
         }
+
+        //============鑽石、白金============
 
         // GET: Members/PaidCreate
         public ActionResult PaidCreate()
@@ -145,15 +149,16 @@ namespace CAEProject.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PaidCreate(MbPaidViewModel mbPaidViewModel, MemberLevel applicationStatus, string county, string district, string zipcode, string road)
+        public ActionResult PaidCreate([Bind(Include = "Id,DateTime,Account,Password,CompanyName,CompanyNumber,Principal,PrincipalJobTitle,CompanyPhone,CompanyUrl,ContactPersonJobTitle,EmployeeCount,CompanyType,Industry,Training,CompanyIntroduction,Business,CompanyPhoto,ContactPerson,ContactPersonPhone,ContactPersonEmail,Address,Extension,Fax,Demand,Subscription,EditUser,LastEditDateTime")] MbPaidViewModel mbPaidViewModel, HttpPostedFileBase photo, MemberLevel applicationType)
         {
             if (ModelState.IsValid)
             {
                 Member member = new Member();
-                member.MemberLevel = applicationStatus;
+                member.MemberLevel = applicationType;
+                member.ApplicationStatus = ApplicationStatus.審核中;
                 member.Account = mbPaidViewModel.Account;
-                member.Password = mbPaidViewModel.Password;
-                member.NoticeDateTime = mbPaidViewModel.NoticeDateTime;
+                member.PasswordSalt = Utility.CreateSalt();
+                member.Password = Utility.GenerateHashWithSalt(mbPaidViewModel.Password, member.PasswordSalt);
                 member.CompanyName = mbPaidViewModel.CompanyName;
                 member.CompanyNumber = mbPaidViewModel.CompanyNumber;
                 member.Principal = mbPaidViewModel.Principal;
@@ -182,12 +187,13 @@ namespace CAEProject.Controllers
 
                 db.Members.Add(member);
                 db.SaveChanges();
-                TempData["memberSuccess"] = "帳號申請成功，請靜候通知 (開通通知會寄送至你的信箱)";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             return View(mbPaidViewModel);
         }
+
+        //===============================
 
         // GET: Members/Login
         public ActionResult Login()
@@ -215,10 +221,46 @@ namespace CAEProject.Controllers
                     TempData["Error"] = "登入失敗";
                     return View("Login");
                 }
-                Session["member"] = Account.Account;
+                var userData = Account;
+                Session["member"] = Account;
                 return RedirectToAction("Index", "Home");
             }
             return View(logInViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public ActionResult HomeLogin(string account, string password)
+        {
+            if (!string.IsNullOrEmpty(account)&&!string.IsNullOrEmpty(password))
+            {
+                var Account = db.Members.FirstOrDefault(x => x.Account == account);
+                if (Account == null)
+                {
+                    TempData["Error"] = "登入失敗";
+                    return View("Login");
+                }
+                string Password = Utility.GenerateHashWithSalt(password, Account.PasswordSalt);
+                if (Account.Password != Password)
+                {
+                    TempData["Error"] = "登入失敗";
+                    return View("Login");
+                }
+                var userData = Account;
+                Session["member"] = Account;
+                return RedirectToAction("Index", "Home");
+            }
+
+            TempData["homeError"] = "帳號或密碼錯誤，登入失敗";
+            return RedirectToAction("Index", "Home");
+
+        }
+
+        public ActionResult Logoff()
+        {
+            Session["member"] = null;
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Members/Forget

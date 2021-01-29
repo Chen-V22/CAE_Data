@@ -120,11 +120,15 @@ namespace CAEProject.Models
         /// <returns>儲存檔名</returns>
         static public string SaveUpImage(HttpPostedFileBase upfile)
         {
-
+            int i = 0;
             //取得副檔名
             string extension = upfile.FileName.Split('.')[upfile.FileName.Split('.').Length - 1];
             //新檔案名稱
             string fileName = String.Format("{0:yyyyMMddhhmmsss}.{1}", DateTime.Now, extension);
+            if (File.Exists("~/upfile/images/"+fileName))
+            {
+                string extensionName = fileName.Split('.')[fileName.Split('.').Length - 1];
+            }
             string savedName = Path.Combine(HttpContext.Current.Server.MapPath("~/upfile/images"), fileName);
             upfile.SaveAs(savedName);
             return fileName;
@@ -165,7 +169,6 @@ namespace CAEProject.Models
             {
                 ht = Convert.ToInt32(baseImage.Height);
                 wt = Convert.ToInt32(baseImage.Width);
-
             }
             if (MaxHight > ht || MaxWidth >= w)
             {

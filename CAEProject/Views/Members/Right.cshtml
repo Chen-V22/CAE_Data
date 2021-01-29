@@ -8,7 +8,10 @@
                         <h1 class="h-text-center font-weight-bolder"> CAE雲端及試作服務加值中心</h1>
                         <h2>會員權益</h2>
                         <div class="btn clearfix h-text-center">
-                            <a class="e-btn e-btn_secondary" href="@Url.Action("Register","Members")"> <i class="fas fa-user"></i>會員註冊</a>
+                            @if (Session["member"] == null)
+                            {
+                                <a class="e-btn e-btn_secondary" href="@Url.Action("Register", "Members")"> <i class="fas fa-user"></i>會員註冊</a>
+                            }
                         </div>
                         <div class="mem_des container" id="generic-tabs">
 

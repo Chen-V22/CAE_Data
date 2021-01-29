@@ -1,0 +1,106 @@
+﻿@using CAEProject.Models
+@{
+    int a = 0, b = 0, c = 0;
+    Model1 db = new Model1();
+    //廣告
+    IEnumerable<Ad> ads = db.Ads.Where(x => x.AdStatus == Status.發行).Where(x => x.AdCategory == AdCategory.小圖示廣告).OrderBy(x => Guid.NewGuid()).Take(3).ToList();
+
+    //研討會
+    IEnumerable<Seminar> seminars = db.Seminars.OrderBy(x => x.IsTop).ThenByDescending(x => x.SDate).Take(3).ToList();
+
+    //教育訓練
+    IEnumerable<TrainingCourse> trainingCourses = db.TrainingCourses.Where(x => x.Status == Status.發行)
+        .OrderByDescending(x => x.SignUpSDate).Take(3).ToList();
+}
+
+<!--前台側邊連結[Partial View]-->
+<div class="col-sm-12 col-xl-3">
+
+    <!--研討會-->
+    <div class="e_news mt-4">
+        <h3> <i class="fas fa-bullhorn"></i> 熱門研討會</h3>
+
+        <ul class="items_news items_news_muted">
+            @foreach (var sem in seminars)
+            {
+                if (a == 0)
+                {
+                    <li class="oneNews Hot">
+                        <a title="" href="@Url.Action("sem_page","Seminars",new {id=sem.Id})">
+                            <span class="newsDate">
+                                <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("/M/dd")</i>
+                            </span>
+                            <h2>@sem.Title</h2>
+                            <b class="department"></b>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="oneNews">
+                        <a title="" href="@Url.Action("sem_page","Seminars",new {id=sem.Id})">
+                            <span class="newsDate">
+                                <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("/M/dd")</i>
+                            </span>
+                            <h2>@sem.Title</h2>
+                        </a>
+                    </li>
+                }
+            }
+
+        </ul>
+    </div>
+
+    <!--熱門課程-->
+    <div class="e_news">
+        <h3> <i class="fas fa-chalkboard-teacher"></i>熱門課程</h3>
+        <ul class="items_news items_news_muted">
+            @foreach (var sem in trainingCourses)
+            {
+                if (b == 0)
+                {
+                    <li class="oneNews Hot">
+                        <a title="" href="">
+                            <span class="newsDate">
+                                <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("/M/dd")</i>
+                            </span>
+                            <h2>@sem.Title</h2>
+                            <b class="department"></b>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="oneNews">
+                        <a title="" href="">
+                            <span class="newsDate">
+                                <u>@sem.SDate.ToString("yyyy")</u><i>@sem.SDate.ToString("/M/dd")</i>
+                            </span>
+                            <h2>@sem.Title</h2>
+                        </a>
+                    </li>
+                }
+            }
+
+        </ul>
+    </div>
+
+    <!--廣告專區-->
+    <div class="e_news">
+        <h3> <i class="fas fa-newspaper"></i> 廣告專區</h3>
+        <ul class="items_news items_news_ad_color">
+            <div class="p-ad__content ">
+                @foreach (var ad in ads)
+                {
+                    <div class="p-ad__img">
+                        <a title="@ad.Title" href="@ad.Url">
+                            <img src="/upfile/images/s@(ad.Photo)" class="e__img">
+                        </a>
+                    </div>
+                }
+            </div>
+
+        </ul>
+    </div>
+
+</div>

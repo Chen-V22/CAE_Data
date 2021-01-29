@@ -2331,6 +2331,7 @@
     <Content Include="Views\Members\Register.cshtml" />
     <Content Include="Views\Members\GeneralCreate.cshtml" />
     <Content Include="Views\Members\StudentCreate.cshtml" />
+    <Content Include="Views\Shared\_NewsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

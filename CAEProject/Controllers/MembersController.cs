@@ -82,6 +82,7 @@ namespace CAEProject.Controllers
                 member.LastEditDateTime = DateTime.Now;
                 member.EditUser = mbFreeViewModel.Account;
 
+
                 db.Members.Add(member);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Home");
@@ -149,7 +150,7 @@ namespace CAEProject.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PaidCreate([Bind(Include = "Id,DateTime,Account,Password,CompanyName,CompanyNumber,Principal,PrincipalJobTitle,CompanyPhone,CompanyUrl,ContactPersonJobTitle,EmployeeCount,CompanyType,Industry,Training,CompanyIntroduction,Business,CompanyPhoto,ContactPerson,ContactPersonPhone,ContactPersonEmail,Address,Extension,Fax,Demand,Subscription,EditUser,LastEditDateTime")] MbPaidViewModel mbPaidViewModel, HttpPostedFileBase photo, MemberLevel applicationType)
+        public ActionResult PaidCreate([Bind(Include = "Id,DateTime,Account,Password,CompanyName,CompanyNumber,Principal,PrincipalJobTitle,CompanyPhone,CompanyUrl,ContactPersonJobTitle,EmployeeCount,CompanyType,Industry,Training,CompanyIntroduction,Business,CompanyPhoto,ContactPerson,ContactPersonPhone,ContactPersonEmail,Address,Extension,Fax,Demand,Subscription,EditUser,LastEditDateTime")] MbPaidViewModel mbPaidViewModel, HttpPostedFileBase companyPhone, MemberLevel applicationType)
         {
             if (ModelState.IsValid)
             {
@@ -184,6 +185,17 @@ namespace CAEProject.Controllers
                 member.DateTime = DateTime.Now;
                 member.LastEditDateTime = DateTime.Now;
                 member.EditUser = mbPaidViewModel.Account;
+                if (companyPhone != null)
+                {
+                    if (companyPhone.ContentType.IndexOf("image", System.StringComparison.Ordinal) == -1)
+                    {
+                        ViewBag.message = "檔案類型錯誤";
+                        return View();
+                    }
+                    member.CompanyPhoto = Utility.SaveUpImage(companyPhone);
+                    Utility.GenerateThumbnailImage(member.CompanyPhoto, companyPhone.InputStream, Server.MapPath("~/UpFile/Images"),
+                        "s", 290, 217);
+                }
 
                 db.Members.Add(member);
                 db.SaveChanges();
@@ -201,7 +213,7 @@ namespace CAEProject.Controllers
             return View();
         }
 
-        // POST: Members/Login
+        // POST: Members/Login(會員頁面登入)
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
@@ -221,13 +233,13 @@ namespace CAEProject.Controllers
                     TempData["Error"] = "登入失敗";
                     return View("Login");
                 }
-                var userData = Account;
                 Session["member"] = Account;
                 return RedirectToAction("Index", "Home");
             }
             return View(logInViewModel);
         }
 
+        // POST: Members/Login(首頁會員登入)
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
@@ -247,7 +259,6 @@ namespace CAEProject.Controllers
                     TempData["Error"] = "登入失敗";
                     return View("Login");
                 }
-                var userData = Account;
                 Session["member"] = Account;
                 return RedirectToAction("Index", "Home");
             }

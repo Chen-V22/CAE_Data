@@ -89,6 +89,7 @@ namespace CAEProject.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "Id,FaqStatus,Title,SourceDateTime,Status,ReleaseDateTime,Clicks,Url,Count,AddUser,DateTime,EditUser,LastEditDateTime")] Faq faq)
         {
             if (ModelState.IsValid)
@@ -124,6 +125,7 @@ namespace CAEProject.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "Id,FaqStatus,Title,SourceDateTime,Status,ReleaseDateTime,Clicks,Url,Count,AddUser,DateTime,EditUser,LastEditDateTime")] Faq faq)
         {
             if (ModelState.IsValid)

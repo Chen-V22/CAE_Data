@@ -79,22 +79,22 @@
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.SDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-7 sandbox-container" style="display: flex">
-                            @Html.EditorFor(model => model.SDate, new { htmlAttributes = new { @class = "form-control",autocomplete="off" } })
-                            @Html.ValidationMessageFor(model => model.SDate, "", new { @class = "text-danger"})
+                        <div class="col-md-7" style="display: flex">
+                            @Html.EditorFor(model => model.SDate, new { htmlAttributes = new { @class = "form-control datetimepicker1", autocomplete = "off"} })
+                            @Html.ValidationMessageFor(model => model.SDate, "", new { @class = "text-danger" })
                             <p style="font-size: 20px;"> ~ </p>
-                            @Html.EditorFor(model => model.EDate, new { htmlAttributes = new { @class = "form-control",autocomplete="off" } })
+                            @Html.EditorFor(model => model.EDate, new { htmlAttributes = new { @class = "form-control datetimepicker1", autocomplete = "off" } })
                             @Html.ValidationMessageFor(model => model.EDate, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.SignUpSDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-7 sandbox-container" style="display: flex"> 
-                            @Html.EditorFor(model => model.SignUpSDate, new { htmlAttributes = new { @class = "form-control",autocomplete="off" } })
+                        <div class="col-md-7 " style="display: flex">
+                            @Html.EditorFor(model => model.SignUpSDate, new { htmlAttributes = new { @class = "form-control datetimepicker1", autocomplete = "off" } })
                             @Html.ValidationMessageFor(model => model.SignUpSDate, "", new { @class = "text-danger" })
                             <p style="font-size: 20px;"> ~ </p>
-                            @Html.EditorFor(model => model.SignUpEDate, new { htmlAttributes = new { @class = "form-control",autocomplete="off" } })
+                            @Html.EditorFor(model => model.SignUpEDate, new { htmlAttributes = new { @class = "form-control datetimepicker1", autocomplete = "off" } })
                             @Html.ValidationMessageFor(model => model.SignUpEDate, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -131,30 +131,30 @@
                         </div>
                     </div>
                     @*@if (Model.Handle==Handle.委辦)//此須修改為下拉判定變更
-                    {
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Assisting, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-7">
-                                @Html.EditorFor(model => model.Assisting, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Assisting, "", new { @class = "text-danger" })
+                        {
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Assisting, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-7">
+                                    @Html.EditorFor(model => model.Assisting, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Assisting, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.ProjectName, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-7">
-                                @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ProjectName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-7">
+                                    @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                    }*@
+                        }*@
 
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.Count, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-7">
-                            @Html.TextAreaFor(model=>model.Count,new{@class = "ckeditor"})
-                            @Html.ValidationMessageFor(model => model.Count, "", new {@class = "text-danger"})
+                            @Html.TextAreaFor(model => model.Count, new { @class = "ckeditor" })
+                            @Html.ValidationMessageFor(model => model.Count, "", new { @class = "text-danger" })
                         </div>
                     </div>
 

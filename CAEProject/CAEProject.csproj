@@ -165,12 +165,14 @@
     <Compile Include="Controllers\ActivityRecordsController.cs" />
     <Compile Include="Controllers\FaqsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MemberCentreController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProjectServicesController.cs" />
     <Compile Include="Controllers\ResultsPublishedsController.cs" />
     <Compile Include="Controllers\SeminarsController.cs" />
     <Compile Include="Controllers\ShowOffsController.cs" />
+    <Compile Include="Controllers\TrainingCoursesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -297,6 +299,10 @@
     <Compile Include="Migrations\202101060752372_Member Add PasswordSalt.cs" />
     <Compile Include="Migrations\202101060752372_Member Add PasswordSalt.Designer.cs">
       <DependentUpon>202101060752372_Member Add PasswordSalt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102020857273_TrainingCourse Add ApplicationStatus.cs" />
+    <Compile Include="Migrations\202102020857273_TrainingCourse Add ApplicationStatus.Designer.cs">
+      <DependentUpon>202102020857273_TrainingCourse Add ApplicationStatus.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActivityPhoto.cs" />
@@ -436,6 +442,103 @@
     <Content Include="bootstrap-datepicker\locales\bootstrap-datepicker.vi.min.js" />
     <Content Include="bootstrap-datepicker\locales\bootstrap-datepicker.zh-CN.min.js" />
     <Content Include="bootstrap-datepicker\locales\bootstrap-datepicker.zh-TW.min.js" />
+    <Content Include="Bootstrap-DateTimePicker\css\bootstrap-datetimepicker.css" />
+    <Content Include="Bootstrap-DateTimePicker\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="Bootstrap-DateTimePicker\js\bootstrap-datetimepicker.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.ar.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.az.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.bg.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.bn.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.ca.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.cs.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.da.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.de.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.ee.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.el.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.es.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.fi.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.fr.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.he.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.hr.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.hu.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.hy.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.id.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.is.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.it.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.ja.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.ka.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.ko.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.lt.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.lv.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.ms.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.nb.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.nl.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.no.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.pl.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.pt-BR.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.pt.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.ro.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.rs-latin.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.rs.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.ru.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.sk.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.sl.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.sv.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.sw.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.th.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.tr.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.ua.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.uk.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.zh-CN.js" />
+    <Content Include="Bootstrap-DateTimePicker\js\locales\bootstrap-datetimepicker.zh-TW.js" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v2\bootstrap\css\bootstrap.css" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v2\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v2\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v2\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v2\bootstrap\js\bootstrap.js" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v2\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v2\index.html" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v2\jquery\jquery-1.8.3.min.js" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v3\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v3\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v3\bootstrap\css\bootstrap.css" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v3\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v3\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v3\bootstrap\js\bootstrap.js" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v3\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v3\index.html" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v3\jquery\jquery-1.8.3.min.js" />
+    <Content Include="Bootstrap-DateTimePicker\screenshot\standard_day.png" />
+    <Content Include="Bootstrap-DateTimePicker\screenshot\standard_day_meridian.png" />
+    <Content Include="Bootstrap-DateTimePicker\screenshot\standard_decade.png" />
+    <Content Include="Bootstrap-DateTimePicker\screenshot\standard_full.png" />
+    <Content Include="Bootstrap-DateTimePicker\screenshot\standard_hour.png" />
+    <Content Include="Bootstrap-DateTimePicker\screenshot\standard_hour_meridian.png" />
+    <Content Include="Bootstrap-DateTimePicker\screenshot\standard_month.png" />
+    <Content Include="Bootstrap-DateTimePicker\screenshot\standard_year.png" />
+    <Content Include="Bootstrap-DateTimePicker\tests\assets\coverage.js" />
+    <Content Include="Bootstrap-DateTimePicker\tests\assets\jquery-1.7.1.min.js" />
+    <Content Include="Bootstrap-DateTimePicker\tests\assets\mock.js" />
+    <Content Include="Bootstrap-DateTimePicker\tests\assets\qunit-logging.js" />
+    <Content Include="Bootstrap-DateTimePicker\tests\assets\qunit.css" />
+    <Content Include="Bootstrap-DateTimePicker\tests\assets\qunit.js" />
+    <Content Include="Bootstrap-DateTimePicker\tests\assets\utils.js" />
+    <Content Include="Bootstrap-DateTimePicker\tests\run-qunit.js" />
+    <Content Include="Bootstrap-DateTimePicker\tests\suites\component.js" />
+    <Content Include="Bootstrap-DateTimePicker\tests\suites\events.js" />
+    <Content Include="Bootstrap-DateTimePicker\tests\suites\formats.js" />
+    <Content Include="Bootstrap-DateTimePicker\tests\suites\inline.js" />
+    <Content Include="Bootstrap-DateTimePicker\tests\suites\keyboard_navigation\2011.js" />
+    <Content Include="Bootstrap-DateTimePicker\tests\suites\keyboard_navigation\2012.js" />
+    <Content Include="Bootstrap-DateTimePicker\tests\suites\keyboard_navigation\all.js" />
+    <Content Include="Bootstrap-DateTimePicker\tests\suites\mouse_navigation\2011.js" />
+    <Content Include="Bootstrap-DateTimePicker\tests\suites\mouse_navigation\2012.js" />
+    <Content Include="Bootstrap-DateTimePicker\tests\suites\mouse_navigation\all.js" />
+    <Content Include="Bootstrap-DateTimePicker\tests\suites\options.js" />
+    <Content Include="Bootstrap-DateTimePicker\tests\tests.html" />
+    <Content Include="Bootstrap-DateTimePicker\tests\tests.min.html" />
+    <Content Include="Bootstrap-DateTimePicker\tests\_coverage.html" />
     <Content Include="CAE-Master\css\admin.css" />
     <Content Include="CAE-Master\css\all.css" />
     <Content Include="CAE-Master\img\123.png" />
@@ -2227,9 +2330,7 @@
     <Content Include="Areas\Admin\Views\MbCaeSoftwareRecords\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Members\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Members\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Members\PaidCreate.cshtml" />
     <Content Include="Areas\Admin\Views\Members\PaidEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\Members\FreeCreate.cshtml" />
     <Content Include="Areas\Admin\Views\Members\FreeEdit.cshtml" />
     <Content Include="Areas\Admin\Views\MbPaids\Create.cshtml" />
     <Content Include="Areas\Admin\Views\MbPaids\Delete.cshtml" />
@@ -2270,6 +2371,13 @@
     <Content Include="jQuery-TWzipcode-master\CHANGELOG.md" />
     <Content Include="jQuery-TWzipcode-master\LICENSE.md" />
     <Content Include="jQuery-TWzipcode-master\README.md" />
+    <Content Include="Bootstrap-DateTimePicker\build\build.less" />
+    <Content Include="Bootstrap-DateTimePicker\build\build_standalone.less" />
+    <Content Include="Bootstrap-DateTimePicker\less\datetimepicker.less" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v3\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v3\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Bootstrap-DateTimePicker\sample in bootstrap v3\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Bootstrap-DateTimePicker\tests\README.md" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2332,6 +2440,15 @@
     <Content Include="Views\Members\GeneralCreate.cshtml" />
     <Content Include="Views\Members\StudentCreate.cshtml" />
     <Content Include="Views\Shared\_NewsPartial.cshtml" />
+    <Content Include="Views\MemberCentre\MemberEdit.cshtml" />
+    <Content Include="Views\MemberCentre\Delete.cshtml" />
+    <Content Include="Views\MemberCentre\Details.cshtml" />
+    <Content Include="Views\MemberCentre\MemberPoint.cshtml" />
+    <Content Include="Views\MemberCentre\MemberCenter.cshtml" />
+    <Content Include="Views\TrainingCourses\GeneralApply.cshtml" />
+    <Content Include="Views\TrainingCourses\Details.cshtml" />
+    <Content Include="Views\TrainingCourses\MemberApply.cshtml" />
+    <Content Include="Views\TrainingCourses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2447,6 +2564,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101060752372_Member Add PasswordSalt.resx">
       <DependentUpon>202101060752372_Member Add PasswordSalt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102020857273_TrainingCourse Add ApplicationStatus.resx">
+      <DependentUpon>202102020857273_TrainingCourse Add ApplicationStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

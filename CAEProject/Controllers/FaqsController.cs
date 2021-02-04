@@ -17,7 +17,7 @@ namespace CAEProject.Controllers
         // GET: Faqs
         public ActionResult Index(int? id)
         {
-            ViewBag.data = db.Faqs.Where(x => x.FaqStatus== (id==null?(FaqStatus?)1:(FaqStatus?)id)).OrderByDescending(x => x.DateTime).ToList();
+            ViewBag.data = db.Faqs.Where(x => x.FaqStatus== (id==null?0:(FaqStatus?)id)).OrderBy(x => x.DateTime).ToList();
             return View(db.Faqs.ToList());
         }
 

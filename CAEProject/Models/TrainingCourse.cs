@@ -22,6 +22,9 @@ namespace CAEProject.Models
         [Display(Name = "狀態")]
         public Status Status { get; set; }
 
+        [Display(Name = "活動狀態")]
+        public ApplicationStatus ApplicationStatus { get; set; }
+
         [Display(Name = "活動類型")]
         public SeminarStatus SeminarStatus { get; set; }
 
@@ -67,7 +70,7 @@ namespace CAEProject.Models
         [DataType(DataType.DateTime)]
         public DateTime SignUpEDate { get; set; }
 
-        [Display(Name = "報名地點")]
+        [Display(Name = "活動地點")]
         [Required(ErrorMessage = "{0}必填")]
         [MaxLength(50)]
         public string Address { get; set; }

@@ -53,6 +53,7 @@ namespace CAEProject.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create(TrainingCourse trainingCourse)
         {
             if (ModelState.IsValid)
@@ -91,6 +92,7 @@ namespace CAEProject.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "Id,Title,Status,SeminarStatus,Cost,UserId,ContactPerson,ContactPhone,ContactEmail,SDate,EDate,SignUpSDate,SignUpEDate,Address,Quota,Alternate,Condition,Handle,Assisting,ProjectName,Count,File,Description,Success,AdImage,Clicks,AddUser,DateTime,EditUser,LastEditDateTime")] TrainingCourse trainingCourse)
         {
             if (ModelState.IsValid)

@@ -52,6 +52,8 @@
     <link href="~/VenoBox-master/venobox/venobox.min.css" rel="stylesheet" />
     <!--BootStrap-DatePicker-->
     <link href="~/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
+    <!--BootStrap-DateTimePicker-->
+    <link href="~/Bootstrap-DateTimePicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -348,6 +350,9 @@
         <script src="~/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
         <script src="~/bootstrap-datepicker/locales/bootstrap-datepicker.zh-TW.min.js"></script>
 
+        <!--BootStrap-DateTimePicker-->
+        <script src="~/Bootstrap-DateTimePicker/js/locales/bootstrap-datetimepicker.zh-TW.js"></script>
+        <script src="~/Bootstrap-DateTimePicker/js/bootstrap-datetimepicker.js"></script>
         <script>
             //knob
             $(function () {
@@ -417,7 +422,7 @@
                 share: ['facebook', 'twitter', 'download'] // default: []
             });
 
-            $(document).on('click', '.closeme', function(e){
+            $(document).on('click', '.closeme', function (e) {
                 test.VBclose();
             });
 
@@ -466,10 +471,14 @@
         </script>
 
         <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker({
-                    language: 'pt-BR'
-                });
+            $('.datetimepicker1').datetimepicker({
+                language: 'zh-TW',//顯示中文
+
+                format: 'yyyy-mm-dd hh:mm:ss',//顯示格式
+
+                autoclose: true,//選中自動關閉
+
+                todayBtn: true//顯示今日按鈕
             });
         </script>
         @RenderSection("scripts", required: false)

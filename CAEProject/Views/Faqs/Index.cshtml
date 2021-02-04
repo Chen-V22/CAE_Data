@@ -34,7 +34,7 @@
                     </ul>
                     <nav class="m-search-menu">
                         <ul class="m-search-menu__list">
-                            @foreach (var data in Model.Select(x=>x.FaqStatus).Distinct())
+                            @foreach (var data in Model.OrderBy(x=>x.FaqStatus).Select(x=>x.FaqStatus).Distinct())
                             {
                                 <li><a class="m-search-menu__link is-active" href="@Url.Action("Index","Faqs",new {id=data.GetHashCode()})">@data</a></li>
                             }

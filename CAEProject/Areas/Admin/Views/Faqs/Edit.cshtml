@@ -76,6 +76,7 @@
                             @Html.ValidationMessageFor(model => model.Count, "", new { @class = "text-danger" })
                         </div>
                     </div>
+                    @Html.HiddenFor(model=>model.DateTime)
                     <hr />
                 </div>
             </section>

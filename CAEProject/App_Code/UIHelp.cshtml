@@ -57,3 +57,27 @@
     }
 }
 
+@helper TcStatusHelperResult(DateTime singUpStr, DateTime singUpEd, DateTime activityStr, DateTime activityEd)
+{
+    if (DateTime.Now < singUpStr)
+    {
+        @:<span class="e_bandge e_bandge_third-color">未開始</span>
+    }
+    else if (DateTime.Now > singUpStr && DateTime.Now < singUpEd)
+    {
+        @:<span class="e_bandge e_bandge_deep-pink">報名中</span>
+    }
+    else if (DateTime.Now < activityStr)
+    {
+        @:<span class="e_bandge e_bandge_soft_color">報名截止</span>
+    }
+    else if (DateTime.Now > activityStr && DateTime.Now < activityEd)
+    {
+        @:<span class="e_bandge e_bandge_depGreen">進行中</span>
+    }
+    else if (DateTime.Now > activityEd)
+    {
+        @:<span class="e_bandge e_bandge_main_color">已結束</span>
+    }
+}
+

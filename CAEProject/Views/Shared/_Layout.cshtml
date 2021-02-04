@@ -48,13 +48,13 @@
                 <div class="login">
                     <!--login-->
                     <h4 class="m-member-form__title h-t4">會員登入</h4>
-                    @using (Html.BeginForm("Login", "Members"))
+                    @using (Html.BeginForm("HomeLogin", "Members"))
                     {
-
+                        @Html.AntiForgeryToken()
                         <label class="m-member-form__label" for="帳號">*帳號</label>
                         <div class="e-form-square mb-1">
                             <i class="e-form-square__icon far fa-user"></i>
-                            <input class="e-form-square__input" type="email" id="email" name="account">
+                            <input class="e-form-square__input" id="email" name="account">
                         </div>
 
                         <label class="m-member-form__label" for="密碼">*密碼</label>
@@ -204,7 +204,7 @@
                                 <a target="" href="@Url.Action("SeminarDetail","Seminars")"> 研討會/說明會</a>
                             </li>
                             <li class="Level2 ">
-                                <a target="" href="EduDetail.html"> 教育訓練課程 </a>
+                                <a target="" href="@Url.Action("Index","TrainingCourses",new {area=""})"> 教育訓練課程 </a>
 
                             </li>
                         </ul>
@@ -287,7 +287,7 @@
                                 else
                                 {
                                     <li class="Level2 ">
-                                        <a href="member_center.html"> 會員中心 </a>
+                                        <a href="@Url.Action("MemberCenter","MemberCentre")"> 會員中心 </a>
                                     </li>
                                     <li class="Level2 ">
                                         <a href="@Url.Action("Right","Members")"> 會員權益 </a>
@@ -433,6 +433,22 @@
 {
     <script type="text/javascript">
         var message = @Html.Raw(Json.Encode(TempData["memberSuccess"]));
+        alert(message);
+    </script>
+}
+
+@if (TempData["memberError"] != null)
+{
+    <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["memberError"]));
+        alert(message);
+    </script>
+}
+
+@if (TempData["Error"] != null)
+{
+    <script type="text/javascript">
+        var message = @Html.Raw(Json.Encode(TempData["Error"]));
         alert(message);
     </script>
 }

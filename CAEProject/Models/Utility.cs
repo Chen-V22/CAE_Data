@@ -124,11 +124,8 @@ namespace CAEProject.Models
             //取得副檔名
             string extension = upfile.FileName.Split('.')[upfile.FileName.Split('.').Length - 1];
             //新檔案名稱
-            string fileName = String.Format("{0:yyyyMMddhhmmsss}.{1}", DateTime.Now, extension);
-            if (File.Exists("~/upfile/images/"+fileName))
-            {
-                string extensionName = fileName.Split('.')[fileName.Split('.').Length - 1];
-            }
+            string fileName = String.Format("{0:yyyyMMddhhmmssff}.{1}", DateTime.Now, extension);
+           
             string savedName = Path.Combine(HttpContext.Current.Server.MapPath("~/upfile/images"), fileName);
             upfile.SaveAs(savedName);
             return fileName;

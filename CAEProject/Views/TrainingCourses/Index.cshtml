@@ -1,0 +1,94 @@
+﻿@using MvcPaging
+@using CAEProject.Models
+@model IPagedList<CAEProject.Models.TrainingCourse>
+
+@{
+    ViewBag.Title = "Index";
+    int date = DateTime.Now.Year;
+    date = date + 1 - 2017;
+    int page = Request.QueryString["page"] == null ? 0 : Convert.ToInt32(Request.QueryString["page"]);
+    int idNum = page == 0 ? 1 : (page - 1) * 10 + 1, a = 0, b = 0;
+}
+
+<section class=" bannerPic " style="background-image: url(/CAE-Master/img/bg001.jpeg); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+
+    <div class="container">
+        <div class="col-md-12 h-text-center">
+            <h1> 教育訓練</h1>
+        </div>
+    </div>
+</section>
+
+<section class="main-content">
+    <div class="container px-md-4">
+        <div class="row">
+            <div class="col-md-12 col-xl-9">
+                <div class="container">
+                    <ul class="e-breadcrumb ml-0">
+                        <li>首頁</li>
+                        <li>研討會/課程</li>
+                        <li>教育訓練</li>
+                    </ul>
+
+
+                    @using (Html.BeginForm("Index", "TrainingCourses",new {area=""}, FormMethod.Post))
+                    {
+                        <div class="toolbar mb-4">
+
+                            @Html.DropDownList("year", Enumerable.Range(2017, date).Select(i => new SelectListItem { Value = i.ToString(), Text = i + "年" }), "-- 年份 --", new { @class = "styled-select" })
+
+                            <div class="search">
+                                <input type="text" class="searchTerm" placeholder="想找哪篇電子報?" name="selectInput">
+                                <button type="submit" class="searchButton">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    }
+                    <div class="clearfix">
+                    </div>
+                    <div class="table-responsive-blocks ">
+                        <table class="table table-bordered  table_ad_color">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>活動日期</th>
+                                    <th>分類</th>
+                                    <th>主題</th>
+                                    <th>瀏覽</th>
+                                    <th></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var data in Model)
+                                {
+                                    <tr>
+                                        <th scope="row">@idNum</th>
+                                        <td data-title="活動日期"> @data.SignUpSDate.ToString("yyyy-MM-dd") ~ @data.SignUpEDate.ToString("yyyy-MM-dd")</td>
+                                        <td data-title="分類">@(data.Handle==Handle.自辦?"CAE中心":data.Handle.ToString())</td>
+                                        <td data-title="主題"><a href="@Url.Action("Details","TrainingCourses",new {area="",id=data.Id})">@data.Title</a></td>
+                                        <td data-title="瀏覽">@data.Clicks</td>
+                                        <td data-title="報名狀態">@UIHelp.TcStatusHelperResult(data.SignUpSDate,data.SignUpEDate,data.SDate,data.EDate)</td>
+                                    </tr>
+                                    idNum++;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- 頁數 -->
+                    <div class="pager" style="margin: 28px 0 28px 0">
+                        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+                    </div>
+
+                </div>
+            </div>
+
+            <!--前台側邊連結(_NewsPartial)-->
+            @Html.Partial("_NewsPartial")
+
+        </div>
+    </div>
+
+</section>

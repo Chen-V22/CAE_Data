@@ -1,0 +1,81 @@
+﻿@using MvcPaging
+@model IPagedList<CAEProject.Models.MbPaid>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<section class=" bannerPic " style="background-image: url(/CAE-Master/img/bg001.jpeg); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+
+    <div class="container">
+        <div class="col-md-12 h-text-center">
+
+            <h1> 會員中心</h1>
+
+        </div>
+    </div>
+</section>
+
+<section class="main-content">
+    <div class="container px-md-4">
+        <div class="row">
+            <div class="col-md-12 col-xl-3">
+                <div class="container px-3">
+
+                    <ul class="e-breadcrumb">
+                        <li>首頁</li>
+                        <li>會員專區</li>
+                        <li>會員中心</li>
+                    </ul>
+
+                    <nav class="m-search-menu">
+                        <ul class="m-search-menu__list">
+                            <li><a class="m-search-menu__link is-active" href="@Url.Action("MemberCenter")">繳費紀錄</a></li>
+                            <li><a class="m-search-menu__link" href="@Url.Action("MemberPoint")">點數使用紀錄</a></li>
+                            <li><a class="m-search-menu__link" href="@Url.Action("MemberCenter")">預約紀錄</a></li>
+                            <li><a class="m-search-menu__link" href="@Url.Action("MemberEdit")"> 帳號維護</a></li>
+                            <li><a class="m-search-menu__link" href="@Url.Action("MemberCenter")"> 檔案下載</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+            <div class="col-md-12 col-xl-8">
+                <div class=" m-content px-3 mb-2">
+                    <h3 class="articleTitle">繳費紀錄</h3>
+                    <div class="responsive ">
+                        <table class="table table-bordered  table_member">
+                            <thead>
+                                <tr>
+                                    <!-- <th>#</th> -->
+                                    <th>繳費日期</th>
+                                    <th>繳費金額</th>
+                                    <th>本次新增點數</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (var data in Model)
+                                    {
+                                        <tr>
+                                            <!-- <th scope="row">1</th> -->
+                                            <td>@data.PaidDateTime</td>
+                                            <td>@data.Paid</td>
+                                            <td>@data.AddPoints</td>
+                                        </tr>
+                                    }
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- 頁數 -->
+                    <div class="pager" style="margin: 28px 0 28px 0">
+                        @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

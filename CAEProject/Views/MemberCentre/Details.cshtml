@@ -1,0 +1,58 @@
+﻿@model CAEProject.Models.MbPoints
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MbPoints</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Member.Account)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Member.Account)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UseOfHour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UseOfHour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsePoints)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsePoints)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Points)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Points)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UseDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UseDateTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

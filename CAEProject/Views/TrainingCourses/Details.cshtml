@@ -1,0 +1,88 @@
+﻿@model CAEProject.Models.TrainingCourse
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<section class=" bannerPic " style="background-image: url(/CAE-Master/img/bg001.jpeg); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+
+    <div class="container">
+        <div class="col-md-12 h-text-center">
+            <h1> 教育訓練</h1>
+        </div>
+    </div>
+</section>
+<article>
+    <section class="main-content">
+        <div class="container px-md-4">
+            <div class="row">
+                <div class="col-md-12 col-xl-9">
+                    <div class="container ml-0">
+                        <ul class="e-breadcrumb">
+                            <li>首頁</li>
+                            <li>研討會/課程</li>
+                            <li> 教育訓練</li>
+                        </ul>
+
+                        <div class="newsContent mb-3">
+                            <h1 class="articleTitle">@Model.Title</h1>
+
+                            <div class="title_line py-3">
+
+                                <span class="semDate my-1">活動地點</span> <span>@Model.Address</span><br>
+                                <span class="semDate my-1">報名時間</span> <span>@Model.SignUpSDate.ToString("yyyy-MM-dd hh:mm") ~ @Model.SignUpEDate.ToString("yyyy-MM-dd hh:mm")</span><br>
+                                <span class="semDate my-1">活動時間</span> <span>@Model.SDate.ToString("yyyy-MM-dd hh:mm") ~ @Model.EDate.ToString("yyyy-MM-dd hh:mm")</span><br>
+                                <span class="semDate">活動費用</span> <span>@Model.Cost</span><br>
+                            </div>
+
+                            <div class="textEditor">
+                                <h3 class="txtTitle">【聯絡人】 <span> @Model.ContactPerson </span></h3>
+
+                                <h3 class="txtTitle">【電話】<span>@Model.ContactPhone</span></h3>
+
+                                <h3 class="txtTitle">【E-mail】<span>@Model.ContactEmail </span></h3>
+
+                                <h3 class="txtTitle">【詳細資料】</h3>
+                                @Html.Raw(Model.Count)
+
+
+
+                                <h3 class="txtTitle">【報名說明事項】 <span> @Model.Description</span></h3>
+                                <div class="h-text-center">
+                                    <a class="e-btn e-btn_secondary mr-1" href="@Url.Action("MemberApply")" id="applyBtn" onclick="member();"><i class="far fa-user"></i>會員報名</a>
+                                    <a class="e-btn e-btn_success " href="@Url.Action("GeneralApply")" onclick="noMember()"><i class="far fa-lightbulb"></i>非會員報名</a>
+                                </div>
+                                <!--end of sem_ctn_text-->
+                            </div>
+
+                            <hr />
+                            <div class="h-text-right">
+                                <a class="e-btn e-btn_ad_color " href="@Url.Action("Index")">返回列表</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--前台側邊連結(_NewsPartial)-->
+                @Html.Partial("_NewsPartial")
+            </div>
+        </div>
+
+    </section>
+
+
+</article>
+@if (Session["member"] == null)
+{
+    <script>
+        $("#applyBtn").attr("href", "@Url.Action("Login","Members")");
+        function member() {
+            alert('請先登入會員');
+        }
+    </script>
+}
+<script>
+    function noMember() {
+        alert('您如果是會員，請使用會員報名才能享受會員的優惠！');
+    }
+</script>

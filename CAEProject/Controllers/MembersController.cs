@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using CAEProject.Models;
 
 namespace CAEProject.Controllers
@@ -243,7 +244,7 @@ namespace CAEProject.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public ActionResult HomeLogin(string account, string password)
+        public ActionResult HomeLogin(string account, string password,string returnUrl)
         {
             if (!string.IsNullOrEmpty(account)&&!string.IsNullOrEmpty(password))
             {
@@ -260,7 +261,7 @@ namespace CAEProject.Controllers
                     return View("Login");
                 }
                 Session["member"] = Account;
-                return RedirectToAction("Index", "Home");
+                return Redirect(returnUrl);
             }
 
             TempData["homeError"] = "帳號或密碼錯誤，登入失敗";
@@ -268,10 +269,10 @@ namespace CAEProject.Controllers
 
         }
 
-        public ActionResult Logoff()
+        public ActionResult Logoff(string returnUrl)
         {
             Session["member"] = null;
-            return RedirectToAction("Index", "Home");
+            return Redirect(returnUrl);
         }
 
         // GET: Members/Forget

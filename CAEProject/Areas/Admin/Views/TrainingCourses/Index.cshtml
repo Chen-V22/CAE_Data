@@ -44,7 +44,8 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                <a href="@Url.Action("Index","RegistrationForms",new {area="Admin",id = item.Id})">@item.Title</a>
+                @*@Html.ActionLink(item.Title, "", "RegistrationForms")*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)

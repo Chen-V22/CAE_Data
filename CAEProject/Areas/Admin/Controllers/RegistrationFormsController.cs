@@ -15,9 +15,9 @@ namespace CAEProject.Areas.Admin.Controllers
         private Model1 db = new Model1();
 
         // GET: Admin/RegistrationForms
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            var registrationForms = db.RegistrationForms.Include(r => r.TrainingCourse);
+            var registrationForms = db.RegistrationForms.Include(r => r.TrainingCourse).Where(x=>x.TrainingId==id);
             return View(registrationForms.ToList());
         }
 
@@ -41,7 +41,7 @@ namespace CAEProject.Areas.Admin.Controllers
         //{
         //    var status = db.RegistrationForms.Where(x => x.TrainingId == id)
         //        .FirstOrDefault(x => x.MemberName == Session["Member"].ToString());
-        //    if (status==null)
+        //    if (status!=null)
         //    {
         //        TempData["Status"] = "你已報名本次課程";
         //        return View("Index");

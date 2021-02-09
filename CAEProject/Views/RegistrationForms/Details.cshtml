@@ -1,0 +1,171 @@
+﻿@using CAEProject.Models
+@model CAEProject.Models.RegistrationForm
+
+@{
+    ViewBag.Title = "Create";
+    TrainingCourse trainingCourse = ViewBag.TrainingCourses;
+    Member member = (Member)Session["member"];
+}
+
+<section class=" bannerPic " style="background-image: url(/CAE-Master/img/bg001.jpeg); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+
+        <div class="container">
+            <div class="col-md-12 h-text-center">
+                <h1> [報名成功!]</h1>
+            </div>
+        </div>
+    </section>
+    <article>
+        <section class="main-content">
+            <div class="container px-md-4">
+                <div class="row">
+                    <div class="col-md-12 col-xl-9">
+                        <div class="container ml-0">
+                            <ul class="e-breadcrumb">
+                                <li>首頁</li>
+                                <li>研討會/課程</li>
+                                <li> 教育訓練</li>
+                            </ul>
+
+                            <div class="newsContent mb-3">
+
+
+                                <div class="title_line py-3">
+                                    <span class="semDate my-1">活動場次</span>@trainingCourse.Title<br>
+                                    <span class="semDate my-1">活動地點</span> @trainingCourse.Address<br>
+                                    <span class="semDate my-1">報名時間</span><span class="h-text-danger"> @trainingCourse.SignUpSDate.ToString("yyyy-MM-dd hh:mm") ~ @trainingCourse.SignUpEDate.ToString("yyyy-MM-dd hh:mm")</span><br>
+
+                                    <span class="semDate">活動費用</span> @trainingCourse.Cost<br>
+                                </div>
+
+                                <div class="textEditor">
+
+
+                                    <p class="tit2"> <i class="fa fa-arrow-down h-text-danger"></i>這是你的報名詳細</p>
+
+                                    <div class="e-formBox clearfix">
+                                        <!--e-formBox-->
+                                        <div class="g-tv-6 form clearfix">
+                                            <div class="left"><em>※</em>公司名稱</div>
+                                            <div class="right">
+                                                <label>@Model.Company</label>
+                                            </div>
+                                        </div>
+                                        <br style="clear: both;">
+                                        <div class="g-tv-6 clearfix">
+                                            <div class="left">
+                                                <em>※</em><label for="data_name">性別</label>
+
+                                            </div>
+                                            <div class="right">
+                                                <label>@Model.GenderType</label>
+                                            </div>
+                                        </div>
+
+                                        <br style="clear: both;">
+
+                                        <div class="g-tv-6 form clearfix">
+                                            <div class="left"><em>※</em>統一編號</div>
+                                            <div class="right">
+                                                <label>@Model.CompanyNumber</label>
+                                            </div>
+                                        </div>
+
+
+
+                                        <br style="clear: both;">
+                                        <div class="g-tv-6 form clearfix">
+                                            <div class="left">姓名</div>
+                                            <div class="right">
+                                                <label>@Model.Name</label>
+                                            </div>
+                                        </div>
+
+                                        <br style="clear: both;">
+                                        <div class="g-tv-6 form clearfix">
+                                            <div class="left"><em>※</em>E-mail</div>
+                                            <div class="right">
+                                                <label>@Model.Email</label>
+                                            </div>
+                                        </div>
+                                        <br style="clear: both;">
+                                        <div class="g-tv-12 form clearfix">
+                                            <div class="left"><em>※</em>發票種類</div>
+                                            <div class="right">
+                                                <label>@Model.UniformInvoice</label>
+                                            </div>
+                                        </div>
+
+
+                                        <br style="clear: both;">
+                                        <div class="g-tv-6 form clearfix">
+
+                                            <div class="left"><em>※</em>服務部門</div>
+                                            <div class="right">
+                                                <label>@Model.Department</label>
+                                            </div>
+                                        </div>
+                                        <br style="clear: both;">
+                                        <div class="g-tv-6 form clearfix">
+
+                                            <div class="left"><em>※</em>職稱</div>
+                                            <div class="right">
+                                                <label>@Model.JobTitle</label>
+                                            </div>
+                                        </div>
+                                        <br style="clear: both;">
+                                        <div class="g-tv-6 form clearfix">
+                                            <div class="left"><em>※</em>行動電話</div>
+                                            <div class="right">
+                                                <label>@Model.Cellphone</label>
+                                            </div>
+                                        </div>
+                                        <br style="clear: both;">
+                                        <div class="g-tv-6 form clearfix">
+                                            <div class="left">
+                                                <em>※</em>聯絡電話
+                                            </div>
+                                            <div class="right ">
+                                                <label>@Model.Phone</label>
+                                            </div>
+                                        </div>
+                                        <br style="clear: both;">
+                                        <div class="g-tv-12 form clearfix">
+                                            <div class="left"><em>※</em>聯絡地址</div>
+                                            <div class="right">
+                                                <label>@Model.Address</label>
+                                            </div>
+                                        </div>
+                                        <br style="clear: both;">
+                                        <br style="clear: both;">
+                                        <div class="g-tv-6 form clearfix">
+                                            <div class="left">備註</div>
+                                            <div class="right">
+                                                <label>@Model.Remarks</label>
+                                            </div>
+                                        </div>
+
+                                        <!--checkArea end-->
+
+                                    </div>
+
+                                </div>
+
+                                <hr />
+                                <div class="h-text-right">
+                                    <button type="button" class="e-btn e-btn_ad_color mr-1" onclick="location.href = '@Url.Action("Index", "TrainingCourses")'">返回列表</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--前台側邊連結(_NewsPartial)-->
+                    @Html.Partial("_NewsPartial")
+                </div>
+            </div>
+
+        </section>
+
+
+    </article>
+}

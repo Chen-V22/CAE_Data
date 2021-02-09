@@ -1,0 +1,208 @@
+﻿@using CAEProject.Models
+@model CAEProject.Models.RegistrationForm
+
+@{
+    ViewBag.Title = "Create";
+    TrainingCourse trainingCourse = ViewBag.TrainingCourses;
+    Member member = (Member)Session["member"];
+}
+<!--提示字元color修改-->
+<style>
+    ::placeholder {
+        color: #a0a0a0;
+        opacity: 1; /* Firefox */
+    }
+
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: #a0a0a0;
+    }
+
+    ::-ms-input-placeholder { /* Microsoft Edge */
+        color: #a0a0a0;
+    }
+</style>
+
+<h2>Create</h2>
+@using (Html.BeginForm("Create", "RegistrationForms", new { area = "" }))
+{
+    @Html.AntiForgeryToken()
+    <section class=" bannerPic " style="background-image: url(/CAE-Master/img/bg001.jpeg); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+
+        <div class="container">
+            <div class="col-md-12 h-text-center">
+                <h1> 教育訓練</h1>
+            </div>
+        </div>
+    </section>
+    <article>
+        <section class="main-content">
+            <div class="container px-md-4">
+                <div class="row">
+                    <div class="col-md-12 col-xl-9">
+                        <div class="container ml-0">
+                            <ul class="e-breadcrumb">
+                                <li>首頁</li>
+                                <li>研討會/課程</li>
+                                <li> 教育訓練</li>
+                            </ul>
+
+                            <div class="newsContent mb-3">
+
+
+                                <div class="title_line py-3">
+                                    <span class="semDate my-1">活動場次</span>@trainingCourse.Title<br>
+                                    <span class="semDate my-1">活動地點</span> @trainingCourse.Address<br>
+                                    <span class="semDate my-1">報名時間</span><span class="h-text-danger"> @trainingCourse.SignUpSDate.ToString("yyyy-MM-dd hh:mm") ~ @trainingCourse.SignUpEDate.ToString("yyyy-MM-dd hh:mm")</span><br>
+
+                                    <span class="semDate">活動費用</span> @trainingCourse.Cost<br>
+                                </div>
+
+                                <div class="textEditor">
+
+
+                                    <p class="tit2"> <i class="fa fa-arrow-down h-text-danger"></i>請填寫報名資料『※』 為必填欄位</p>
+
+                                    <div class="e-formBox clearfix">
+                                        <!--e-formBox-->
+                                        <div class="g-tv-6 form clearfix">
+                                            <input type="hidden" name="MemberName" value="@(member?.ContactPerson)" />
+                                            <div class="left"><em>※</em>公司名稱</div>
+                                            <div class="right">
+                                                <input type="hidden" name="TrainingId" value="@trainingCourse.Id" />
+                                                @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "form-control require", placeholder = "請填寫公司名稱" } })
+                                                @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger login_name_error" })
+                                            </div>
+                                        </div>
+                                        <br style="clear: both;">
+                                        <div class="g-tv-6 clearfix">
+                                            <div class="left">
+                                                <em>※</em><label for="data_name">性別</label>
+
+                                            </div>
+                                            <div class="right">
+                                                @Html.RadioButtonFor(model => model.GenderType, 0, new { @id = "GenderType0", @name = "GenderType", @class = "form-control", @checked = "checked" }) <label for="GenderType0">先生</label>
+                                                @Html.RadioButtonFor(model => model.GenderType, 1, new { @id = "GenderType1", @name = "GenderType", @class = "form-control" }) <label for="GenderType1">小姐</label>
+                                                @Html.ValidationMessageFor(model => model.GenderType, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <br style="clear: both;">
+
+                                        <div class="g-tv-6 form clearfix">
+                                            <div class="left"><em>※</em>統一編號</div>
+                                            <div class="right">
+                                                @Html.EditorFor(model => model.CompanyNumber, new { htmlAttributes = new { @class = "form-control require", placeholder = "請填寫統一編號" } })
+                                                @Html.ValidationMessageFor(model => model.CompanyNumber, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+
+
+                                        <br style="clear: both;">
+                                        <div class="g-tv-6 form clearfix">
+                                            <div class="left">姓名</div>
+                                            <div class="right">
+                                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "請填寫姓名" } })
+                                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <br style="clear: both;">
+                                        <div class="g-tv-6 form clearfix">
+                                            <div class="left"><em>※</em>E-mail</div>
+                                            <div class="right">
+                                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "請填寫E-mail" } })
+                                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <br style="clear: both;">
+                                        <div class="g-tv-12 form clearfix">
+                                            <div class="left"><em>※</em>發票種類</div>
+                                            <div class="right">
+                                                @Html.DropDownListFor(model => model.UniformInvoice, Utility.GetEnumList(typeof(CAEProject.Models.UniformInvoice)), htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.UniformInvoice, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+
+                                        <br style="clear: both;">
+                                        <div class="g-tv-6 form clearfix">
+
+                                            <div class="left"><em>※</em>服務部門</div>
+                                            <div class="right">
+                                                @Html.EditorFor(model => model.Department, new { htmlAttributes = new { @class = "form-control", placeholder = "請填寫服務部門" } })
+                                                @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <br style="clear: both;">
+                                        <div class="g-tv-6 form clearfix">
+
+                                            <div class="left"><em>※</em>職稱</div>
+                                            <div class="right">
+                                                @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control", placeholder = "請填寫職稱" } })
+                                                @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <br style="clear: both;">
+                                        <div class="g-tv-6 form clearfix">
+                                            <div class="left"><em>※</em>行動電話</div>
+                                            <div class="right">
+                                                @Html.EditorFor(model => model.Cellphone, new { htmlAttributes = new { @class = "form-control", placeholder = "請填寫行動電話" } })
+                                                @Html.ValidationMessageFor(model => model.Cellphone, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <br style="clear: both;">
+                                        <div class="g-tv-6 form clearfix">
+                                            <div class="left">
+                                                <em>※</em>聯絡電話
+                                            </div>
+                                            <div class="right ">
+                                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", placeholder = "請填寫連絡電話" } })
+                                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <br style="clear: both;">
+                                        <div class="g-tv-12 form clearfix">
+                                            <div class="left"><em>※</em>聯絡地址</div>
+                                            <div class="right">
+                                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "請填寫聯絡地址" } })
+                                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <br style="clear: both;">
+                                        <br style="clear: both;">
+                                        <div class="g-tv-6 form clearfix">
+                                            <div class="left">備註</div>
+                                            <div class="right">
+                                                @Html.TextAreaFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control", row = "9" } })
+                                                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <!--checkArea end-->
+
+                                    </div>
+
+                                </div>
+
+                                <hr />
+                                <div class="h-text-right">
+                                    <button type="button" class="e-btn e-btn_ad_color mr-1" onclick="location.href = '@Url.Action("Index", "TrainingCourses")'">返回列表</button>
+                                    <button type="submit" class="e-btn e-btn_primary mr-1">確認送出</button>
+                                    <button type="button" class="e-btn e-btn_secondary mr-1" id="continuous">繼續報名</button>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--前台側邊連結(_NewsPartial)-->
+                    @Html.Partial("_NewsPartial")
+                </div>
+            </div>
+
+        </section>
+
+
+    </article>
+}

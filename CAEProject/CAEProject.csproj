@@ -169,6 +169,7 @@
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProjectServicesController.cs" />
+    <Compile Include="Controllers\RegistrationFormsController.cs" />
     <Compile Include="Controllers\ResultsPublishedsController.cs" />
     <Compile Include="Controllers\SeminarsController.cs" />
     <Compile Include="Controllers\ShowOffsController.cs" />
@@ -303,6 +304,14 @@
     <Compile Include="Migrations\202102020857273_TrainingCourse Add ApplicationStatus.cs" />
     <Compile Include="Migrations\202102020857273_TrainingCourse Add ApplicationStatus.Designer.cs">
       <DependentUpon>202102020857273_TrainingCourse Add ApplicationStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102040642331_RegistrationForm Add AddData.cs" />
+    <Compile Include="Migrations\202102040642331_RegistrationForm Add AddData.Designer.cs">
+      <DependentUpon>202102040642331_RegistrationForm Add AddData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102050658236_Edit RegistrationForm ComNumber Type Int To String.cs" />
+    <Compile Include="Migrations\202102050658236_Edit RegistrationForm ComNumber Type Int To String.Designer.cs">
+      <DependentUpon>202102050658236_Edit RegistrationForm ComNumber Type Int To String.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ActivityPhoto.cs" />
@@ -2449,6 +2458,11 @@
     <Content Include="Views\TrainingCourses\Details.cshtml" />
     <Content Include="Views\TrainingCourses\MemberApply.cshtml" />
     <Content Include="Views\TrainingCourses\Index.cshtml" />
+    <Content Include="Views\RegistrationForms\Create.cshtml" />
+    <Content Include="Views\RegistrationForms\Delete.cshtml" />
+    <Content Include="Views\RegistrationForms\Details.cshtml" />
+    <Content Include="Views\RegistrationForms\Edit.cshtml" />
+    <Content Include="Views\RegistrationForms\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2567,6 +2581,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102020857273_TrainingCourse Add ApplicationStatus.resx">
       <DependentUpon>202102020857273_TrainingCourse Add ApplicationStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102040642331_RegistrationForm Add AddData.resx">
+      <DependentUpon>202102040642331_RegistrationForm Add AddData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102050658236_Edit RegistrationForm ComNumber Type Int To String.resx">
+      <DependentUpon>202102050658236_Edit RegistrationForm ComNumber Type Int To String.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

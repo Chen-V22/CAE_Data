@@ -60,22 +60,33 @@ namespace CAEProject.Controllers
         }
 
         // GET: TrainingCourses/GeneralApply(非會員報名)
-        public ActionResult GeneralApply()
+        public ActionResult GeneralApply(int? id)
         {
-            if (Session["member"]==null)
+            if (id == null)
             {
-                TempData["memberError"] = "請先登入會員";
-                return RedirectToAction("Login", "Members");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.UserId = new SelectList(db.Users, "Id", "UserCodeName");
-            return View();
+            TrainingCourse trainingCourse = db.TrainingCourses.Find(id);
+            if (trainingCourse == null)
+            {
+                return HttpNotFound();
+            }
+            return View(trainingCourse);
         }
 
         // GET: TrainingCourses/MemberApply(會員報名)
-        public ActionResult MemberApply()
+        public ActionResult MemberApply(int? id)
         {
-            ViewBag.UserId = new SelectList(db.Users, "Id", "UserCodeName");
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TrainingCourse trainingCourse = db.TrainingCourses.Find(id);
+            if (trainingCourse == null)
+            {
+                return HttpNotFound();
+            }
+            return View(trainingCourse);
         }
 
         protected override void Dispose(bool disposing)

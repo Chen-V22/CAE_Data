@@ -38,7 +38,7 @@
                             <div class="textEditor">
                                 <h3 class="txtTitle">【聯絡人】 <span> @Model.ContactPerson </span></h3>
 
-                                <h3 class="txtTitle">【電話】<span>@Model.ContactPhone</span></h3>
+                                <h3 class="txtTitle">【電話】<span> @Model.ContactPhone</span></h3>
 
                                 <h3 class="txtTitle">【E-mail】<span>@Model.ContactEmail </span></h3>
 
@@ -49,8 +49,11 @@
 
                                 <h3 class="txtTitle">【報名說明事項】 <span> @Model.Description</span></h3>
                                 <div class="h-text-center">
-                                    <a class="e-btn e-btn_secondary mr-1" href="@Url.Action("MemberApply")" id="applyBtn" onclick="member();"><i class="far fa-user"></i>會員報名</a>
-                                    <a class="e-btn e-btn_success " href="@Url.Action("GeneralApply")" onclick="noMember()"><i class="far fa-lightbulb"></i>非會員報名</a>
+                                    @if (DateTime.Now>=Model.SignUpSDate&&DateTime.Now<=Model.SignUpEDate)
+                                    {
+                                        <a class="e-btn e-btn_secondary mr-1" href="@Url.Action("MemberApply", "TrainingCourses", new {id = Model.Id})" id="applyBtn" onclick="member();"><i class="far fa-user"></i>會員報名</a>
+                                        <a class="e-btn e-btn_success " href="@Url.Action("GeneralApply", "TrainingCourses", new {id = Model.Id})" onclick="noMember()"><i class="far fa-lightbulb"></i>非會員報名</a>
+                                    }
                                 </div>
                                 <!--end of sem_ctn_text-->
                             </div>

@@ -4,250 +4,127 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<section class=" bannerPic " style="background-image: url(/CAE-Master/img/bg001.jpeg); background-size: cover; background-position: center center; background-repeat: no-repeat;">
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>TrainingCourse</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SeminarStatus, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.SeminarStatus, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.SeminarStatus, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Cost, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Cost, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Cost, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ContactPerson, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ContactPerson, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ContactPerson, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ContactPhone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ContactPhone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ContactPhone, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ContactEmail, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ContactEmail, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ContactEmail, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.EDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SignUpSDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SignUpSDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SignUpSDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SignUpEDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SignUpEDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SignUpEDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Quota, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Quota, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Quota, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Alternate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Alternate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Alternate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Handle, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.Handle, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Handle, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Assisting, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Assisting, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Assisting, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ProjectName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ProjectName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Count, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Count, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Count, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.File, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.File, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.File, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Success, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Success, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Success, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AdImage, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AdImage, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AdImage, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Clicks, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Clicks, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Clicks, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.AddUser, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AddUser, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AddUser, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateTime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DateTime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateTime, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.EditUser, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EditUser, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EditUser, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastEditDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastEditDateTime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LastEditDateTime, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+    <div class="container">
+        <div class="col-md-12 h-text-center">
+            <h1> 教育訓練</h1>
         </div>
     </div>
-}
+</section>
+<article>
+    <section class="main-content">
+        <div class="container px-md-4">
+            <div class="row">
+                <div class="col-md-12 col-xl-9">
+                    <div class="container ml-0">
+                        <ul class="e-breadcrumb">
+                            <li>首頁</li>
+                            <li>研討會/課程</li>
+                            <li> 教育訓練</li>
+                        </ul>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+                        <div class="newsContent mb-3">
+                            <h1 class="articleTitle">@Model.Title</h1>
+
+                            <div class="title_line py-3">
+                                <span class="semDate my-1">活動場次</span> @Model.Title<br>
+                                <span class="semDate my-1">活動地點</span> @Model.Address<br>
+                                <span class="semDate my-1">報名時間</span><span class="h-text-danger"> @Model.SignUpSDate.ToString("yyyy-MM-dd hh:mm") ~ @Model.SignUpEDate.ToString("yyyy-MM-dd hh:mm")</span><br>
+
+                                <span class="semDate">活動費用</span> @Model.Cost<br>
+                            </div>
+
+                            <div class="textEditor">
+                                <table class="responsive">
+                                    <tbody>
+
+                                        <tr class="tit_line">
+                                            <td colspan="3">
+                                                一、財團法人金屬工業研究發展中心(以下簡稱本中心)為提供本中心及產業相關之活動訊息，向您蒐集本次報名所提供之個人資料，並依據個人資料保護法規定，於蒐集時依法向您告知下列事項：
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tit_b">蒐集目的</td>
+                                            <td colspan="2">
+                                                <p>1. 寄送本中心產業推廣、輔導、活動、訓練相關之訊息。</p>
+                                                <p>2. 其他公務機關請求與本中心創設目的相關之行政協助事項。</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="3" class="tit_b">個人資料類別</td>
+                                            <td class="tit_line2">識別個人者</td>
+                                            <td class="tit_line2">如姓名、職稱、地址、聯絡方式。</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tit_line2">現行之受僱情形</td>
+                                            <td class="tit_line2">如雇主、工作職稱、等級等。</td>
+                                        </tr>
+                                        <tr>
+                                            <td>教育、考選、技術或其他專業</td>
+                                            <td>如學歷資格、專業技術、特別執照等。</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tit_b">個人資料利用之期間、地區、對象及方式</td>
+                                            <td colspan="2">除涉及國際業務或活動外，您的個人資料本中心僅於中華民國領域、在前述蒐集目的之必要範圍內，以合理方式利用至蒐集目的消失為止。</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="tit_b">當事人權利</td>
+                                            <td colspan="2">您可向本中心「個資當事人權利行使窗口」行使查詢或請求閱覽、製給複製本、補充或更正、停止蒐集處理利用或刪除您的個人資料之權利，電話：<span class="tel">07-3513121轉2360</span>。</td>
+                                        </tr>
+                                        <tr class="last">
+                                            <td class="tit_b">不提供個人資料之權益影響 </td>
+                                            <td colspan="2">若您不提供個人資料，本中心將無法為您提供蒐集目的之相關服務。</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <p class="tit2"> <i class="fa fa-arrow-down"></i>請同意勾選後進入申請程序</p>
+                                <label class="read_copyright">
+                                    <input name="data_agree" class="data_agree mr-1" type="checkbox" value="1" id="TrueOrFalse"><span class="h-m1">您瞭解此一同意書符合個人資料保護法及相關法規之要求，具有同意本網站蒐集、處理及使用您的個人資料之效果。</span>
+                                </label>
+                                <!--end of sem_ctn_text-->
+                            </div>
+
+                            <hr />
+                            <div class="h-text-right">
+                                <a class="e-btn e-btn_ad_color" id="goBack" href="@Url.Action("Index")">返回列表 </a>
+
+                                <a class="e-btn e-btn_secondary" id="isTrue" href="@Url.Action("Create","RegistrationForms",new {id=Model.Id})">繼續報名 </a>
+                                <a disabled class="e-btn e-btn_disable" id="isFalse">繼續報名 </a>
+                                <!-- <a class="e-btn e-btn_secondary " href="EduDetail_final.html"> 繼續報名</a> -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--前台側邊連結(_NewsPartial)-->
+                @Html.Partial("_NewsPartial")
+            </div>
+        </div>
+
+    </section>
+
+
+</article>
+
+<script>
+    $(document).ready(function () {
+        $("#isFalse").show();
+        $("#isTrue").hide();
+
+        $("#TrueOrFalse").click(function () {
+            if ($(this).prop("checked")) {
+                $("#isTrue").show();
+                $("#isFalse").hide();
+            } else {
+                $("#isFalse").show();
+                $("#isTrue").hide();
+            }
+        });
+
+        $("#goBack").click(function() {
+            
+        })
+    })
+</script>

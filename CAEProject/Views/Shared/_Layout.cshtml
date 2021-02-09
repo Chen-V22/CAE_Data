@@ -62,7 +62,7 @@
                             <i class="e-form-square__icon fas fa-lock"></i>
                             <input class="e-form-square__input" type="password" id="password" name="password">
                         </div>
-
+                        <input type="hidden" name="returnUrl" value="@if (!(Request.Url is null)) {@Request.Url.AbsoluteUri }" />
                         <div class="btn">
                             <button type="submit" class="login_btn_status" style="cursor:pointer" onclick="login_btn();">登入</button><i class="fa fa-spinner fa-spin login_loading_status" style="display:none"></i>
                         </div>
@@ -139,7 +139,7 @@
                             {
                                 Member member = (Member)Session["member"];
                                 <li class="login_btn">
-                                    <a href="@Url.Action("Logoff","Members")" title="登出" class="openModule">
+                                    <a href="@Url.Action("Logoff","Members",new {returnUrl=Request.Url.AbsoluteUri })" title="登出" class="openModule">
                                         <div class="menu_box" style="background-image: url('/CAE-Master/img/Doctor.png')"> </div>
                                         <div class="dsc">@member.Account 登出</div>
                                     </a>
@@ -293,7 +293,7 @@
                                         <a href="@Url.Action("Right","Members")"> 會員權益 </a>
                                     </li>
                                     <li class="Level2 ">
-                                        <a href="@Url.Action("Logoff","Members")"> 會員登出</a>
+                                        <a href="@Url.Action("Logoff","Members",new {returnUrl=Request.Url.AbsoluteUri })"> 會員登出</a>
                                     </li>
                                 }
                             }
@@ -308,20 +308,20 @@
                     </li>
 
                     <li class=" mobileShow NoLv3 ">
-                        <a target="" href="contact.html">
+                        <a target="" href="@Url.Action("ConnectionUs","Home")">
                             <span>聯絡我們</span>
                         </a>
                     </li>
 
                     <li class=" mobileShow ">
-                        <a target=" " href="sitemap.html ">
+                        <a target=" " href="@Url.Action("SiteMap","Home")  ">
                             <span>網站導覽</span>
                         </a>
 
                     </li>
 
                     <li class=" mobileShow NoLv3 ">
-                        <a target=" " href="faq.html ">
+                        <a target=" " href="@Url.Action("Index","Faqs")">
                             <span> 常見問題</span>
                         </a>
                     </li>
@@ -396,7 +396,7 @@
                     <div class="col-xl-2 mb-3 mb-xl-0 d-flex">
                         <div class="l-footer__company ">
                             <h1 class="h-hide-text mb-2">
-                                <a href="#" title="logo" style="background-image: url('./img/cae_foot_qr.png')" class="e-brand l-footer__Qimg"></a>
+                                <a href="#" title="logo" style="background-image: url('/CAE-Master/img/cae_foot_qr.png')" class="e-brand l-footer__Qimg"></a>
                             </h1>
 
                         </div>

@@ -26,7 +26,7 @@ namespace CAEProject.Models
         public string Company { get; set; }
 
         [Display(Name = "統一編號")]
-        public int CompanyNumber { get; set; }
+        public string CompanyNumber { get; set; }
 
         [MaxLength(20)]
         [Display(Name = "姓名")]
@@ -36,7 +36,6 @@ namespace CAEProject.Models
         [MaxLength(50)]
         [Display(Name = "E-mail")]
         [Required(ErrorMessage = "{0}必填")]
-        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [MaxLength(20)]
@@ -71,6 +70,9 @@ namespace CAEProject.Models
 
         [Display(Name = "發票種類")]
         public UniformInvoice UniformInvoice { get; set; }
+
+        [Display(Name = "追加項目")]
+        public string AddData { get; set; }
 
         [Display(Name = "報名日期")]
         [DataType(DataType.DateTime)]

@@ -63,7 +63,7 @@
     {
         @:<span class="e_bandge e_bandge_third-color">未開始</span>
     }
-    else if (DateTime.Now > singUpStr && DateTime.Now < singUpEd)
+    else if (DateTime.Now >= singUpStr && DateTime.Now <= singUpEd)
     {
         @:<span class="e_bandge e_bandge_deep-pink">報名中</span>
     }
@@ -71,7 +71,7 @@
     {
         @:<span class="e_bandge e_bandge_soft_color">報名截止</span>
     }
-    else if (DateTime.Now > activityStr && DateTime.Now < activityEd)
+    else if (DateTime.Now >= activityStr && DateTime.Now <= activityEd)
     {
         @:<span class="e_bandge e_bandge_depGreen">進行中</span>
     }

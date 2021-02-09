@@ -172,8 +172,14 @@ namespace CAEProject.Models
     //發票類別
     public enum UniformInvoice
     {
-        二聯單,
-        三聯單
+        [Description("二聯單(個人)")]
+        二聯式個人,
+        [Description("二聯單(非營利單位)")]
+        二聯式非營利,
+        [Description("不顯示統編")]
+        不顯示統編,
+        [Description("三聯式")]
+        三聯式
     }
 
     //公司屬性

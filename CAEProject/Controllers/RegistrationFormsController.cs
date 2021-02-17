@@ -14,13 +14,6 @@ namespace CAEProject.Controllers
     {
         private Model1 db = new Model1();
 
-        // GET: RegistrationForms
-        public ActionResult Index()
-        {
-            var registrationForms = db.RegistrationForms.Include(r => r.TrainingCourse);
-            return View(registrationForms.ToList());
-        }
-
         // GET: RegistrationForms/Details/5
         public ActionResult Details(int? id,int? trainingId)//id = 報名人id ,trainingId = 課程id
         {
@@ -100,32 +93,6 @@ namespace CAEProject.Controllers
             }
             ViewBag.TrainingId = new SelectList(db.TrainingCourses, "Id", "Title", registrationForm.TrainingId);
             return View(registrationForm);
-        }
-
-        // GET: RegistrationForms/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            RegistrationForm registrationForm = db.RegistrationForms.Find(id);
-            if (registrationForm == null)
-            {
-                return HttpNotFound();
-            }
-            return View(registrationForm);
-        }
-
-        // POST: RegistrationForms/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            RegistrationForm registrationForm = db.RegistrationForms.Find(id);
-            db.RegistrationForms.Remove(registrationForm);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

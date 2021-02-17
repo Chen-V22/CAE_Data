@@ -154,117 +154,117 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        @*@Html.Raw(ViewBag.side)*@
+                        @Html.Raw(ViewBag.menu)
 
-                        <li class="sub-menu">
-                            <a href="javascript:;" class="">
-                                <i class="icon_documents_alt"></i>
-                                <span>系統管理</span>
-                                <span class="menu-arrow arrow_carrot-right"></span>
-                            </a>
-                            <ul class="sub">
-                                <li><a class="" href="@Url.Action("Index", "Users", new {area = "admin"})">管理者帳號</a></li>
-                                <li><a class="" href="@Url.Action("Index", "Roles", new {area = "admin"})">腳色管理</a></li>
-                            </ul>
-                        </li>
+                        @*<li class="sub-menu">
+                                <a href="javascript:;" class="">
+                                    <i class="icon_documents_alt"></i>
+                                    <span>系統管理</span>
+                                    <span class="menu-arrow arrow_carrot-right"></span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a class="" href="@Url.Action("Index", "Users", new {area = "admin"})">管理者帳號</a></li>
+                                    <li><a class="" href="@Url.Action("Index", "Roles", new {area = "admin"})">腳色管理</a></li>
+                                </ul>
+                            </li>
 
 
-                        <li class="sub-menu">
-                            <a href="javascript:;" class="">
-                                <i class="icon_documents_alt"></i>
-                                <span>首頁管理</span>
-                                <span class="menu-arrow arrow_carrot-right"></span>
-                            </a>
-                            <ul class="sub">
-                                <li><a class="" href="@Url.Action("Index", "Ads", new {area = "admin"})">廣告管理</a></li>
-                                <li><a class="" href="@Url.Action("Index", "ProjectServices", new {area = "admin"})">專案服務</a></li>
-                            </ul>
-                        </li>
+                            <li class="sub-menu">
+                                <a href="javascript:;" class="">
+                                    <i class="icon_documents_alt"></i>
+                                    <span>首頁管理</span>
+                                    <span class="menu-arrow arrow_carrot-right"></span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a class="" href="@Url.Action("Index", "Ads", new {area = "admin"})">廣告管理</a></li>
+                                    <li><a class="" href="@Url.Action("Index", "ProjectServices", new {area = "admin"})">專案服務</a></li>
+                                </ul>
+                            </li>
 
-                        <li class="sub-menu">
-                            <a href="javascript:;" class="">
-                                <i class="icon_documents_alt"></i>
-                                <span>會員中心</span>
-                                <span class="menu-arrow arrow_carrot-right"></span>
-                            </a>
-                            <ul class="sub">
-                                <li><a class="" href="@Url.Action("Index", "Members", new {area = "admin"})">會員管理</a></li>
-                                <li><a class="" href="@Url.Action("Index", "MbLevels", new {area = "admin"})">會員計費設定</a></li>
-                                <li><a class="" href="@Url.Action("Index", "Sites", new {area = "admin"})">場地名稱維護</a></li>
-                            </ul>
-                        </li>
+                            <li class="sub-menu">
+                                <a href="javascript:;" class="">
+                                    <i class="icon_documents_alt"></i>
+                                    <span>會員中心</span>
+                                    <span class="menu-arrow arrow_carrot-right"></span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a class="" href="@Url.Action("Index", "Members", new {area = "admin"})">會員管理</a></li>
+                                    <li><a class="" href="@Url.Action("Index", "MbLevels", new {area = "admin"})">會員計費設定</a></li>
+                                    <li><a class="" href="@Url.Action("Index", "Sites", new {area = "admin"})">場地名稱維護</a></li>
+                                </ul>
+                            </li>
 
-                        <li class="sub-menu">
-                            <a href="javascript:;" class="">
-                                <i class="icon_documents_alt"></i>
-                                <span>公告服務</span>
-                                <span class="menu-arrow arrow_carrot-right"></span>
-                            </a>
-                            <ul class="sub">
-                                <li><a class="" href="@Url.Action("Index", "News", new {area = "admin"})">焦點新聞</a></li>
-                                <li><a class="" href="@Url.Action("Index", "TechnicalKnowledges", new {area = "admin"})">技術新知</a></li>
-                                <li><a class="" href="@Url.Action("Index", "ActivityRecords", new {area = "admin"})">活動集錦</a></li>
-                            </ul>
-                        </li>
+                            <li class="sub-menu">
+                                <a href="javascript:;" class="">
+                                    <i class="icon_documents_alt"></i>
+                                    <span>公告服務</span>
+                                    <span class="menu-arrow arrow_carrot-right"></span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a class="" href="@Url.Action("Index", "News", new {area = "admin"})">焦點新聞</a></li>
+                                    <li><a class="" href="@Url.Action("Index", "TechnicalKnowledges", new {area = "admin"})">技術新知</a></li>
+                                    <li><a class="" href="@Url.Action("Index", "ActivityRecords", new {area = "admin"})">活動集錦</a></li>
+                                </ul>
+                            </li>
 
-                        <li class="sub-menu">
-                            <a href="javascript:;" class="">
-                                <i class="icon_documents_alt"></i>
-                                <span>CAE 軟體管理</span>
-                                <span class="menu-arrow arrow_carrot-right"></span>
-                            </a>
-                            <ul class="sub">
-                                <li><a class="" href="@Url.Action("Index", "Ads", new {area = "admin"})">CAE 軟體維護</a></li>
-                                <li><a class="" href="@Url.Action("Index", "Ads", new {area = "admin"})">軟體模式</a></li>
-                                <li><a class="" href="@Url.Action("Index", "Ads", new {area = "admin"})">CAE 軟體預約管理</a></li>
-                            </ul>
-                        </li>
+                            <li class="sub-menu">
+                                <a href="javascript:;" class="">
+                                    <i class="icon_documents_alt"></i>
+                                    <span>CAE 軟體管理</span>
+                                    <span class="menu-arrow arrow_carrot-right"></span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a class="" href="@Url.Action("Index", "Ads", new {area = "admin"})">CAE 軟體維護</a></li>
+                                    <li><a class="" href="@Url.Action("Index", "Ads", new {area = "admin"})">軟體模式</a></li>
+                                    <li><a class="" href="@Url.Action("Index", "Ads", new {area = "admin"})">CAE 軟體預約管理</a></li>
+                                </ul>
+                            </li>
 
-                        <li class="sub-menu">
-                            <a href="javascript:;" class="">
-                                <i class="icon_documents_alt"></i>
-                                <span>互動服務</span>
-                                <span class="menu-arrow arrow_carrot-right"></span>
-                            </a>
-                            <ul class="sub">
-                                <li><a class="" href="@Url.Action("Index", "Faqs", new {area = "admin"})">FAQ(常見問與答)</a></li>
-                            </ul>
-                        </li>
+                            <li class="sub-menu">
+                                <a href="javascript:;" class="">
+                                    <i class="icon_documents_alt"></i>
+                                    <span>互動服務</span>
+                                    <span class="menu-arrow arrow_carrot-right"></span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a class="" href="@Url.Action("Index", "Faqs", new {area = "admin"})">FAQ(常見問與答)</a></li>
+                                </ul>
+                            </li>
 
-                        <li class="sub-menu">
-                            <a href="javascript:;" class="">
-                                <i class="icon_documents_alt"></i>
-                                <span>研討會/課程</span>
-                                <span class="menu-arrow arrow_carrot-right"></span>
-                            </a>
-                            <ul class="sub">
-                                <li><a class="" href="@Url.Action("Index", "Seminars", new {area = "admin"})">研討會(無報名)</a></li>
-                                <li><a class="" href="@Url.Action("Index", "TrainingCourses", new {area = "admin"})">教育訓練(需報名)</a></li>
-                            </ul>
-                        </li>
+                            <li class="sub-menu">
+                                <a href="javascript:;" class="">
+                                    <i class="icon_documents_alt"></i>
+                                    <span>研討會/課程</span>
+                                    <span class="menu-arrow arrow_carrot-right"></span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a class="" href="@Url.Action("Index", "Seminars", new {area = "admin"})">研討會(無報名)</a></li>
+                                    <li><a class="" href="@Url.Action("Index", "TrainingCourses", new {area = "admin"})">教育訓練(需報名)</a></li>
+                                </ul>
+                            </li>
 
-                        <li class="sub-menu">
-                            <a href="javascript:;" class="">
-                                <i class="icon_documents_alt"></i>
-                                <span>成果展示</span>
-                                <span class="menu-arrow arrow_carrot-right"></span>
-                            </a>
-                            <ul class="sub">
-                                <li><a class="" href="@Url.Action("Index", "ShowOffs", new {area = "admin"})">案例展示</a></li>
-                                <li><a class="" href="@Url.Action("Index", "ResultsPublisheds", new {area = "admin"})">成果發表</a></li>
-                            </ul>
-                        </li>
+                            <li class="sub-menu">
+                                <a href="javascript:;" class="">
+                                    <i class="icon_documents_alt"></i>
+                                    <span>成果展示</span>
+                                    <span class="menu-arrow arrow_carrot-right"></span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a class="" href="@Url.Action("Index", "ShowOffs", new {area = "admin"})">案例展示</a></li>
+                                    <li><a class="" href="@Url.Action("Index", "ResultsPublisheds", new {area = "admin"})">成果發表</a></li>
+                                </ul>
+                            </li>
 
-                        <li class="sub-menu">
-                            <a href="javascript:;" class="">
-                                <i class="icon_documents_alt"></i>
-                                <span>電子報</span>
-                                <span class="menu-arrow arrow_carrot-right"></span>
-                            </a>
-                            <ul class="sub">
-                                <li><a class="" href="@Url.Action("index","Newsletters",new{area="admin"})">電子報</a></li>
-                            </ul>
-                        </li>
+                            <li class="sub-menu">
+                                <a href="javascript:;" class="">
+                                    <i class="icon_documents_alt"></i>
+                                    <span>電子報</span>
+                                    <span class="menu-arrow arrow_carrot-right"></span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a class="" href="@Url.Action("index","Newsletters",new{area="admin"})">電子報</a></li>
+                                </ul>
+                            </li>*@
 
                         <li class="sub-menu">
                             <a href="javascript:;" class="">
@@ -273,13 +273,13 @@
                                 <span class="menu-arrow arrow_carrot-right"></span>
                             </a>
                             <ul class="sub">
-                                @*@using (Html.BeginForm("Transfer", "Home", FormMethod.Post, new { id = "Transfer" }))
-                                    {
-                                        <li>
-                                            @Html.AntiForgeryToken()<a href="javascript:document.getElementById('Transfer').submit()"><i class="icon_pin_alt"></i>前往網頁</a>
-                                        </li>
-                                    }*@
-                                <li><a class="" href="@Url.Action("index", "Home", new {area = ""})">前往網頁</a></li>
+                                @using (Html.BeginForm("Transfer", "Home", FormMethod.Post, new { id = "Transfer" }))
+                                {
+                                    <li>
+                                        @Html.AntiForgeryToken()<a href="javascript:document.getElementById('Transfer').submit()"><i class="icon_pin_alt"></i>前往網頁</a>
+                                    </li>
+                                }
+                                @*<li><a class="" href="@Url.Action("index", "Home", new {area = ""})">前往網頁</a></li>*@
                             </ul>
                         </li>
 

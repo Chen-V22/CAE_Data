@@ -2398,6 +2398,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\tree.min.js" />
     <Content Include="VenoBox-master\venobox\venobox.css" />
     <Content Include="VenoBox-master\venobox\venobox.js" />
     <Content Include="VenoBox-master\venobox\venobox.min.css" />
@@ -2459,10 +2460,8 @@
     <Content Include="Views\TrainingCourses\MemberApply.cshtml" />
     <Content Include="Views\TrainingCourses\Index.cshtml" />
     <Content Include="Views\RegistrationForms\Create.cshtml" />
-    <Content Include="Views\RegistrationForms\Delete.cshtml" />
     <Content Include="Views\RegistrationForms\Details.cshtml" />
     <Content Include="Views\RegistrationForms\Edit.cshtml" />
-    <Content Include="Views\RegistrationForms\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

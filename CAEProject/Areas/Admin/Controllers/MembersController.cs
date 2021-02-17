@@ -6,11 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using CAEProject.Areas.Admin.Filters;
 using CAEProject.Models;
 using MvcPaging;
 
 namespace CAEProject.Areas.Admin.Controllers
 {
+    [Premission]
     public class MembersController : Controller
     {
         private Model1 db = new Model1();

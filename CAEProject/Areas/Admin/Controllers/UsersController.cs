@@ -7,13 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using CAEProject.Areas.Admin.Filters;
 using CAEProject.Models;
 using MvcPaging;
 using Newtonsoft.Json;
 
 namespace CAEProject.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Premission]
     public class UsersController : Controller
     {
         private Model1 db = new Model1();

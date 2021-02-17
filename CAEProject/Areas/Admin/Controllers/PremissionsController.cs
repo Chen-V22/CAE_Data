@@ -8,19 +8,21 @@ using System.Web;
 using System.Web.Mvc;
 using CAEProject.Areas.Admin.Filters;
 using CAEProject.Models;
+using MvcPaging;
 
 namespace CAEProject.Areas.Admin.Controllers
 {
-    
     public class PremissionsController : Controller
     {
         private Model1 db = new Model1();
-
-        // GET: Admin/Premissions
-        public ActionResult Index()
+        private const int DefaultPageSize = 10;
+        
+        // GET: Admin/Premission
+        public ActionResult Index(int? page)
         {
-            var premissions = db.Premissions.Include(p => p.Premissions);
-            return View(premissions.ToList());
+            int UserPage = page.HasValue ? page.Value - 1 : 0;
+            var user = db.Premissions.OrderBy(x => x.Id).AsQueryable();
+            return View(user.ToPagedList(UserPage, DefaultPageSize));
         }
 
         // GET: Admin/Premissions/Details/5
@@ -41,7 +43,7 @@ namespace CAEProject.Areas.Admin.Controllers
         // GET: Admin/Premissions/Create
         public ActionResult Create()
         {
-            ViewBag.pid = new SelectList(db.Premissions, "Id", "Name");
+            ViewBag.pid = new SelectList(db.Premissions.Where(x=>x.pid==null), "Id", "Name");
             return View();
         }
 

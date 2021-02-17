@@ -6,12 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using CAEProject.Areas.Admin.Filters;
 using CAEProject.Models;
 using MvcPaging;
 
 namespace CAEProject.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Premission]
     public class SeminarsController : Controller
     {
         private Model1 db = new Model1();
@@ -96,6 +97,7 @@ namespace CAEProject.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "Id,SeminarStatus,Title,ShowDateTime,Status,Lecturer,IsTop,Clicks,Url,Address,Organizer,Assisting,Count,File,SDate,EDate,AddUser,DateTime,EditUser,LastEditDateTime")] Seminar seminar, HttpPostedFileBase upfile)
         {
             if (ModelState.IsValid)

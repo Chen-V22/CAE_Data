@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using CAEProject.Areas.Admin.Filters;
 using CAEProject.Models;
 using MvcPaging;
 
@@ -16,6 +17,7 @@ namespace CAEProject.Areas.Admin.Controllers
         private Model1 db = new Model1();
         private const int DefaultPageSize = 10;
         // GET: Admin/News
+        [Premission]
         public ActionResult Index(int? page)
         {
             string newsTitle = Session["newsTitle"] == null ? null : Session["newsTitle"].ToString();

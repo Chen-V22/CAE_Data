@@ -5,16 +5,18 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using CAEProject.Areas.Admin.Filters;
 using CAEProject.Models;
 using Newtonsoft.Json;
 
 namespace CAEProject.Areas.Admin.Controllers
 {
-    [Authorize]
+    
     public class HomeController : Controller
     {
         Model1 db = new Model1();
         // GET: Admin/Home
+        [Premission]
         public ActionResult Index()
         {
             return View();
@@ -38,7 +40,7 @@ namespace CAEProject.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var Account = db.Users.FirstOrDefault(x => x.UserCodeName == logInViewModel.UserCodeName);
+                var Account = db.Users.FirstOrDefault(x => x.UserName == logInViewModel.UserCodeName);
                 if (Account==null)
                 {
                     TempData["Error"] = "登入失敗";
@@ -60,6 +62,7 @@ namespace CAEProject.Areas.Admin.Controllers
             return View(logInViewModel);
         }
 
+        [Premission]
         [ValidateAntiForgeryToken]
         public ActionResult SingOut()
         {
@@ -67,6 +70,17 @@ namespace CAEProject.Areas.Admin.Controllers
             Session.Abandon();
 
             return Redirect(FormsAuthentication.LoginUrl);
+        }
+
+        [Premission]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Transfer()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+
+            return RedirectToActionPermanent("index", "Home", new { Area = "" });
         }
     }
 }

@@ -4,13 +4,15 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using CAEProject.Areas.Admin.Filters;
 using CAEProject.Models;
 
 namespace CAEProject.Areas.Admin.Controllers
 {
-    [Authorize]
+    [Premission]
     public class RolesController : Controller
     {
         private Model1 db = new Model1();
@@ -39,7 +41,29 @@ namespace CAEProject.Areas.Admin.Controllers
         // GET: Admin/Roles/Create
         public ActionResult Create()
         {
+            var premission = db.Premissions.ToList();
+            StringBuilder sb = new StringBuilder("[");
+            GetPemission(premission.Where(x => x.pid == null).ToList(), sb);
+            sb.Append("]");
+            ViewBag.data = sb.ToString();
             return View();
+        }
+
+        private void GetPemission(ICollection<Premission> list, StringBuilder sb)
+        {
+            foreach (Premission permission in list)
+            {
+                sb.Append("{\"id\": \"" + permission.PValue + "\", \"text\": \"" + permission.Name + "\""); //if only got first layer then only use the ones at top and bottom
+                if (permission.premissionSon.Count() > 0) //if has another children layer
+                {
+                    sb.Append(",\"children\":["); //get data is got another children
+                    GetPemission(permission.premissionSon, sb); //run the function again in loop to get more data
+                    sb.Append("]");
+                }
+                sb.Append("},"); //at the end of the array there's ',', use trim.end to get rid of the ,
+            }
+            string temp = sb.ToString();
+            sb = new StringBuilder(temp);
         }
 
         // POST: Admin/Roles/Create
@@ -71,6 +95,11 @@ namespace CAEProject.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            var premission = db.Premissions.ToList();
+            StringBuilder sb = new StringBuilder("[");
+            GetPemission(premission.Where(x => x.pid == null).ToList(), sb);
+            sb.Append("]");
+            ViewBag.data = sb.ToString();
             return View(role);
         }
 

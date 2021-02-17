@@ -34,7 +34,7 @@ namespace CAEProject.Areas.Admin.Filters
             User userDate = JsonConvert.DeserializeObject<User>(user);
             foreach (Premission premission in list)
             {
-                if (userDate.Role.Authority.IndexOf(premission.PValue) > -1)
+                if (userDate.Role.Authority.IndexOf(premission.PValue, StringComparison.Ordinal) > -1)
                 {
                     if (premission.pid == null)
                     {

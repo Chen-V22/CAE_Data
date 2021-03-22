@@ -27,7 +27,7 @@ namespace CAEProject.Areas.Admin.Controllers
             DateTime? newsEndDateTime =
                 Session["newsEndDateTime"] == null ? null : (DateTime?)Session["newsEndDateTime"];
             int UserPage = page.HasValue ? page.Value - 1 : 0;
-            var user = db.News.OrderBy(x => x.DateTime).AsQueryable();
+            var user = db.News.OrderByDescending(x => x.DateTime).AsQueryable();
            
             if (!string.IsNullOrEmpty(newsTitle))
             {
@@ -74,6 +74,7 @@ namespace CAEProject.Areas.Admin.Controllers
         }
 
         // GET: Admin/News/Create
+        [Premission]
         public ActionResult Create()
         {
             return View();
@@ -120,6 +121,7 @@ namespace CAEProject.Areas.Admin.Controllers
         }
 
         // GET: Admin/News/Edit/5
+        [Premission]
         public ActionResult Edit(int? id)
         {
             if (id == null)
